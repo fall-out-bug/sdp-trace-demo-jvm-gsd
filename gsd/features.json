@@ -14,7 +14,7 @@
     },
     {
       "id": "expired-entitlement-denial",
-      "status": "planned"
+      "status": "implemented_on_branch"
     },
     {
       "id": "manual-risk-override",

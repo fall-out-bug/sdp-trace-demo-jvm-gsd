@@ -24,6 +24,12 @@ java_library(
     deps = [":entitlement"],
 )
 
+java_library(
+    name = "expired_entitlement_deny",
+    srcs = ["src/ExpiredEntitlementDeny.java"],
+    deps = [":entitlement"],
+)
+
 java_test(
     name = "entitlement_test",
     srcs = ["src/PlanEntitlementTest.java"],
@@ -38,6 +44,13 @@ java_test(
     deps = [":feature_override", ":entitlement"],
 )
 
+java_test(
+    name = "expired_entitlement_deny_test",
+    srcs = ["src/ExpiredEntitlementDenyTest.java"],
+    test_class = "com.example.entitlement.ExpiredEntitlementDenyTest",
+    deps = [":expired_entitlement_deny", ":entitlement"],
+)
+
 sh_test(
     name = "bootstrap_check",
     srcs = ["scripts/bootstrap_check.sh"],
@@ -45,12 +58,15 @@ sh_test(
         "evidence/plan-entitlement/feature.json",
         "evidence/feature-override/feature.json",
         "evidence/decision-audit/feature.json",
+        "evidence/expired-entitlement-denial/feature.json",
         "gsd/features.json",
         "provenance/plan-entitlement/provenance.json",
         "provenance/feature-override/provenance.json",
         "provenance/decision-audit/provenance.json",
+        "provenance/expired-entitlement-denial/provenance.json",
         "trace/plan-entitlement/trace.json",
         "trace/feature-override/trace.json",
         "trace/decision-audit/trace.json",
+        "trace/expired-entitlement-denial/trace.json",
     ],
 )
