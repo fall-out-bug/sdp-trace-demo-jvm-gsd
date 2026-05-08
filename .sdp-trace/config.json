@@ -1,0 +1,20 @@
+{
+  "install_metadata": {
+    "generated_by": "sdp-trace install repo-observer",
+    "local_config_note": "core.hooksPath is local checkout configuration",
+    "template_version": "block28-repo-observer-status-v1"
+  },
+  "installed_files": [
+    ".githooks/post-commit",
+    ".githooks/pre-commit",
+    ".githooks/pre-push",
+    ".github/workflows/sdp-trace-observe.yml",
+    ".gitignore:# sdp-trace begin",
+    ".sdp-trace/README.md",
+    ".sdp-trace/config.json"
+  ],
+  "profile": "github-actions-git-hooks-v1",
+  "repository_id": "sdp_trace_demo_jvm_gsd",
+  "schema_version": "sdp-trace-repo-observer-config-v1",
+  "trust_boundary": "local_structural_until_ci_artifact_observed"
+}

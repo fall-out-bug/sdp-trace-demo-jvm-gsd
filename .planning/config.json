@@ -1,0 +1,20 @@
+{
+  "mode": "interactive",
+  "granularity": "coarse",
+  "parallelization": true,
+  "commit_docs": false,
+  "model_profile": "balanced",
+  "workflow": {
+    "research": true,
+    "plan_check": true,
+    "verifier": true,
+    "nyquist_validation": false,
+    "auto_advance": false,
+    "discuss_mode": "discuss"
+  },
+  "planning": {
+    "project_code": "entitlement",
+    "project_title": "Entitlement Validation Library",
+    "approval_required_before_implementation": true
+  }
+}

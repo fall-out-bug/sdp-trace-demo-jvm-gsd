@@ -1,0 +1,68 @@
+name: sdp-trace observe
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: bazel-contrib/setup-bazel@0.19.0
+        with:
+          bazelisk-cache: true
+          disk-cache: true
+          repository-cache: true
+      - name: Capture safe repository metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p .sdp-trace/ci
+          {
+            printf 'github_repository=%s\n' "$GITHUB_REPOSITORY"
+            printf 'github_run_id=%s\n' "$GITHUB_RUN_ID"
+            printf 'github_sha=%s\n' "$GITHUB_SHA"
+            printf 'github_ref=%s\n' "$GITHUB_REF"
+          } > .sdp-trace/ci/metadata.env
+          git status --short > .sdp-trace/ci/status.txt
+      - name: Run structural diff checks
+        shell: bash
+        run: |
+          set +e
+          mkdir -p .sdp-trace/ci
+          base_sha="${{ github.event.pull_request.base.sha || github.event.before }}"
+          zero_sha="0000000000000000000000000000000000000000"
+          if [ -n "$base_sha" ] && [ "$base_sha" != "$zero_sha" ]; then
+            git diff --check "$base_sha"...HEAD -- ':!.opencode/**' > .sdp-trace/ci/diff-check.txt 2>&1
+          else
+            git diff --check HEAD -- ':!.opencode/**' > .sdp-trace/ci/diff-check.txt 2>&1
+          fi
+          diff_exit=$?
+          printf 'diff_check_exit=%s\n' "$diff_exit" > .sdp-trace/ci/diff-check-exit.env
+          exit "$diff_exit"
+      - name: Run Bazel verification
+        shell: bash
+        run: |
+          set +e
+          bazel build //src/main:entitlement > .sdp-trace/ci/bazel-build.txt 2>&1
+          build_exit=$?
+          bazel test //src/test:entitlement_test --test_output=all > .sdp-trace/ci/bazel-test.txt 2>&1
+          test_exit=$?
+          {
+            printf 'bazel_build_exit=%s\n' "$build_exit"
+            printf 'bazel_test_exit=%s\n' "$test_exit"
+          } > .sdp-trace/ci/bazel-exit.env
+          if [ "$build_exit" -ne 0 ] || [ "$test_exit" -ne 0 ]; then
+            exit 1
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sdp-trace-observer
+          path: .sdp-trace/ci/

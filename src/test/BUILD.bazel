@@ -1,0 +1,10 @@
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_test")
+
+kt_jvm_test(
+    name = "entitlement_test",
+    srcs = glob(["kotlin/com/entitlement/*Test.kt"]),
+    main_class = "com.entitlement.EntitlementValidatorTest",
+    deps = [
+        "//src/main:entitlement",
+    ],
+)

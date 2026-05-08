@@ -1,0 +1,47 @@
+{
+  "schema_version": "1.0.0",
+  "trace_id": "it-3dc59f704600806c41c72b58",
+  "task_id": "demo-gsd-phase1-planning",
+  "source_type": "observed-control-channel",
+  "completeness_state": "complete",
+  "events": [
+    {
+      "schema_version": "1.0.0",
+      "interaction_id": "ix-810066ee0f572401b342e5f4",
+      "task_id": "demo-gsd-phase1-planning",
+      "operation_id": "codex-repair-gsd-phase1-test-verification",
+      "stage_id": "gsd-verify",
+      "source_id": "interaction-relay-v1",
+      "source_sequence": 0,
+      "event_type": "corrective_feedback",
+      "friction_class": "correction",
+      "actor": {
+        "id": "codex-observer",
+        "actor_type": "human_user"
+      },
+      "target": "gsd-opencode",
+      "source": {
+        "source_type": "observed-control-channel",
+        "source_id": "interaction-relay-v1",
+        "source_version": "1.0.0"
+      },
+      "content_ref": "sdp://interaction/demo-gsd-phase1-planning/ix-810066ee0f572401b342e5f4",
+      "content_digest": "a54454844c0664a47238e0570008be77a36b3f2bf5928f9fd376b943b0c8bd9d",
+      "digest_algorithm": "sha256",
+      "retention": "sanitized_excerpt",
+      "state": "unreferenced",
+      "observed_before_delivery": true,
+      "channel_exclusivity_state": "not_assessed",
+      "completeness_state": "complete",
+      "redaction": {
+        "policy_ref": "block29-safe-default-v1",
+        "finding_count": 0
+      },
+      "observed_at": "2026-05-08T22:10:15Z",
+      "created_at": "2026-05-08T22:10:15Z"
+    }
+  ],
+  "assessment_state": "assessed",
+  "created_at": "2026-05-08T22:10:15Z",
+  "updated_at": "2026-05-08T22:10:15Z"
+}

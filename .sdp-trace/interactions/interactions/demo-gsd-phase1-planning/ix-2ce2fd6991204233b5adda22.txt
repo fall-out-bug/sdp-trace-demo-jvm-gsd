@@ -1,0 +1,10 @@
+Corrective feedback on the generated Phase 1 plan. Revise PLAN.md only; do not write product code, Bazel files outside planning artifacts, tests, CI files, or execute the phase.
+
+Blocking plan issues to fix:
+1. Empty Kotlin+Bazel repo cannot compile with only BUILD.bazel. Add build setup files to plan scope: MODULE.bazel and package BUILD files as needed. Current rules_kotlin Bzlmod usage requires adding rules_kotlin in MODULE.bazel; official source: Bazel Central Registry rules_kotlin says to add the module to MODULE.bazel, and bazelbuild/rules_kotlin README shows loading kt_jvm_library from @rules_kotlin//kotlin:jvm.bzl.
+2. Rule model mismatch: the plan requires AND semantics within a rule, but RoleRule/GroupRule/CustomAttributeRule each contain one condition. Either introduce a CompositeRule/AllOfRule with child conditions, or simplify Phase 1 semantics to first matching single-condition rule. Prefer CompositeRule/AllOfRule only if it stays small and testable.
+3. Acceptance criteria contain brittle or invalid grep patterns, e.g. "fun validate.EntitlementResponse" and "EntitlementRule(". Replace with compile/test oriented checks and precise grep for actual declarations.
+4. Test target path must match the planned Bazel package layout. If tests live under src/test/kotlin/com/entitlement, plan a BUILD.bazel there and use the matching target label.
+5. Plan should keep approval boundary explicit: after this PLAN.md, stop for user approval before /gsd-execute-phase.
+
+After revision, summarize changes and stop.

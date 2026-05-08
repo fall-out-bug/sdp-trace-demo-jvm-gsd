@@ -1,27 +1,7 @@
-# Allow Bazel build files to be tracked
-!BUILD.bazel
-!MODULE.bazel
-!MODULE.bazel.lock
+# sdp-trace begin
+.sdp-trace/hooks/
+.sdp-trace/ci/
+.sdp-trace/install-diff.txt
+# sdp-trace end
 
-# Bazel output directories (symlinks and outputs)
 bazel-*
-
-# Local configuration
-.bazelrc
-.bazelversion
-
-# Build outputs
-*.class
-*.jar
-*.war
-ci-artifacts/
-
-# IDE
-.idea/
-*.iml
-.vscode/
-*.swp
-
-# OS
-.DS_Store
-*.log
