@@ -2,6 +2,18 @@ load("@rules_java//java:defs.bzl", "java_library", "java_test")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 java_library(
+    name = "decision_audit",
+    srcs = ["src/DecisionAudit.java"],
+)
+
+java_test(
+    name = "decision_audit_test",
+    srcs = ["src/DecisionAuditTest.java"],
+    test_class = "com.example.entitlement.DecisionAuditTest",
+    deps = [":decision_audit"],
+)
+
+java_library(
     name = "entitlement",
     srcs = ["src/PlanEntitlement.java"],
 )
@@ -32,10 +44,13 @@ sh_test(
     data = [
         "evidence/plan-entitlement/feature.json",
         "evidence/feature-override/feature.json",
+        "evidence/decision-audit/feature.json",
         "gsd/features.json",
         "provenance/plan-entitlement/provenance.json",
         "provenance/feature-override/provenance.json",
+        "provenance/decision-audit/provenance.json",
         "trace/plan-entitlement/trace.json",
         "trace/feature-override/trace.json",
+        "trace/decision-audit/trace.json",
     ],
 )
