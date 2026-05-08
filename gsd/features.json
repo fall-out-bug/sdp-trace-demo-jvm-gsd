@@ -2,7 +2,7 @@
   "features": [
     {
       "id": "plan-entitlement",
-      "status": "planned"
+      "status": "implemented_on_branch"
     },
     {
       "id": "feature-override",

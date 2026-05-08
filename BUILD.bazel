@@ -1,7 +1,25 @@
+load("@rules_java//java:defs.bzl", "java_library", "java_test")
 load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+java_library(
+    name = "entitlement",
+    srcs = ["src/PlanEntitlement.java"],
+)
+
+java_test(
+    name = "entitlement_test",
+    srcs = ["src/PlanEntitlementTest.java"],
+    test_class = "com.example.entitlement.PlanEntitlementTest",
+    deps = [":entitlement"],
+)
 
 sh_test(
     name = "bootstrap_check",
     srcs = ["scripts/bootstrap_check.sh"],
-    data = ["gsd/features.json"],
+    data = [
+        "evidence/plan-entitlement/feature.json",
+        "gsd/features.json",
+        "provenance/plan-entitlement/provenance.json",
+        "trace/plan-entitlement/trace.json",
+    ],
 )

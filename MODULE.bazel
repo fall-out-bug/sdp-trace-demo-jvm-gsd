@@ -1,3 +1,4 @@
 module(name = "sdp-trace-demo-jvm-gsd", version = "0.0.0")
 
 bazel_dep(name = "rules_shell", version = "0.8.0")
+bazel_dep(name = "rules_java", version = "9.1.0")
