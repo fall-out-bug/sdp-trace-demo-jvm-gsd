@@ -54,3 +54,9 @@ Current state: CI structural diff checks exclude `.opencode/**` and record the c
 The generated `.sdp-trace/repo-observer-status.json` contained a branch/head snapshot from the earlier reset branch. After moving the work onto a valid PR branch and observing GitHub Actions artifacts, that checked-in mutable status file became misleading.
 
 Current state: removed from the repository and added to `.gitignore`. Phase evidence is taken from the uploaded `sdp-trace-observer` CI artifact instead of checked-in mutable status JSON.
+
+### GitHub Actions Node 20 deprecation warning
+
+After PR merge, GitHub Actions warned that `actions/checkout@v4` and `actions/upload-artifact@v4` run on the deprecated Node 20 runtime. The warning is current CI signal, not a fabricated failure.
+
+Current state: observer CI uses `actions/checkout@v6` and `actions/upload-artifact@v7`, matching the current official action documentation for Node 24-compatible releases.
