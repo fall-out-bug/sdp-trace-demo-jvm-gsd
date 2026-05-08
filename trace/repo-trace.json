@@ -1,8 +1,21 @@
 {
   "artifact_kind": "trace",
   "repo": "sdp-trace-demo-jvm-gsd",
-  "scope": "baseline",
+  "scope": "implemented",
   "features_planned": 5,
-  "implemented_features": [],
-  "status": "No feature is implemented yet. Baseline scaffold only."
+  "implemented_features": [
+    "plan-entitlement",
+    "feature-override",
+    "decision-audit",
+    "expired-entitlement-denial",
+    "manual-risk-override"
+  ],
+  "delivery_trace": [
+    { "step": 1, "feature": "plan-entitlement", "pr": 2, "ci_run": 25563943510 },
+    { "step": 2, "feature": "feature-override", "pr": 3, "ci_run": 25564171055 },
+    { "step": 3, "feature": "decision-audit", "pr": 4, "ci_run": 25564372979 },
+    { "step": 4, "feature": "expired-entitlement-denial", "pr": 5, "ci_run": 25564570402 },
+    { "step": 5, "feature": "manual-risk-override", "pr": 6, "ci_run": 25564876007 }
+  ],
+  "status": "All 5 features implemented. Trace from PR CI artifacts only."
 }
