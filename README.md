@@ -21,3 +21,7 @@ bazel test //...
 ```bash
 bash scripts/bootstrap_check.sh
 ```
+
+## CI Artifacts
+
+GitHub CI uploads three artifact bundles: `sdp-trace-provenance`, `sdp-trace-evidence`, `sdp-trace-trace`.

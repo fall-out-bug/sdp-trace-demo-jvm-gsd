@@ -1,0 +1,8 @@
+{
+  "artifact_kind": "evidence",
+  "repo": "sdp-trace-demo-jvm-gsd",
+  "scope": "baseline",
+  "features_planned": 5,
+  "implemented_features": [],
+  "status": "No feature is implemented yet. Baseline scaffold only."
+}
