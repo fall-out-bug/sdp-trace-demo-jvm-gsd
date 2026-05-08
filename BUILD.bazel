@@ -1,0 +1,7 @@
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+sh_test(
+    name = "bootstrap_check",
+    srcs = ["scripts/bootstrap_check.sh"],
+    data = ["gsd/features.json"],
+)

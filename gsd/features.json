@@ -1,0 +1,24 @@
+{
+  "features": [
+    {
+      "id": "plan-entitlement",
+      "status": "planned"
+    },
+    {
+      "id": "feature-override",
+      "status": "planned"
+    },
+    {
+      "id": "decision-audit",
+      "status": "planned"
+    },
+    {
+      "id": "expired-entitlement-denial",
+      "status": "planned"
+    },
+    {
+      "id": "manual-risk-override",
+      "status": "planned"
+    }
+  ]
+}
