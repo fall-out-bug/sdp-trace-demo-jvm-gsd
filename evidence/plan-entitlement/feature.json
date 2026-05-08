@@ -1,0 +1,15 @@
+{
+  "feature": "plan-entitlement",
+  "implementation": "branch-local",
+  "description": "Entitlement decision where a subscription plan grants or denies a feature by feature key",
+  "files": {
+    "production_code": "src/PlanEntitlement.java",
+    "test_code": "src/PlanEntitlementTest.java"
+  },
+  "test_commands": [
+    "bazel test //:entitlement_test",
+    "bazel test //..."
+  ],
+  "status": "implemented_on_branch",
+  "note": "CI artifact upload to be verified by PR CI"
+}
