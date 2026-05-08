@@ -1,0 +1,1 @@
+Observed execution friction: GSD marked Phase 1 complete while bazel test //src/test:entitlement_test was failing. Repair loop fixed kt_jvm_test execution by using explicit main_class, corrected first-match audit semantics, fixed a bad first-match test fixture, and reran bazel test to 27 passed / 0 failed. This is recorded as corrective feedback after execution.

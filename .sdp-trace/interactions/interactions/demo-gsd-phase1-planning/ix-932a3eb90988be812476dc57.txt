@@ -1,0 +1,3 @@
+01 --text
+
+Approved: execute Phase 1 plan 01-01 to completion. Follow .planning/phases/01-core-entitlement-validation/01-01-PLAN.md. Write only the planned files plus required GSD summary/state artifacts. Run verification. Do not skip failures; fix real issues and record observed problems.

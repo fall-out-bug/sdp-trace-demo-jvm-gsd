@@ -1,0 +1,11 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "permission": {
+    "read": {
+      "/Users/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd/.opencode/get-shit-done/*": "allow"
+    },
+    "external_directory": {
+      "/Users/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd/.opencode/get-shit-done/*": "allow"
+    }
+  }
+}

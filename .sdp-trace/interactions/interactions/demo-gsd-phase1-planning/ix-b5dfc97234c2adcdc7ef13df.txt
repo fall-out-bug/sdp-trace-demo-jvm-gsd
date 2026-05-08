@@ -1,0 +1,1 @@
+Discuss all five gray areas before planning: 1 Rule Data Structure, 2 Attribute Matching Logic, 3 Audit Record Format, 4 API Design, 5 Entitlement Input Model. Keep this as Phase 1 discussion/context only. Do not write product code, Bazel files, tests, or CI files. Do not run plan phase or execute phase.

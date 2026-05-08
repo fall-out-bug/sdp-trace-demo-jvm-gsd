@@ -1,0 +1,10 @@
+Second corrective feedback on Phase 1 PLAN.md. Revise PLAN.md only; do not write product code, Bazel files, tests, CI files, or execute the phase.
+
+Remaining blockers:
+1. The current AllOfRule design is awkward because it uses child EntitlementRule objects as conditions, but child rules also carry ruleId and decision. Revise the model so matching conditions are separate from decision-bearing rules. Preferred small shape: sealed interface EntitlementCondition with RoleCondition, GroupCondition, CustomAttributeCondition; data class EntitlementRule(ruleId: String, decision: EntitlementDecision, conditions: List<EntitlementCondition>). This still satisfies the locked sealed hierarchy/type-safety decision and makes AND semantics real.
+2. Update Task 2 evaluation text accordingly: a rule matches when all EntitlementCondition values match; first matching rule wins; matchedRuleIds contains the decision-bearing rule ID; evaluatedRuleIds contains each rule evaluated until first match.
+3. Update Task 3 tests: replace “Multiple conditions in CustomAttributeRule all must match” with “All conditions in an EntitlementRule must match”.
+4. Update rules_kotlin version. Current Bazel Central Registry lists rules_kotlin 2.3.20 and says to add `bazel_dep(name = "rules_kotlin", version = "2.3.20")`; it is tested on Bazel 9.x. Use 2.3.20 instead of 1.9.0.
+5. Fix output boundary wording: do not say “After Task 0-3 complete, stop before execute” because Task 0-3 are execution. Say the plan is awaiting user approval before any task runs; during execution, create SUMMARY.md after tasks and verification complete.
+
+After revision, summarize changes and stop.
