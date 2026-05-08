@@ -1,0 +1,15 @@
+{
+  "feature": "feature-override",
+  "implementation": "branch-local",
+  "description": "User-specific feature overrides layered on plan entitlement: explicit allow grants feature even if plan denies; explicit deny blocks feature even if plan allows; no override falls back to plan entitlement",
+  "files": {
+    "production_code": "src/FeatureOverride.java",
+    "test_code": "src/FeatureOverrideTest.java"
+  },
+  "test_commands": [
+    "bazel test //:feature_override_test",
+    "bazel test //..."
+  ],
+  "status": "implemented_on_branch",
+  "note": "CI artifact upload to be verified by PR CI"
+}
