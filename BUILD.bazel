@@ -6,6 +6,12 @@ java_library(
     srcs = ["src/PlanEntitlement.java"],
 )
 
+java_library(
+    name = "feature_override",
+    srcs = ["src/FeatureOverride.java"],
+    deps = [":entitlement"],
+)
+
 java_test(
     name = "entitlement_test",
     srcs = ["src/PlanEntitlementTest.java"],
@@ -13,13 +19,23 @@ java_test(
     deps = [":entitlement"],
 )
 
+java_test(
+    name = "feature_override_test",
+    srcs = ["src/FeatureOverrideTest.java"],
+    test_class = "com.example.entitlement.FeatureOverrideTest",
+    deps = [":feature_override", ":entitlement"],
+)
+
 sh_test(
     name = "bootstrap_check",
     srcs = ["scripts/bootstrap_check.sh"],
     data = [
         "evidence/plan-entitlement/feature.json",
+        "evidence/feature-override/feature.json",
         "gsd/features.json",
         "provenance/plan-entitlement/provenance.json",
+        "provenance/feature-override/provenance.json",
         "trace/plan-entitlement/trace.json",
+        "trace/feature-override/trace.json",
     ],
 )
