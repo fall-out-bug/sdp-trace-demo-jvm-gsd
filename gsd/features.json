@@ -18,7 +18,7 @@
     },
     {
       "id": "manual-risk-override",
-      "status": "planned"
+      "status": "implemented_on_branch"
     }
   ]
 }

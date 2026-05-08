@@ -1,0 +1,15 @@
+{
+  "feature": "manual-risk-override",
+  "implementation": "branch-local",
+  "description": "User-specific manual risk override requiring approved=true, non-expired, non-empty approver, and non-empty reason. Scoped override for userId+featureKey, falls back to plan entitlement when invalid or missing.",
+  "files": {
+    "production_code": "src/ManualRiskOverride.java",
+    "test_code": "src/ManualRiskOverrideTest.java"
+  },
+  "test_commands": [
+    "bazel test //:manual_risk_override_test",
+    "bazel test //..."
+  ],
+  "status": "implemented_on_branch",
+  "note": "CI artifact upload to be verified by PR CI"
+}

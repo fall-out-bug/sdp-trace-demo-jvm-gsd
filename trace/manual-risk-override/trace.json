@@ -1,0 +1,35 @@
+{
+  "feature": "manual-risk-override",
+  "trace": [
+    {
+      "step": 1,
+      "action": "create_implementation",
+      "description": "Created ManualRiskOverride.java production code with OverrideRecord requiring approved, non-expired, non-empty approver, non-empty reason, scoped by userId+featureKey",
+      "branch_local": true
+    },
+    {
+      "step": 2,
+      "action": "create_test",
+      "description": "Created ManualRiskOverrideTest.java with 20 test cases covering valid/invalid overrides, scope matching, expiry, approver/reason validation, fallback, null inputs, and mutation isolation",
+      "branch_local": true
+    },
+    {
+      "step": 3,
+      "action": "update_build",
+      "description": "Updated BUILD.bazel with java_library and java_test rules for manual_risk_override",
+      "branch_local": true
+    },
+    {
+      "step": 4,
+      "action": "update_features",
+      "description": "Updated gsd/features.json status to implemented_on_branch",
+      "branch_local": true
+    }
+  ],
+  "verification_commands": {
+    "test": "bazel test //...",
+    "bootstrap": "bash scripts/bootstrap_check.sh",
+    "diff_check": "git diff --check HEAD"
+  },
+  "note": "Branch-local implementation pending CI verification"
+}
