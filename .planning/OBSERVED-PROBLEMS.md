@@ -48,3 +48,9 @@ Current state: repaired by using an explicit Kotlin test main class and rerunnin
 The installed `.opencode/get-shit-done` runtime contains upstream Markdown trailing whitespace. Treating that vendored runtime as demo product code makes `git diff --check` noisy and obscures actionable demo checks.
 
 Current state: CI structural diff checks exclude `.opencode/**` and record the check result for the actual demo/repo artifacts.
+
+### Checked-in observer status became stale
+
+The generated `.sdp-trace/repo-observer-status.json` contained a branch/head snapshot from the earlier reset branch. After moving the work onto a valid PR branch and observing GitHub Actions artifacts, that checked-in mutable status file became misleading.
+
+Current state: removed from the repository and added to `.gitignore`. Phase evidence is taken from the uploaded `sdp-trace-observer` CI artifact instead of checked-in mutable status JSON.

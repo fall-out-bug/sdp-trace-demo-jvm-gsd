@@ -1,7 +1,7 @@
 # Project State
 
 **Project:** Entitlement Validation Library
-**Status:** Initialized - awaiting user review before Phase 1 planning
+**Status:** Phase 1 implemented and under PR review
 
 ## Project Reference
 
@@ -14,13 +14,13 @@ See: .planning/PROJECT.md
 **Initialized:** 2026-05-08
 **Mode:** Interactive
 **Granularity:** Coarse
-**Next:** Show GSD-generated plan to user, then run Phase 1 discussion/planning only after approval
+**Next:** Complete PR review, CI artifact verification, and merge Phase 1 before starting Phase 2 planning
 
 ## Phase Progress
 
 | Phase | Name | Status |
 |-------|------|--------|
-| 1 | Core In-Memory Entitlement Validation | Pending |
+| 1 | Core In-Memory Entitlement Validation | Implemented - PR review |
 | 2 | Feature Override Capability | Pending |
 | 3 | Decision Audit Trail | Pending |
 | 4 | Expired Entitlement Denial | Pending |
@@ -28,11 +28,11 @@ See: .planning/PROJECT.md
 
 ## Planning Notes
 
-- **Repository state:** Observer install pass, proof not_assessed (CI artifacts/PR checks pending)
-- **Observer source:** `.sdp-trace/repo-observer-status.json`, not this planning document
-- **Build system:** Bazel with Kotlin-only source is planned; no Bazel/Kotlin files exist yet
-- **Planning constraint:** Artifacts only, no implementation in this run
-- **Approval gate:** No product code or GSD execution phase before user approval
+- **Repository state:** Observer install pass; PR CI uploaded `sdp-trace-observer` artifact for Phase 1.
+- **Observer source:** GitHub Actions artifact `sdp-trace-observer`, not a checked-in mutable status file.
+- **Build system:** Bazel with Kotlin-only source is implemented for Phase 1.
+- **Planning constraint:** New phases still require GSD discussion, plan, and approval before implementation.
+- **Approval gate:** Phase 1 was approved before execution; repeat the approval boundary for later phases.
 
 ## Feature Branch Strategy
 
@@ -40,5 +40,5 @@ Each future feature should be planned as separate branch/PR/CI/evidence/trace wo
 
 ---
 
-*State: initialized*
+*State: Phase 1 implemented*
 *Last updated: 2026-05-08*

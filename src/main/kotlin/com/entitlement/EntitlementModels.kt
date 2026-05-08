@@ -1,7 +1,5 @@
 package com.entitlement
 
-import java.time.Instant
-
 /**
  * Request object for entitlement validation.
  * Contains user identity and attributes required for rule evaluation.

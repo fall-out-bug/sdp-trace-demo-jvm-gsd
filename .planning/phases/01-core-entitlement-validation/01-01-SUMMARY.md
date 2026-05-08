@@ -109,6 +109,7 @@ Kotlin/JVM in-memory entitlement validation library with sealed rule hierarchy, 
 ## Deviations from Plan
 
 - `kt_jvm_test` required an explicit `main_class` to run the custom test harness. Without it, Bazel's default JUnit runner first could not infer a class, then found no runnable JUnit methods.
+- The accepted test structure now uses a plain Kotlin `main_class` harness instead of JUnit/kotlin-test discovery. This keeps the test target executable under Bazel without introducing extra test framework dependencies.
 - The original validator continued evaluating rules after the first match. Follow-up repair now stops at the first match so `evaluatedRuleIds` reflects the actual decision path.
 - The first-match test fixture initially expected the first rule to match but used a non-matching role. The fixture was corrected to assert the intended behavior.
 
@@ -127,4 +128,5 @@ None - implementation complete.
 - `82d1296` feat(01-01): define data models and sealed rule hierarchy
 - `fd30ce6` feat(01-01): implement EntitlementValidator core logic
 - `952d5aa` test(01-01): add unit tests for core validation logic
-- follow-up commit pending: repair Bazel test execution and first-match audit semantics
+- `fe896d1` fix(01-01): repair Bazel test execution and first-match audit semantics
+- `29d929d` ci(01-01): run Bazel verification in observer CI

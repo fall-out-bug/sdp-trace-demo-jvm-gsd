@@ -2,6 +2,7 @@
 .sdp-trace/hooks/
 .sdp-trace/ci/
 .sdp-trace/install-diff.txt
+.sdp-trace/repo-observer-status.json
 # sdp-trace end
 
 bazel-*

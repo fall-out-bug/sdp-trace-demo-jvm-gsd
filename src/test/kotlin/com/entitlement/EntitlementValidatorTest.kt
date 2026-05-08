@@ -344,6 +344,7 @@ class EntitlementValidatorTest {
 
         assertEquals(EntitlementDecision.DENY, response.decision)
         assertTrue(response.matchedRuleIds.contains("rule-deny-first"))
+        assertEquals(listOf("rule-deny-first"), response.evaluatedRuleIds)
     }
 
     fun testLaterRulesEvaluated() {
@@ -375,6 +376,7 @@ class EntitlementValidatorTest {
 
         assertEquals(EntitlementDecision.ALLOW, response.decision)
         assertEquals(listOf("rule-allow-admin"), response.matchedRuleIds)
+        assertEquals(listOf("rule-deny-all", "rule-allow-admin"), response.evaluatedRuleIds)
     }
 
     // ===== Rule configuration tests =====
@@ -495,7 +497,7 @@ class EntitlementValidatorTest {
         val auditLog = validator.getAuditLog()
         val records = auditLog.getByUserId("user123")
 
-        assertTrue(records[0].evaluatedRuleIds.size >= 1)
+        assertEquals(listOf("rule-allow-admin"), records[0].evaluatedRuleIds)
     }
 
     fun testAuditRecordMatchedRule() {

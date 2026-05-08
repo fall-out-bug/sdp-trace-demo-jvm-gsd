@@ -9,15 +9,15 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Core Validation
 
-- [ ] **ENT-01**: System can validate single entitlement against configured rules
-- [ ] **ENT-02**: User can configure entitlement rules programmatically through Kotlin API
-- [ ] **ENT-03**: Validation result includes decision audit log with context
-- [ ] **ENT-04**: Validation is purely in-memory (no external storage calls)
+- [x] **ENT-01**: System can validate single entitlement against configured rules
+- [x] **ENT-02**: User can configure entitlement rules programmatically through Kotlin API
+- [x] **ENT-03**: Validation result includes decision audit log with context
+- [x] **ENT-04**: Validation is purely in-memory (no external storage calls)
 
 ### Configuration
 
-- [ ] **ENT-05**: Rules can be added/removed at runtime
-- [ ] **ENT-06**: Rules support common attribute matching (user role, group, custom attributes)
+- [x] **ENT-05**: Rules can be added/removed at runtime
+- [x] **ENT-06**: Rules support common attribute matching (user role, group, custom attributes)
 
 ## v2 Requirements
 
@@ -61,12 +61,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| ENT-01 | Phase 1 | Pending |
-| ENT-02 | Phase 1 | Pending |
-| ENT-03 | Phase 1 | Pending |
-| ENT-04 | Phase 1 | Pending |
-| ENT-05 | Phase 1 | Pending |
-| ENT-06 | Phase 1 | Pending |
+| ENT-01 | Phase 1 | Implemented |
+| ENT-02 | Phase 1 | Implemented |
+| ENT-03 | Phase 1 | Implemented |
+| ENT-04 | Phase 1 | Implemented |
+| ENT-05 | Phase 1 | Implemented |
+| ENT-06 | Phase 1 | Implemented |
 | ENT-07 | Phase 2 | Pending |
 | ENT-08 | Phase 2 | Pending |
 | ENT-09 | Phase 3 | Pending |
@@ -84,4 +84,4 @@ Which phases cover which requirements. Updated during roadmap creation.
 
 ---
 *Requirements defined: 2026-05-08*
-*Last updated: 2026-05-08 after project initialization cleanup*
+*Last updated: 2026-05-08 after Phase 1 implementation and CI artifact verification*

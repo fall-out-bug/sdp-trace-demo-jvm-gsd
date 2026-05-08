@@ -39,19 +39,19 @@ None yet.
 - No Java source — Kotlin only
 
 **Build System:**
-- Bazel workspace is planned, not implemented yet.
+- Bazel workspace is implemented for Phase 1.
 - Expected target shape: `kt_jvm_library` and `kt_jvm_test`.
-- Kotlin rule choice is not yet verified.
+- Kotlin rule choice is verified by local and GitHub Actions Bazel build/test.
 
 **Verification Approach:**
-- Repository observer state is recorded in `.sdp-trace/repo-observer-status.json`.
-- This planning document is not proof. Current observer state remains `not_assessed` for proof until CI artifacts/PR checks exist.
+- Repository observer state is recorded by GitHub Actions artifact `sdp-trace-observer`.
+- This planning document is not proof. CI artifact metadata, Bazel logs, and exit-code files are the external evidence for Phase 1.
 
 ## Constraints
 
 - **Tech Stack**: Kotlin/JVM + Bazel only — no Java source, no Gradle
 - **Storage**: In-memory - no persistence
-- **Planning Scope**: Artifacts only - no implementation code, no tests, no CI changes in this run
+- **Planning Scope**: New phase planning is artifact-only until that phase is approved
 - **Approval Gate**: Do not run `/gsd-plan-phase`, `/gsd-execute-phase`, or product-code edits until the user approves the reviewed GSD plan.
 - **Runtime**: OpenCode model minimax-coding-plan/MiniMax-M2.5
 
