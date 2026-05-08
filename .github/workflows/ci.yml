@@ -33,22 +33,22 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: sdp-trace-provenance
-          path:
-            - provenance/**
-            - ci-artifacts/provenance/**
+          path: |
+            provenance/**
+            ci-artifacts/provenance/**
 
       - name: Upload evidence
         uses: actions/upload-artifact@v4
         with:
           name: sdp-trace-evidence
-          path:
-            - evidence/**
-            - ci-artifacts/evidence/**
+          path: |
+            evidence/**
+            ci-artifacts/evidence/**
 
       - name: Upload trace
         uses: actions/upload-artifact@v4
         with:
           name: sdp-trace-trace
-          path:
-            - trace/**
-            - ci-artifacts/trace/**
+          path: |
+            trace/**
+            ci-artifacts/trace/**
