@@ -1,16 +1,24 @@
+# Feature Flag & Entitlement Service - Bazel BUILD
 # Application binary target
+
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
 
+# Main application library
 kt_jvm_library(
     name = "app_lib",
     srcs = ["src/main/kotlin/com/example/App.kt", "src/main/kotlin/com/example/health.kt"],
     deps = [],
 )
 
+# Application binary
 kt_jvm_binary(
     name = "app",
     main_class = "com.example.AppKt",
-    runtime_deps = [
-        ":app_lib",
-    ],
+    runtime_deps = [":app_lib"],
 )
+
+# Test infrastructure:
+# - Test source file created: app/src/test/kotlin/com/example/AppTest.kt
+# - Tests require JUnit5/Kotest setup
+# - Current blocker: Bazel 9 rules_kotlin compatibility
+# - To run tests when resolved: bazel test //app:all_tests
