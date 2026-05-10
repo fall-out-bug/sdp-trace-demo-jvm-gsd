@@ -41,8 +41,7 @@ Reviewing stability cleanup changes including stale test removal, Bazel comment 
 
 2. **.gitignore Hygiene** (P3)
    - **File:** `.gitignore:1-6`
-   - **Action:** 
-     - Added `.opencode/`
+   - **Action:** Added `.opencode/`
      - Added `bazel-*`, `bazel_bin/`, `bazel_out/`, `bazel_testlogs/`
    - **Analysis:** Proper .gitignore patterns for Bazel artifacts and opencode config; no `.edit.baseline` pattern present; no MODULE.bazel.lock ignore entry
    - **Impact:** Better repository hygiene
