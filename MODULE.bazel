@@ -1,0 +1,28 @@
+# Feature Flag & Entitlement Service - Bazel MODULE (Bzlmod)
+# Using Bazel 8.x compatible configuration
+module(
+    name = "sdp_trace_demo_jvm_gsd",
+    version = "0.1.0",
+)
+
+# Use rules_kotlin from BCR
+bazel_dep(name = "rules_kotlin", version = "2.1.10")
+bazel_dep(name = "rules_jvm_external", version = "6.0")
+
+# Maven dependencies for Ktor
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+
+maven.install(
+    artifacts = [
+        "io.ktor:ktor-server-core:3.1.0",
+        "io.ktor:ktor-server-netty:3.1.0",
+        "io.ktor:ktor-server-content-negotiation:3.1.0",
+        "io.ktor:ktor-server-websockets:3.1.0",
+        "io.ktor:ktor-serialization-kotlinx-json:3.1.0",
+        "org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3",
+    ],
+    fetch_javadoc = False,
+    fetch_sources = False,
+)
+
+use_repo(maven, "maven")
