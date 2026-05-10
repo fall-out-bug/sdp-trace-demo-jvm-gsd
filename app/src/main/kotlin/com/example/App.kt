@@ -64,6 +64,46 @@ fun main(args: Array<String>) {
         }
     }
     
+    server.createContext("/todos/") { exchange ->
+        try {
+            val path = exchange.requestURI.path
+            if (!path.startsWith("/todos/")) {
+                exchange.sendResponseHeaders(404, 0)
+                exchange.close()
+                return@createContext
+            }
+            val rest = path.substring("/todos/".length)
+            val parts = rest.split("/", limit = 2)
+            if (parts.size != 2 || parts[1] != "complete") {
+                exchange.sendResponseHeaders(404, 0)
+                exchange.close()
+                return@createContext
+            }
+            val id = parts[0]
+            val method = exchange.requestMethod
+            if (method != "POST") {
+                exchange.sendResponseHeaders(405, 0)
+                exchange.close()
+                return@createContext
+            }
+            val todo = todoStore.complete(id)
+            if (todo == null) {
+                exchange.sendResponseHeaders(404, 0)
+                exchange.close()
+            } else {
+                val json = todoToJson(todo)
+                exchange.responseHeaders.set("Content-Type", "application/json")
+                exchange.sendResponseHeaders(200, json.toByteArray(StandardCharsets.UTF_8).size.toLong())
+                val os = exchange.responseBody
+                os.write(json.toByteArray(StandardCharsets.UTF_8))
+                os.close()
+            }
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+    
     Runtime.getRuntime().addShutdownHook(Thread {
         println("Shutting down server...")
         server.stop(10)
