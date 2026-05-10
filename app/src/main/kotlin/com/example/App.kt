@@ -18,7 +18,7 @@ fun main(args: Array<String>) {
             val response = HealthResponse.ok()
             val jsonResponse = """{"status":"${escapeJson(response.status)}","timestamp":${response.timestamp}}"""
             exchange.responseHeaders.set("Content-Type", "application/json")
-            exchange.sendResponseHeaders(200, jsonResponse.length.toLong())
+            exchange.sendResponseHeaders(200, jsonResponse.toByteArray(StandardCharsets.UTF_8).size.toLong())
             val os: OutputStream = exchange.responseBody
             os.write(jsonResponse.toByteArray(StandardCharsets.UTF_8))
             os.close()
@@ -35,7 +35,7 @@ fun main(args: Array<String>) {
                 val todos = todoStore.list()
                 val json = todos.joinToString(",", "[", "]") { todoToJson(it) }
                 exchange.responseHeaders.set("Content-Type", "application/json")
-                exchange.sendResponseHeaders(200, json.length.toLong())
+                exchange.sendResponseHeaders(200, json.toByteArray(StandardCharsets.UTF_8).size.toLong())
                 val os = exchange.responseBody
                 os.write(json.toByteArray(StandardCharsets.UTF_8))
                 os.close()
@@ -49,7 +49,7 @@ fun main(args: Array<String>) {
                     val todo = todoStore.create(title)
                     val json = todoToJson(todo)
                     exchange.responseHeaders.set("Content-Type", "application/json")
-                    exchange.sendResponseHeaders(201, json.length.toLong())
+                    exchange.sendResponseHeaders(201, json.toByteArray(StandardCharsets.UTF_8).size.toLong())
                     val os = exchange.responseBody
                     os.write(json.toByteArray(StandardCharsets.UTF_8))
                     os.close()
@@ -78,8 +78,34 @@ fun todoToJson(todo: Todo): String =
     """{"id":"${escapeJson(todo.id)}","title":"${escapeJson(todo.title)}","completed":${todo.completed},"createdAt":${todo.createdAt}}"""
 
 fun parseTitle(json: String): String? {
-    val titleRegex = "\"title\"\\s*:\\s*\"([^\"]*)\"".toRegex()
-    return titleRegex.find(json)?.groupValues?.get(1)
+    val titleKeyRegex = "\"title\"\\s*:".toRegex()
+    val match = titleKeyRegex.find(json) ?: return null
+    val start = match.range.last + 1
+    val trimmed = json.substring(start).trim()
+    if (!trimmed.startsWith("\"")) return null
+    val sb = StringBuilder()
+    var i = 1
+    while (i < trimmed.length) {
+        val c = trimmed[i]
+        if (c == '\\' && i + 1 < trimmed.length) {
+            val next = trimmed[i + 1]
+            when (next) {
+                '"' -> sb.append('"')
+                '\\' -> sb.append('\\')
+                'n' -> sb.append('\n')
+                'r' -> sb.append('\r')
+                't' -> sb.append('\t')
+                else -> { sb.append(next) }
+            }
+            i += 2
+        } else if (c == '"') {
+            break
+        } else {
+            sb.append(c)
+            i++
+        }
+    }
+    return sb.toString()
 }
 
 fun escapeJson(s: String): String = s

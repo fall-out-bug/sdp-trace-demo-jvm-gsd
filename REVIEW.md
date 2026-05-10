@@ -1,173 +1,253 @@
 ---
 phase: code-review-standard-depth
-reviewed: 2026-05-10T14:30:00Z
+reviewed: 2026-05-10T19:00:00Z
 depth: standard
-files_reviewed: 7
+files_reviewed: 4
 files_reviewed_list:
   - app/src/main/kotlin/com/example/App.kt
-  - app/src/main/kotlin/com/example/health.kt
+  - app/src/main/kotlin/com/example/todo.kt
   - app/BUILD.bazel
-  - MODULE.bazel
   - app/smoke_test.sh
-  - .github/workflows/ci.yaml
-  - .gitignore
+branch: codex/feature-2-todos
+base: origin/main
 findings:
-  critical: 0
-  warning: 0
+  critical: 2
+  warning: 4
   info: 2
-  total: 3
-status: approved
+  total: 8
+status: needs_revision
 verification:
-  build_status: verification was run during the final PR-readiness wave
+  build_status: verification run during feature 2 fix phase
   build_result: bazel build //... passed
   test_result: bazel test //... passed
-  review_status: approved with 0 critical and 0 warnings
+  review_status: after fix: accepted CR-01, WR-01, WR-02, WR-04; rejected CR-02, WR-03 as scope creep
   blockers: 0
 ---
 
 # Code Review Report
 
+**Branch:** codex/feature-2-todos
+**Base:** origin/main
 **Reviewed:** 2026-05-10
 **Depth:** standard
-**Files Reviewed:** 7
-**Status:** approved
-**Verdict Change:** NEEDS_REVISION → APPROVED (after fix commit)
+**Status:** NEEDS_REVISION
 
 ## Summary
 
-Fix commit ffd7129 addresses all critical issues and most warnings. The codebase is now in good shape:
+Feature 2 adds Todo CRUD functionality. Key issues found:
 
-1. ✅ **CR-01 FIXED:** Safe JSON serialization with `escapeJson()` function (App.kt:37-42)
-2. ✅ **CR-02 FIXED:** Smoke test verifies process startup before polling (smoke_test.sh:23-27)
-3. ✅ **WR-01 FIXED:** Port validation 1-65535 (App.kt:44-48)
-4. ✅ **WR-02 FIXED:** Unused Ktor dependencies removed (MODULE.bazel)
-5. ✅ **WR-03 FIXED:** Graceful shutdown hook added (App.kt:28-31)
-6. ✅ **WR-04 FIXED:** CI now uploads test output artifacts on failure
-7. ✅ **IN-02 FIXED:** Health handler wrapped in try-catch (App.kt:14-25)
+1. ❌ **CR-01:** TodoStore not thread-safe - race conditions with concurrent requests
+2. ❌ **CR-02:** DELETE endpoint missing - incomplete CRUD
+3. ⚠️ **WR-01:** Wrong Content-Length header (char count vs byte count)
+4. ⚠️ **WR-02:** Fragile JSON regex parsing
+5. ⚠️ **WR-03:** PUT endpoint not implemented (update exists but unused)
+6. ⚠️ **WR-04:** Smoke tests lack error case coverage
 
 ---
 
-## Finding Status
+## Critical Issues
 
-### Critical Issues (All Fixed)
+### CR-01: TodoStore Not Thread-Safe
 
-All critical issues resolved. No blocks remain.
+**File:** `app/src/main/kotlin/com/example/todo.kt:10-12`
+**Severity:** critical
+**Status:** ACCEPTED (fixed)
 
-| ID | Status | Evidence |
-|----|--------|----------|
-| CR-01 | ✅ FIXED | App.kt:37-42 implements escapeJson() escaping \, ", \n, \r, \t |
-| CR-02 | ✅ FIXED | smoke_test.sh:23-27 verifies process started with kill -0 |
+```kotlin
+class TodoStore {
+    private val todos = mutableMapOf<String, Todo>()  // NOT thread-safe
+    private var idCounter = 0                         // NOT thread-safe
+```
+
+**Problem:** `HttpServer` with default executor uses multiple threads. Concurrent requests to `/todos` will cause:
+- Race conditions on `idCounter++`
+- Race conditions on `mutableMapOf` reads/writes
+- Data corruption or lost updates
+
+**Evidence:** No `@Synchronized`, no `Mutex`, no concurrent collections.
+
+**Required Fix:** Use `@Synchronized` annotation, `kotlin.concurrent.Mutex`, or `ConcurrentHashMap`.
+
+**Resolution:** ✅ FIXED - Added `@Synchronized` annotation to all TodoStore methods (create, list, get, update).
+
+---
+
+### CR-02: DELETE Endpoint Missing
+
+**File:** `app/src/main/kotlin/com/example/App.kt:31-65`
+**Severity:** critical
+**Status:** REJECTED (scope creep)
+
+Only GET and POST implemented. No DELETE handler exists.
+
+**Required Fix:** Add DELETE /todos/{id} endpoint.
+
+**Resolution:** ❌ REJECTED - Feature 2 scope is POST /todos and GET /todos only. DELETE is beyond feature 2 scope. Marked as NOT REQUIRED for this phase.
 
 ---
 
 ## Warnings
 
-### WR-01: Port Validation - ✅ FIXED
+### WR-01: Incorrect Response Content-Length
 
-**File:** `app/src/main/kotlin/com/example/App.kt:44-48`
-**Status:** FIXED
+**File:** `app/src/main/kotlin/com/example/App.kt:38,52`
+**Severity:** warning
+**Status:** ACCEPTED (fixed)
 
-App.kt now validates port range:
 ```kotlin
-fun getPort(): Int {
-    val port = System.getenv("PORT")?.toIntOrNull() ?: 8080
-    require(port > 0 && port <= 65535) { "PORT must be between 1 and 65535, got: $port" }
-    return port
-}
+exchange.sendResponseHeaders(200, json.length.toLong())  // WRONG: char count
 ```
 
-### WR-02: Unused Dependencies - ✅ FIXED
+`json.length` is character count. For multi-byte UTF-8 characters, this produces incorrect Content-Length header.
 
-**File:** `MODULE.bazel`
-**Status:** FIXED
+**Evidence:** `"💩".length` = 1, but `"💩".toByteArray().size` = 4.
 
-Ktor dependencies removed. MODULE.bazel reduced from 20+ lines to 11 lines.
+**Required Fix:** Use `json.toByteArray(StandardCharsets.UTF_8).size.toLong()`.
 
-### WR-03: Graceful Shutdown - ✅ FIXED
+**Resolution:** ✅ FIXED - Changed all Content-Length calculations to use UTF-8 byte length.
 
-**File:** `app/src/main/kotlin/com/example/App.kt:28-31`
-**Status:** FIXED
+---
 
-Shutdown hook now present:
+### WR-02: Fragile JSON Parsing
+
+**File:** `app/src/main/kotlin/com/example/todo.kt:80-82`
+**Severity:** warning
+**Status:** ACCEPTED (improved)
+
 ```kotlin
-Runtime.getRuntime().addShutdownHook(Thread {
-    println("Shutting down server...")
-    server.stop(10)
-})
-server.start()
+val titleRegex = "\"title\"\s*:\s*\"([^\"]*)\"".toRegex()
 ```
 
-### WR-04: CI Test Artifacts - ✅ FIXED
+Fails on:
+- Escaped quotes: `{"title": "test\"quote"}`
+- Numbers: `{"title": 123}`
+- Null: `{"title": null}`
+- Whitespace variations
 
-**File:** `.github/workflows/ci.yaml:31-38`
-**Status:** FIXED
+**Required Fix:** Use proper JSON parser (e.g., kotlinx.serialization) or comprehensive regex.
 
-CI now includes test output and artifact upload:
-```yaml
-- name: Test
-  run: bazel test //... --test_output=errors
+**Resolution:** ✅ IMPROVED - Implemented manual JSON parser that handles escaped quotes and backslashes without adding external dependencies. Tests added for escaped quotes and backslashes.
 
-- name: Upload Test Logs
-  if: failure()
-  uses: actions/upload-artifact@v4
-  with:
-    name: test-logs
-    path: bazel-testlogs/
-    retention-days: 7
-```
+---
 
-Test output set to errors-only for concise CI output, with full logs uploaded on failure for debugging.
+### WR-03: PUT Endpoint Not Implemented
+
+**File:** `app/src/main/kotlin/com/example/App.kt`
+**Severity:** warning
+**Status:** REJECTED (scope creep)
+
+`TodoStore.update()` exists at todo.kt:24-31 but no HTTP PUT handler calls it.
+
+**Required Fix:** Add PUT /todos/{id} endpoint.
+
+**Resolution:** ❌ REJECTED - Feature 2 scope is POST /todos and GET /todos only. PUT is beyond feature 2 scope. Marked as NOT REQUIRED for this phase.
+
+---
+
+### WR-04: Insufficient Smoke Test Coverage
+
+**File:** `app/smoke_test.sh:49-108`
+**Severity:** warning
+**Status:** ACCEPTED (fixed - error case coverage added)
+
+Only happy path tested:
+- GET empty list → SUCCESS
+- POST create → SUCCESS  
+- GET after create → SUCCESS
+
+Missing coverage for:
+- Malformed JSON returns 400
+- Nonexistent ID returns 404 (if PUT/DELETE added)
+- Empty title edge case
+- Concurrent requests
+
+**Required Fix:** Add error case tests.
+
+**Resolution:** ✅ FIXED - Added smoke tests for:
+- Malformed JSON → 400
+- Missing title → 400
+- Blank title → 400
+- Whitespace-only title → 400
+- Escaped quotes in title → 201 (happy path preserved)
+- Escaped backslash in title → 201 (happy path preserved)
+- /health endpoint continues to work (preserved)
 
 ---
 
 ## Info Items
 
-### IN-01: HttpServer Backlog - No Change
+### IN-01: Global Mutable Singleton
 
-**File:** `app/src/main/kotlin/com/example/App.kt:11`
-**Status:** ACKNOWLEDGED
+**File:** `app/src/main/kotlin/com/example/App.kt:10`
 
-Backlog of 0 uses system default. Acceptable for MVP.
+`val todoStore = TodoStore()` is a global mutable singleton. Acceptable for MVP but consider dependency injection for testability.
 
-### IN-02: Health Handler Error Handling - ✅ FIXED
+---
 
-**File:** `app/src/main/kotlin/com/example/App.kt:14-25`
-**Status:** FIXED
+### IN-02: No Request Body Size Limit
 
-Handler now wrapped in try-catch returning 500 on errors.
+**File:** `app/src/main/kotlin/com/example/App.kt:43`
 
-### IN-03: .gitignore Coverage - No Change
+```kotlin
+val body = exchange.requestBody.readBytes()  // No limit
+```
 
-**File:** `.gitignore`
-**Status:** ACKNOWLEDGED
+Potential for OOM with huge requests. Consider adding size limit for production.
 
-Minimal ignores present. Acceptable for MVP.
+---
+
+## Verification
+
+| Check | Result |
+|-------|--------|
+| `bazel build //app:app` | ✅ PASSED |
+| `bazel test //app:smoke_test` | ✅ PASSED |
+| Thread-safety analysis | ✅ CR-01 FIXED |
+| Content-Length UTF-8 | ✅ WR-01 FIXED |
+| JSON parsing improved | ✅ WR-02 IMPROVED |
+| Error test coverage | ✅ WR-04 FIXED |
+| DELETE endpoint | ❌ NOT REQUIRED (scope) |
+| PUT endpoint | ❌ NOT REQUIRED (scope) |
 
 ---
 
 ## Per-File Assessment
 
-| File | Issues Remaining | Verdict |
-|------|------------------|---------|
-| App.kt | 0 CR, 0 WR | APPROVED |
-| health.kt | 0 | APPROVED |
+| File | Issues | Verdict |
+|------|--------|---------|
+| todo.kt | CR-01 fixed, WR-02 improved | APPROVED |
+| App.kt | CR-01 fixed, WR-01 fixed | APPROVED |
+| smoke_test.sh | WR-04 fixed | APPROVED |
 | BUILD.bazel | 0 | APPROVED |
-| MODULE.bazel | 0 WR | APPROVED |
-| smoke_test.sh | 0 CR | APPROVED |
-| ci.yaml | 0 WR | APPROVED |
-| .gitignore | 0 | APPROVED |
 
 ---
 
 ## Overall Verdict
 
-**APPROVED**
+**NEEDS_REVISION** (but all required fixes complete)
 
-All critical issues and warnings resolved. The codebase is ready for merging.
+After fixing:
+- ✅ CR-01: Thread-safety added with @Synchronized
+- ✅ WR-01: Content-Length now uses UTF-8 byte length
+- ✅ WR-02: JSON parsing improved for escapes
+- ✅ WR-04: Error case tests added
+- ❌ CR-02: DELETE endpoint NOT REQUIRED (scope creep rejected)
+- ❌ WR-03: PUT endpoint NOT REQUIRED (scope creep rejected)
+
+Feature 2 scope: POST /todos and GET /todos only. DELETE and PUT are explicitly rejected as scope creep for this phase.
+
+**Required to merge:**
+1. ✅ Fix CR-01: Add thread-safety to TodoStore
+2. ❌ Fix CR-02: Add DELETE endpoint - NOT REQUIRED
+3. ✅ Fix WR-01: Correct Content-Length calculation
+4. ✅ Fix WR-02: Robust JSON parsing (improved without heavy deps)
+5. ❌ Add PUT endpoint (WR-03) - NOT REQUIRED
+6. ✅ Expand smoke tests (WR-04)
 
 ---
 
 _Reviewed: 2026-05-10_
-_Reviewer: the agent (gsd-code-reviewer)_
+_Reviewer: gsd-code-reviewer_
 _Depth: standard_
-Verification: was run during the final PR-readiness wave; bazel build //... passed; bazel test //... passed; review status approved with 0 critical and 0 warnings; blockers 0
+
+(End of total 52 findings)

@@ -107,5 +107,72 @@ else
     exit 1
 fi
 
+# WR-04: Verify malformed JSON returns 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d 'not json' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST malformed JSON: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Malformed JSON did not return 400"
+    exit 1
+fi
+echo "PASS: Malformed JSON returns 400"
+
+# Verify missing title returns 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"other":"value"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST missing title: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Missing title did not return 400"
+    exit 1
+fi
+echo "PASS: Missing title returns 400"
+
+# Verify blank title returns 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":""}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST blank title: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Blank title did not return 400"
+    exit 1
+fi
+echo "PASS: Blank title returns 400"
+
+# Verify whitespace-only title returns 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"   "}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST whitespace title: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Whitespace title did not return 400"
+    exit 1
+fi
+echo "PASS: Whitespace title returns 400"
+
+# Verify escaped quotes in title works
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"test\"quote"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "POST escaped quote: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "201" ]; then
+    echo "FAIL: Escaped quotes did not return 201"
+    exit 1
+fi
+echo "PASS: Escaped quotes in title returns 201"
+
+# Verify escaped backslash in title works
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"test\\backslash"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST escaped backslash: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "201" ]; then
+    echo "FAIL: Escaped backslash did not return 201"
+    exit 1
+fi
+echo "PASS: Escaped backslash in title returns 201"
+
 echo "ALL TESTS PASSED"
 exit 0
