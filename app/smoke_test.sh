@@ -20,9 +20,15 @@ cleanup() {
 }
 trap cleanup EXIT
 
-# Wait for server to be ready (max 60s)
+sleep 2
+if ! kill -0 $APP_PID 2>/dev/null; then
+    echo "FAIL: Application failed to start"
+    exit 1
+fi
+
+# Wait for server to be ready (max 30s)
 echo "Waiting for server to start..."
-for i in $(seq 1 60); do
+for i in $(seq 1 30); do
     if curl -s http://localhost:$PORT/health >/dev/null 2>&1; then
         break
     fi
