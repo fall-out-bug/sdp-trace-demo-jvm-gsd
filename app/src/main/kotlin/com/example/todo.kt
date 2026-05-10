@@ -42,4 +42,19 @@ class TodoStore {
     fun delete(id: String): Boolean {
         return todos.remove(id) != null
     }
+
+    @Synchronized
+    fun stats(): TodoStats {
+        val allTodos = todos.values.toList()
+        val total = allTodos.size
+        val completed = allTodos.count { it.completed }
+        val active = total - completed
+        return TodoStats(total, completed, active)
+    }
 }
+
+data class TodoStats(
+    val total: Int,
+    val completed: Int,
+    val active: Int
+)

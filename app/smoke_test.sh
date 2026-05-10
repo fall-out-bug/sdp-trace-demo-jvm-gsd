@@ -432,5 +432,146 @@ if echo "$GET_AFTER_E2E" | grep -q "\"title\":\"E2E Delete Test\""; then
 fi
 echo "PASS: Create -> Delete -> List workflow verified"
 
+# F5-01: Verify GET /stats returns valid counts
+STATS_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/stats)
+STATS_HTTP_CODE=$(echo "$STATS_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+STATS_BODY=$(echo "$STATS_RESPONSE" | grep -v "HTTP_CODE:")
+echo "GET /stats: $STATS_BODY (HTTP $STATS_HTTP_CODE)"
+
+if [ "$STATS_HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /stats did not return 200"
+    exit 1
+fi
+
+if echo "$STATS_BODY" | grep -q '"total":'; then
+    echo "PASS: GET /stats returns total field"
+else
+    echo "FAIL: GET /stats did not return total field"
+    exit 1
+fi
+
+if echo "$STATS_BODY" | grep -q '"completed":'; then
+    echo "PASS: GET /stats returns completed field"
+else
+    echo "FAIL: GET /stats did not return completed field"
+    exit 1
+fi
+
+if echo "$STATS_BODY" | grep -q '"active":'; then
+    echo "PASS: GET /stats returns active field"
+else
+    echo "FAIL: GET /stats did not return active field"
+    exit 1
+fi
+
+# Extract initial counts
+INITIAL_TOTAL=$(echo "$STATS_BODY" | grep -o '"total":[0-9]*' | cut -d: -f2)
+INITIAL_COMPLETED=$(echo "$STATS_BODY" | grep -o '"completed":[0-9]*' | cut -d: -f2)
+INITIAL_ACTIVE=$(echo "$STATS_BODY" | grep -o '"active":[0-9]*' | cut -d: -f2)
+echo "Initial stats: total=$INITIAL_TOTAL, completed=$INITIAL_COMPLETED, active=$INITIAL_ACTIVE"
+
+# F5-02: Verify stats update after create
+CREATE_FOR_STATS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"Stats Test"}' http://localhost:$PORT/todos)
+CREATE_FOR_STATS_CODE=$(echo "$CREATE_FOR_STATS" | grep "HTTP_CODE:" | cut -d: -f2)
+CREATE_FOR_STATS_BODY=$(echo "$CREATE_FOR_STATS" | grep -v "HTTP_CODE:")
+STATS_TODO_ID=$(echo "$CREATE_FOR_STATS_BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+
+EXPECTED_TOTAL=$((INITIAL_TOTAL + 1))
+EXPECTED_ACTIVE=$((INITIAL_ACTIVE + 1))
+
+STATS_AFTER_CREATE=$(curl -s http://localhost:$PORT/stats)
+NEW_TOTAL=$(echo "$STATS_AFTER_CREATE" | grep -o '"total":[0-9]*' | cut -d: -f2)
+NEW_ACTIVE=$(echo "$STATS_AFTER_CREATE" | grep -o '"active":[0-9]*' | cut -d: -f2)
+echo "Stats after create: total=$NEW_TOTAL, active=$NEW_ACTIVE"
+
+if [ "$NEW_TOTAL" = "$EXPECTED_TOTAL" ]; then
+    echo "PASS: /stats total updated after create"
+else
+    echo "FAIL: /stats total not updated after create (expected $EXPECTED_TOTAL, got $NEW_TOTAL)"
+    exit 1
+fi
+
+if [ "$NEW_ACTIVE" = "$EXPECTED_ACTIVE" ]; then
+    echo "PASS: /stats active updated after create"
+else
+    echo "FAIL: /stats active not updated after create (expected $EXPECTED_ACTIVE, got $NEW_ACTIVE)"
+    exit 1
+fi
+
+# F5-03: Verify stats update after complete
+COMPLETE_FOR_STATS=$(curl -s -X POST http://localhost:$PORT/todos/$STATS_TODO_ID/complete)
+COMPLETE_STATS_BODY=$(echo "$COMPLETE_FOR_STATS" | grep -v "HTTP_CODE:")
+
+EXPECTED_COMPLETED=$((INITIAL_COMPLETED + 1))
+EXPECTED_ACTIVE_AFTER_COMPLETE=$INITIAL_ACTIVE
+
+STATS_AFTER_COMPLETE=$(curl -s http://localhost:$PORT/stats)
+NEW_COMPLETED=$(echo "$STATS_AFTER_COMPLETE" | grep -o '"completed":[0-9]*' | cut -d: -f2)
+NEW_ACTIVE_AFTER_COMPLETE=$(echo "$STATS_AFTER_COMPLETE" | grep -o '"active":[0-9]*' | cut -d: -f2)
+echo "Stats after complete: completed=$NEW_COMPLETED, active=$NEW_ACTIVE_AFTER_COMPLETE"
+
+if [ "$NEW_COMPLETED" = "$EXPECTED_COMPLETED" ]; then
+    echo "PASS: /stats completed updated after complete"
+else
+    echo "FAIL: /stats completed not updated after complete (expected $EXPECTED_COMPLETED, got $NEW_COMPLETED)"
+    exit 1
+fi
+
+if [ "$NEW_ACTIVE_AFTER_COMPLETE" = "$EXPECTED_ACTIVE_AFTER_COMPLETE" ]; then
+    echo "PASS: /stats active updated after complete"
+else
+    echo "FAIL: /stats active not updated after complete (expected $EXPECTED_ACTIVE_AFTER_COMPLETE, got $NEW_ACTIVE_AFTER_COMPLETE)"
+    exit 1
+fi
+
+# F5-04: Verify stats update after delete
+DELETE_FOR_STATS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/todos/$STATS_TODO_ID)
+DELETE_FOR_STATS_CODE=$(echo "$DELETE_FOR_STATS" | grep "HTTP_CODE:" | cut -d: -f2)
+
+EXPECTED_TOTAL_AFTER_DELETE=$INITIAL_TOTAL
+EXPECTED_ACTIVE_AFTER_DELETE=$INITIAL_ACTIVE
+
+STATS_AFTER_DELETE=$(curl -s http://localhost:$PORT/stats)
+NEW_TOTAL_AFTER_DELETE=$(echo "$STATS_AFTER_DELETE" | grep -o '"total":[0-9]*' | cut -d: -f2)
+echo "Stats after delete: total=$NEW_TOTAL_AFTER_DELETE"
+
+if [ "$NEW_TOTAL_AFTER_DELETE" = "$EXPECTED_TOTAL_AFTER_DELETE" ]; then
+    echo "PASS: /stats total updated after delete"
+else
+    echo "FAIL: /stats total not updated after delete (expected $EXPECTED_TOTAL_AFTER_DELETE, got $NEW_TOTAL_AFTER_DELETE)"
+    exit 1
+fi
+
+# F5-05: Verify unsupported methods on /stats return 405
+POST_STATS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{}' http://localhost:$PORT/stats)
+POST_STATS_CODE=$(echo "$POST_STATS" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST /stats: HTTP $POST_STATS_CODE"
+
+if [ "$POST_STATS_CODE" != "405" ]; then
+    echo "FAIL: POST /stats did not return 405"
+    exit 1
+fi
+echo "PASS: POST /stats returns 405"
+
+DELETE_STATS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/stats)
+DELETE_STATS_CODE=$(echo "$DELETE_STATS" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "DELETE /stats: HTTP $DELETE_STATS_CODE"
+
+if [ "$DELETE_STATS_CODE" != "405" ]; then
+    echo "FAIL: DELETE /stats did not return 405"
+    exit 1
+fi
+echo "PASS: DELETE /stats returns 405"
+
+PUT_STATS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X PUT -H "Content-Type: application/json" -d '{}' http://localhost:$PORT/stats)
+PUT_STATS_CODE=$(echo "$PUT_STATS" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "PUT /stats: HTTP $PUT_STATS_CODE"
+
+if [ "$PUT_STATS_CODE" != "405" ]; then
+    echo "FAIL: PUT /stats did not return 405"
+    exit 1
+fi
+echo "PASS: PUT /stats returns 405"
+
 echo "ALL TESTS PASSED"
 exit 0
