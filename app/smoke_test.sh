@@ -267,5 +267,86 @@ fi
 
 echo "PASS: All concurrent todo IDs are unique"
 
+# F3-01: Verify POST /todos/{id}/complete marks todo as completed
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"Complete Me"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "POST /todos for complete test: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "201" ]; then
+    echo "FAIL: POST /todos for complete test did not return 201"
+    exit 1
+fi
+
+# Extract todo ID from response
+TODO_ID=$(echo "$BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+echo "Created todo ID: $TODO_ID"
+
+if [ -z "$TODO_ID" ]; then
+    echo "FAIL: Could not extract todo ID from POST response"
+    exit 1
+fi
+
+# F3-02: Verify POST /todos/{id}/complete returns 200 and completed=true
+COMPLETE_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST http://localhost:$PORT/todos/$TODO_ID/complete)
+COMPLETE_HTTP_CODE=$(echo "$COMPLETE_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+COMPLETE_BODY=$(echo "$COMPLETE_RESPONSE" | grep -v "HTTP_CODE:")
+echo "POST /todos/$TODO_ID/complete: $COMPLETE_BODY (HTTP $COMPLETE_HTTP_CODE)"
+
+if [ "$COMPLETE_HTTP_CODE" != "200" ]; then
+    echo "FAIL: POST /todos/$TODO_ID/complete did not return 200"
+    exit 1
+fi
+
+if echo "$COMPLETE_BODY" | grep -q '"completed":true'; then
+    echo "PASS: POST /todos/$TODO_ID/complete returned completed=true"
+else
+    echo "FAIL: POST /todos/$TODO_ID/complete did not return completed=true"
+    exit 1
+fi
+
+# F3-03: Verify subsequent GET /todos includes the completed todo with completed=true
+GET_RESPONSE=$(curl -s http://localhost:$PORT/todos)
+echo "GET /todos after complete: $GET_RESPONSE"
+
+if echo "$GET_RESPONSE" | grep -q "\"completed\":true"; then
+    echo "PASS: GET /todos shows completed=true"
+else
+    echo "FAIL: GET /todos does not show completed=true"
+    exit 1
+fi
+
+# F3-04: Verify POST /todos/{unknown id}/complete returns 404
+UNKNOWN_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST http://localhost:$PORT/todos/unknown-id-123/complete)
+UNKNOWN_HTTP_CODE=$(echo "$UNKNOWN_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST /todos/unknown-id-123/complete: HTTP $UNKNOWN_HTTP_CODE"
+
+if [ "$UNKNOWN_HTTP_CODE" != "404" ]; then
+    echo "FAIL: POST /todos/unknown-id-123/complete did not return 404"
+    exit 1
+fi
+echo "PASS: Unknown ID returns 404"
+
+# F3-05: Verify unsupported methods on /todos/{id}/complete return 405
+GET_UNSUPPORTED=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X GET http://localhost:$PORT/todos/$TODO_ID/complete)
+GET_HTTP_CODE=$(echo "$GET_UNSUPPORTED" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "GET /todos/$TODO_ID/complete: HTTP $GET_HTTP_CODE"
+
+if [ "$GET_HTTP_CODE" != "405" ]; then
+    echo "FAIL: GET on /todos/$TODO_ID/complete did not return 405"
+    exit 1
+fi
+echo "PASS: Unsupported method returns 405"
+
+DELETE_UNSUPPORTED=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/todos/$TODO_ID/complete)
+DELETE_HTTP_CODE=$(echo "$DELETE_UNSUPPORTED" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "DELETE /todos/$TODO_ID/complete: HTTP $DELETE_HTTP_CODE"
+
+if [ "$DELETE_HTTP_CODE" != "405" ]; then
+    echo "FAIL: DELETE on /todos/$TODO_ID/complete did not return 405"
+    exit 1
+fi
+echo "PASS: DELETE returns 405"
+
 echo "ALL TESTS PASSED"
 exit 0
