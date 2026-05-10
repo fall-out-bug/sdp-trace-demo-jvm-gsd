@@ -74,6 +74,29 @@ fun main(args: Array<String>) {
             }
             val rest = path.substring("/todos/".length)
             val parts = rest.split("/", limit = 2)
+            if (parts.isEmpty() || parts[0].isEmpty()) {
+                exchange.sendResponseHeaders(404, 0)
+                exchange.close()
+                return@createContext
+            }
+            if (parts.size == 1) {
+                val id = parts[0]
+                val method = exchange.requestMethod
+                if (method == "DELETE") {
+                    val deleted = todoStore.delete(id)
+                    if (deleted) {
+                        exchange.sendResponseHeaders(204, 0)
+                        exchange.close()
+                    } else {
+                        exchange.sendResponseHeaders(404, 0)
+                        exchange.close()
+                    }
+                } else {
+                    exchange.sendResponseHeaders(405, 0)
+                    exchange.close()
+                }
+                return@createContext
+            }
             if (parts.size != 2 || parts[1] != "complete") {
                 exchange.sendResponseHeaders(404, 0)
                 exchange.close()
