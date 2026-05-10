@@ -1,4 +1,6 @@
-# Bazel
-/bazel-*
-/MODULE.bazel.lock
-/.edit.baseline
+# Bazel root symlinks and local directories
+bazel-*
+bazel_bin/
+bazel_out/
+bazel_testlogs/
+.opencode/

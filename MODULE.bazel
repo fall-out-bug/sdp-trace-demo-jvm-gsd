@@ -1,4 +1,4 @@
-# Feature Flag & Entitlement Service - Bazel MODULE (Bzlmod)
+# Todo Service Demo - Bazel MODULE (Bzlmod)
 # Using Bazel 8.x compatible configuration
 module(
     name = "sdp_trace_demo_jvm_gsd",

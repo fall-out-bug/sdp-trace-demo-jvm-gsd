@@ -1,4 +1,4 @@
-# Feature Flag & Entitlement Service - Bazel WORKSPACE
+# Todo Service Demo - Bazel WORKSPACE
 workspace(
     name = "sdp_trace_demo_jvm_gsd",
 )
