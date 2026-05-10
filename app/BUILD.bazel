@@ -6,7 +6,7 @@ load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
 # Main application library
 kt_jvm_library(
     name = "app_lib",
-    srcs = ["src/main/kotlin/com/example/App.kt", "src/main/kotlin/com/example/health.kt"],
+    srcs = ["src/main/kotlin/com/example/App.kt", "src/main/kotlin/com/example/health.kt", "src/main/kotlin/com/example/todo.kt"],
     deps = [],
 )
 

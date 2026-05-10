@@ -3,8 +3,11 @@ package com.example
 import com.sun.net.httpserver.HttpServer
 import java.net.InetSocketAddress
 import java.io.OutputStream
+import java.io.InputStream
 import java.nio.charset.StandardCharsets
 import java.time.Instant
+
+val todoStore = TodoStore()
 
 fun main(args: Array<String>) {
     val port = getPort()
@@ -25,6 +28,42 @@ fun main(args: Array<String>) {
         }
     }
     
+    server.createContext("/todos") { exchange ->
+        try {
+            val method = exchange.requestMethod
+            if (method == "GET") {
+                val todos = todoStore.list()
+                val json = todos.joinToString(",", "[", "]") { todoToJson(it) }
+                exchange.responseHeaders.set("Content-Type", "application/json")
+                exchange.sendResponseHeaders(200, json.length.toLong())
+                val os = exchange.responseBody
+                os.write(json.toByteArray(StandardCharsets.UTF_8))
+                os.close()
+            } else if (method == "POST") {
+                val body = exchange.requestBody.readBytes().toString(StandardCharsets.UTF_8)
+                val title = parseTitle(body)
+                if (title.isNullOrBlank()) {
+                    exchange.sendResponseHeaders(400, 0)
+                    exchange.close()
+                } else {
+                    val todo = todoStore.create(title)
+                    val json = todoToJson(todo)
+                    exchange.responseHeaders.set("Content-Type", "application/json")
+                    exchange.sendResponseHeaders(201, json.length.toLong())
+                    val os = exchange.responseBody
+                    os.write(json.toByteArray(StandardCharsets.UTF_8))
+                    os.close()
+                }
+            } else {
+                exchange.sendResponseHeaders(405, 0)
+                exchange.close()
+            }
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+    
     Runtime.getRuntime().addShutdownHook(Thread {
         println("Shutting down server...")
         server.stop(10)
@@ -32,6 +71,15 @@ fun main(args: Array<String>) {
     server.start()
     println("Server started on port $port")
     println("Health endpoint: http://localhost:$port/health")
+    println("Todos endpoint: http://localhost:$port/todos")
+}
+
+fun todoToJson(todo: Todo): String = 
+    """{"id":"${escapeJson(todo.id)}","title":"${escapeJson(todo.title)}","completed":${todo.completed},"createdAt":${todo.createdAt}}"""
+
+fun parseTitle(json: String): String? {
+    val titleRegex = "\"title\"\\s*:\\s*\"([^\"]*)\"".toRegex()
+    return titleRegex.find(json)?.groupValues?.get(1)
 }
 
 fun escapeJson(s: String): String = s
