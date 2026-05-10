@@ -79,7 +79,10 @@ fun todoToJson(todo: Todo): String =
 
 fun parseTitle(json: String): String? {
     val titleKeyRegex = "\"title\"\\s*:".toRegex()
-    val match = titleKeyRegex.find(json) ?: return null
+    val matches = titleKeyRegex.findAll(json).toList()
+    if (matches.isEmpty()) return null
+    if (matches.size > 1) return "" // Signal duplicate key error
+    val match = matches[0]
     val start = match.range.last + 1
     val trimmed = json.substring(start).trim()
     if (!trimmed.startsWith("\"")) return null

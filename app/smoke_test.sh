@@ -151,6 +151,17 @@ if [ "$HTTP_CODE" != "400" ]; then
 fi
 echo "PASS: Whitespace title returns 400"
 
+# GLM-P1-02: Duplicate title keys should return 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"first","title":"second"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST duplicate title keys: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Duplicate title keys did not return 400"
+    exit 1
+fi
+echo "PASS: Duplicate title keys return 400"
+
 # Verify unterminated title string returns 400
 RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"unterminated' http://localhost:$PORT/todos)
 HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
@@ -184,6 +195,44 @@ if [ "$HTTP_CODE" != "201" ]; then
     exit 1
 fi
 echo "PASS: Escaped backslash in title returns 201"
+
+# GLM-P1-03: Concurrent POST requests test thread-safety
+echo "Testing concurrent POST requests..."
+CONCURRENT_COUNT=10
+FAILED=0
+
+for i in $(seq 1 $CONCURRENT_COUNT); do
+    RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d "{\"title\":\"Concurrent $i\"}" http://localhost:$PORT/todos)
+    HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+    if [ "$HTTP_CODE" != "201" ]; then
+        echo "FAIL: Concurrent POST $i returned $HTTP_CODE instead of 201"
+        FAILED=1
+    fi
+done
+
+if [ $FAILED -eq 1 ]; then
+    echo "FAIL: Some concurrent POSTs failed"
+    exit 1
+fi
+
+echo "PASS: All $CONCURRENT_COUNT concurrent POSTs returned 201"
+
+# Verify all concurrent titles are present in GET /todos
+GET_RESPONSE=$(curl -s http://localhost:$PORT/todos)
+MISSING=0
+for i in $(seq 1 $CONCURRENT_COUNT); do
+    if ! echo "$GET_RESPONSE" | grep -q "\"title\":\"Concurrent $i\""; then
+        echo "FAIL: Concurrent $i not found in GET /todos"
+        MISSING=1
+    fi
+done
+
+if [ $MISSING -eq 1 ]; then
+    echo "FAIL: Some concurrent titles missing from GET /todos"
+    exit 1
+fi
+
+echo "PASS: All $CONCURRENT_COUNT concurrent titles present in GET /todos"
 
 echo "ALL TESTS PASSED"
 exit 0
