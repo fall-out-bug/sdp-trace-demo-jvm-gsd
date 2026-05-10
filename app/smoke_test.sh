@@ -196,14 +196,35 @@ if [ "$HTTP_CODE" != "201" ]; then
 fi
 echo "PASS: Escaped backslash in title returns 201"
 
-# GLM-P1-03: Concurrent POST requests test thread-safety
-echo "Testing concurrent POST requests..."
+# GLM-P1-03: Concurrent POST requests test thread-safety (real parallel)
+echo "Testing parallel concurrent POST requests..."
 CONCURRENT_COUNT=10
-FAILED=0
+TEMP_DIR=$(mktemp -d)
+cleanup_temp() {
+    rm -rf "$TEMP_DIR"
+}
+trap cleanup_temp EXIT
+
+run_parallel_post() {
+    local num=$1
+    local outfile="$TEMP_DIR/out_$num"
+    local http_code
+    local response
+    response=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d "{\"title\":\"Concurrent $num\"}" http://localhost:$PORT/todos)
+    http_code=$(echo "$response" | grep "HTTP_CODE:" | cut -d: -f2)
+    echo "$http_code" > "$outfile"
+}
 
 for i in $(seq 1 $CONCURRENT_COUNT); do
-    RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d "{\"title\":\"Concurrent $i\"}" http://localhost:$PORT/todos)
-    HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+    run_parallel_post $i &
+done
+
+wait
+
+FAILED=0
+for i in $(seq 1 $CONCURRENT_COUNT); do
+    outfile="$TEMP_DIR/out_$i"
+    HTTP_CODE=$(cat "$outfile")
     if [ "$HTTP_CODE" != "201" ]; then
         echo "FAIL: Concurrent POST $i returned $HTTP_CODE instead of 201"
         FAILED=1
@@ -233,6 +254,16 @@ if [ $MISSING -eq 1 ]; then
 fi
 
 echo "PASS: All $CONCURRENT_COUNT concurrent titles present in GET /todos"
+
+# Verify all IDs are unique (no duplicate IDs from race conditions)
+ID_COUNT=$(echo "$GET_RESPONSE" | grep -o '"id":"[^"]*"' | wc -l | tr -d ' ')
+UNIQUE_ID_COUNT=$(echo "$GET_RESPONSE" | grep -o '"id":"[^"]*"' | sort -u | wc -l | tr -d ' ')
+if [ "$ID_COUNT" != "$UNIQUE_ID_COUNT" ]; then
+    echo "FAIL: Duplicate IDs detected ($ID_COUNT total vs $UNIQUE_ID_COUNT unique)"
+    exit 1
+fi
+
+echo "PASS: All concurrent todo IDs are unique"
 
 echo "ALL TESTS PASSED"
 exit 0

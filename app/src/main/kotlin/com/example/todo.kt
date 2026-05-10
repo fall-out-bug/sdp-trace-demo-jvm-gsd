@@ -31,9 +31,6 @@ class TodoStore {
     fun list(): List<Todo> = todos.values.toList()
 
     @Synchronized
-    fun get(id: String): Todo? = todos[id]
-
-    @Synchronized
     fun update(id: String, title: String?, completed: Boolean?): Todo? {
         val existing = todos[id] ?: return null
         val updated = existing.copy(
