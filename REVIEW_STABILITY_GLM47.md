@@ -154,8 +154,8 @@ This stability cleanup meets all quality standards and can be safely merged.
 
 ## Final Review Addendum - MiniMax Replacement Review
 
-**Date:** 2026-05-10  
-**Reviewer:** MiniMax-M2.5 (replacement for GLM-4.7 route)  
+**Date:** 2026-05-10
+**Reviewer:** MiniMax-M2.5 (replacement for GLM-4.7 route)
 **Reason for Replacement:** Final GLM route hung twice during attempt; escalated to MiniMax for completion
 
 ### Verified Items
