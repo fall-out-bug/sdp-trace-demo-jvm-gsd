@@ -127,6 +127,27 @@ fun main(args: Array<String>) {
         }
     }
     
+    server.createContext("/stats") { exchange ->
+        try {
+            val method = exchange.requestMethod
+            if (method == "GET") {
+                val stats = todoStore.stats()
+                val json = """{"total":${stats.total},"completed":${stats.completed},"active":${stats.active}}"""
+                exchange.responseHeaders.set("Content-Type", "application/json")
+                exchange.sendResponseHeaders(200, json.toByteArray(StandardCharsets.UTF_8).size.toLong())
+                val os = exchange.responseBody
+                os.write(json.toByteArray(StandardCharsets.UTF_8))
+                os.close()
+            } else {
+                exchange.sendResponseHeaders(405, 0)
+                exchange.close()
+            }
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+    
     Runtime.getRuntime().addShutdownHook(Thread {
         println("Shutting down server...")
         server.stop(10)
