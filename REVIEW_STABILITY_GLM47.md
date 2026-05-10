@@ -179,7 +179,7 @@ This stability cleanup meets all quality standards and can be safely merged.
 ### Classification Summary
 - **P0:** 0
 - **P1:** 0
-- **P2:** 0  
+- **P2:** 0
 - **P3:** 1 (lockfile presence - expected)
 
 ### Verdict
