@@ -431,16 +431,18 @@ This section documents the audit corrections applied after the original GLM revi
 - **Verification**: Smoke test at line 154-163 verifies duplicate keys return HTTP 400.
 - **Status**: FIXED in commit.
 
-### GLM-P1-03: Fixed with Real Parallel Smoke
+### GLM-P1-03: Fixed with Bounded Concurrent Smoke
 - **Original Finding**: No concurrent request testing despite thread-safety claims
-- **Fix Applied**: smoke_test.sh rewritten to use real parallel POSTs with bounded timeout:
+- **Fix Applied**: smoke_test.sh rewritten with bounded concurrent POSTs:
   - Background jobs (`&`) launch 10 concurrent POST requests
   - Each curl uses `--max-time 30 --connect-timeout 5` for finite timeout
-  - Parent uses timed wait loop (60s max) instead of unbounded `wait`
+  - Single `wait` call per job (bounded by curl max-time)
   - Each worker writes HTTP code to temp file
-  - Verifies all returned 201, then validates all titles in GET /todos
-- **Verification**: Test now exercises actual thread-safety of `@Synchronized` methods.
-- **Status**: FIXED in wave 8.
+  - Unified cleanup kills APP_PID and removes TEMP_DIR
+  - No `kill -0` polling, no `kill 0`
+- **Verification**: Test now exercises thread-safety with bounded timeout; no hanging.
+- **Status**: FIXED in wave 9.
+- **Wave 9 Regression Fix**: Removed `kill -0` polling loop and `kill 0` call that could cause test hangs. Using curl `--max-time` for inherent timeout instead.
 
 ---
 
@@ -464,6 +466,6 @@ _Reviewer: GLM-4.7 (Independent Review)_
 _Depth: Standard_
 _Branch: codex/feature-2-todos_
 _Base: origin/main_
-_Wave: 8 (final verification after concurrent test fix)_
+_Wave: 9 (fixed hanging-test regression - removed kill -0 polling and kill 0)_
 
 (End of report - 7 findings total)

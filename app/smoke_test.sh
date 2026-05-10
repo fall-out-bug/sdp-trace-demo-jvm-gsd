@@ -15,8 +15,10 @@ fi
 "$APP_BINARY" &
 APP_PID=$!
 
+TEMP_DIR=""
 cleanup() {
     kill $APP_PID 2>/dev/null || true
+    rm -rf "$TEMP_DIR" 2>/dev/null || true
 }
 trap cleanup EXIT
 
@@ -200,10 +202,6 @@ echo "PASS: Escaped backslash in title returns 201"
 echo "Testing parallel concurrent POST requests..."
 CONCURRENT_COUNT=10
 TEMP_DIR=$(mktemp -d)
-cleanup_temp() {
-    rm -rf "$TEMP_DIR"
-}
-trap cleanup_temp EXIT
 
 run_parallel_post() {
     local num=$1
@@ -221,27 +219,9 @@ for i in $(seq 1 $CONCURRENT_COUNT); do
     PIDS="$PIDS $!"
 done
 
-TIMEOUT_SECS=60
-ELAPSED=0
-while [ $ELAPSED -lt $TIMEOUT_SECS ]; do
-    ALIVE=0
-    for pid in $PIDS; do
-        if kill -0 $pid 2>/dev/null; then
-            ALIVE=$((ALIVE + 1))
-        fi
-    done
-    if [ $ALIVE -eq 0 ]; then
-        break
-    fi
-    sleep 1
-    ELAPSED=$((ELAPSED + 1))
+for pid in $PIDS; do
+    wait $pid || true
 done
-
-if [ $ELAPSED -ge $TIMEOUT_SECS ]; then
-    echo "FAIL: Concurrent POSTs timed out after ${TIMEOUT_SECS}s"
-    kill 0 2>/dev/null || true
-    exit 1
-fi
 
 FAILED=0
 for i in $(seq 1 $CONCURRENT_COUNT); do
