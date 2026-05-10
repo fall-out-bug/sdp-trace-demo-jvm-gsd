@@ -61,6 +61,7 @@ Progress: [██████████] 100%
 
 | Id | Decision | Rationale |
 |----|----------|-----------|
+| D-07 | JDK HttpServer for first-feature HTTP | Scoped - Ktor Bazel/bzlmod unstable |
 | D-06 | Test infrastructure attempted | Bazel 9 blocking execution - needs version alignment |
 | D-05 | Use Java HttpServer for health | Ktor bzlmod dependency issues - defer to future |
 
