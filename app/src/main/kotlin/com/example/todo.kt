@@ -39,13 +39,7 @@ class TodoStore {
     }
 
     @Synchronized
-    fun update(id: String, title: String?, completed: Boolean?): Todo? {
-        val existing = todos[id] ?: return null
-        val updated = existing.copy(
-            title = title ?: existing.title,
-            completed = completed ?: existing.completed
-        )
-        todos[id] = updated
-        return updated
+    fun delete(id: String): Boolean {
+        return todos.remove(id) != null
     }
 }

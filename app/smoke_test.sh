@@ -348,5 +348,89 @@ if [ "$DELETE_HTTP_CODE" != "405" ]; then
 fi
 echo "PASS: DELETE returns 405"
 
+# F4-01: Verify DELETE /todos/{id} returns 204 for existing todo
+DELETE_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/todos/$TODO_ID)
+DELETE_HTTP_CODE=$(echo "$DELETE_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "DELETE /todos/$TODO_ID: HTTP $DELETE_HTTP_CODE"
+
+if [ "$DELETE_HTTP_CODE" != "204" ]; then
+    echo "FAIL: DELETE /todos/$TODO_ID did not return 204"
+    exit 1
+fi
+echo "PASS: DELETE /todos/$TODO_ID returns 204"
+
+# F4-02: Verify deleted todo does not appear in GET /todos
+GET_AFTER_DELETE=$(curl -s http://localhost:$PORT/todos)
+echo "GET /todos after delete: $GET_AFTER_DELETE"
+
+if echo "$GET_AFTER_DELETE" | grep -q "\"title\":\"Complete Me\""; then
+    echo "FAIL: Deleted todo still appears in GET /todos"
+    exit 1
+fi
+echo "PASS: Deleted todo does not appear in GET /todos"
+
+# F4-03: Verify DELETE /todos/{unknown id} returns 404
+UNKNOWN_DELETE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/todos/unknown-id-456)
+UNKNOWN_DELETE_CODE=$(echo "$UNKNOWN_DELETE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "DELETE /todos/unknown-id-456: HTTP $UNKNOWN_DELETE_CODE"
+
+if [ "$UNKNOWN_DELETE_CODE" != "404" ]; then
+    echo "FAIL: DELETE /todos/unknown-id-456 did not return 404"
+    exit 1
+fi
+echo "PASS: Unknown ID returns 404"
+
+# F4-04: Verify GET /todos/{id} returns 405
+GET_ON_ID=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X GET http://localhost:$PORT/todos/$TODO_ID)
+GET_ON_ID_CODE=$(echo "$GET_ON_ID" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "GET /todos/$TODO_ID: HTTP $GET_ON_ID_CODE"
+
+if [ "$GET_ON_ID_CODE" != "405" ]; then
+    echo "FAIL: GET /todos/$TODO_ID did not return 405"
+    exit 1
+fi
+echo "PASS: GET on /todos/{id} returns 405"
+
+# F4-05: Verify PUT /todos/{id} returns 405
+PUT_ON_ID=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X PUT -H "Content-Type: application/json" -d '{"title":"Updated"}' http://localhost:$PORT/todos/$TODO_ID)
+PUT_ON_ID_CODE=$(echo "$PUT_ON_ID" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "PUT /todos/$TODO_ID: HTTP $PUT_ON_ID_CODE"
+
+if [ "$PUT_ON_ID_CODE" != "405" ]; then
+    echo "FAIL: PUT /todos/$TODO_ID did not return 405"
+    exit 1
+fi
+echo "PASS: PUT on /todos/{id} returns 405"
+
+# F4-06: Verify create -> delete -> list absence workflow end-to-end
+END_TO_END_RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"E2E Delete Test"}' http://localhost:$PORT/todos)
+END_TO_END_CODE=$(echo "$END_TO_END_RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+END_TO_END_BODY=$(echo "$END_TO_END_RESPONSE" | grep -v "HTTP_CODE:")
+echo "POST E2E test: $END_TO_END_BODY (HTTP $END_TO_END_CODE)"
+
+if [ "$END_TO_END_CODE" != "201" ]; then
+    echo "FAIL: POST for E2E test did not return 201"
+    exit 1
+fi
+
+E2E_TODO_ID=$(echo "$END_TO_END_BODY" | grep -o '"id":"[^"]*"' | head -1 | cut -d'"' -f4)
+echo "E2E todo ID: $E2E_TODO_ID"
+
+DELETE_E2E=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X DELETE http://localhost:$PORT/todos/$E2E_TODO_ID)
+DELETE_E2E_CODE=$(echo "$DELETE_E2E" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "DELETE E2E: HTTP $DELETE_E2E_CODE"
+
+if [ "$DELETE_E2E_CODE" != "204" ]; then
+    echo "FAIL: DELETE E2E did not return 204"
+    exit 1
+fi
+
+GET_AFTER_E2E=$(curl -s http://localhost:$PORT/todos)
+if echo "$GET_AFTER_E2E" | grep -q "\"title\":\"E2E Delete Test\""; then
+    echo "FAIL: E2E deleted todo still appears"
+    exit 1
+fi
+echo "PASS: Create -> Delete -> List workflow verified"
+
 echo "ALL TESTS PASSED"
 exit 0
