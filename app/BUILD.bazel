@@ -17,8 +17,14 @@ kt_jvm_binary(
     runtime_deps = [":app_lib"],
 )
 
+# Shell-based smoke test: starts app, hits /health, verifies "ok"
+sh_test(
+    name = "smoke_test",
+    srcs = ["smoke_test.sh"],
+    data = ["//app:app"],
+)
+
 # Test infrastructure:
-# - Test source file created: app/src/test/kotlin/com/example/AppTest.kt
-# - Tests require JUnit5/Kotest setup
-# - Current blocker: Bazel 9 rules_kotlin compatibility
-# - To run tests when resolved: bazel test //app:all_tests
+# - Integration tests require running server (see src/test/kotlin/)
+# - To verify server: bazel run //app:app then curl localhost:8080/health
+# - Tests are JUnit5 and require proper test runner configuration
