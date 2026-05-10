@@ -44,7 +44,7 @@ The service is built with Bazel for build management and uses a traditional laye
 Plans:
 - [x] 01-01-PLAN.md — Bazel workspace and build configuration
 - [x] 01-02-PLAN.md — Ktor application with health endpoint
-- [ ] 01-03-PLAN.md — Test infrastructure with JUnit5/Kotest
+- [⚠] 01-03-PLAN.md — Test infrastructure with JUnit5/Kotest (BLOCKED: Bazel 9)
 - [ ] 01-04-PLAN.md — GitHub Actions CI pipeline
 - [ ] 01-05-PLAN.md — Code formatting with ktlint
 
