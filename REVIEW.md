@@ -32,7 +32,7 @@ status: approved
 Fix commit ffd7129 addresses all critical issues and most warnings. The codebase is now in good shape:
 
 1. ✅ **CR-01 FIXED:** Safe JSON serialization with `escapeJson()` function (App.kt:37-42)
-2. ✅ **CR-02 FIXED:** Smoke test verifies process startup before polling (smmoke_test.sh:23-27)
+2. ✅ **CR-02 FIXED:** Smoke test verifies process startup before polling (smoke_test.sh:23-27)
 3. ✅ **WR-01 FIXED:** Port validation 1-65535 (App.kt:44-48)
 4. ✅ **WR-02 FIXED:** Unused Ktor dependencies removed (MODULE.bazel)
 5. ✅ **WR-03 FIXED:** Graceful shutdown hook added (App.kt:28-31)
