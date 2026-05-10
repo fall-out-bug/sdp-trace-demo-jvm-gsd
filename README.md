@@ -1,6 +1,6 @@
 # SDP Trace Demo JVM/GSD
 
-This is a minimal todo REST API demo application that demonstrates GSD (Guaranteed Shipping with Evidence) principles. It uses JDK HttpServer and Kotlin without frameworks, serving as abaseline for evidence collection using sdp-trace.
+This is a minimal todo REST API demo application that demonstrates GSD (Guaranteed Shipping with Evidence) principles. It uses JDK HttpServer and Kotlin without frameworks, serving as a baseline for evidence collection using sdp-trace.
 
 ## Demo Purpose
 
