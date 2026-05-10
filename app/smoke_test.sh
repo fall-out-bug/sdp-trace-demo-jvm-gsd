@@ -35,15 +35,77 @@ for i in $(seq 1 30); do
     sleep 1
 done
 
-# Call health endpoint and check response
+# Verify health endpoint returns ok
 RESPONSE=$(curl -s http://localhost:$PORT/health)
 echo "Health response: $RESPONSE"
 
-# Verify response contains "ok"
 if echo "$RESPONSE" | grep -q '"status":"ok"'; then
     echo "PASS: Health check returned status ok"
-    exit 0
 else
     echo "FAIL: Health check did not return status ok"
     exit 1
 fi
+
+# Verify GET /todos returns empty array
+RESPONSE=$(curl -s http://localhost:$PORT/todos)
+echo "GET /todos response: $RESPONSE"
+
+if echo "$RESPONSE" | grep -q '^\[\]$'; then
+    echo "PASS: GET /todos returned []"
+else
+    echo "FAIL: GET /todos did not return []"
+    exit 1
+fi
+
+# Verify POST /todos creates a todo and returns 201 with id/title/completed/createdAt
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"Test Todo"}' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "POST /todos response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "201" ]; then
+    echo "FAIL: POST /todos did not return 201"
+    exit 1
+fi
+
+if echo "$BODY" | grep -q '"id":"'; then
+    echo "PASS: POST /todos returned todo with id"
+else
+    echo "FAIL: POST /todos did not return id"
+    exit 1
+fi
+
+if echo "$BODY" | grep -q '"title":"Test Todo"'; then
+    echo "PASS: POST /todos returned todo with title"
+else
+    echo "FAIL: POST /todos did not return title"
+    exit 1
+fi
+
+if echo "$BODY" | grep -q '"completed":false'; then
+    echo "PASS: POST /todos returned todo with completed"
+else
+    echo "FAIL: POST /todos did not return completed"
+    exit 1
+fi
+
+if echo "$BODY" | grep -q '"createdAt":'; then
+    echo "PASS: POST /todos returned todo with createdAt"
+else
+    echo "FAIL: POST /todos did not return createdAt"
+    exit 1
+fi
+
+# Verify subsequent GET /todos includes the created todo
+RESPONSE=$(curl -s http://localhost:$PORT/todos)
+echo "GET /todos after POST: $RESPONSE"
+
+if echo "$RESPONSE" | grep -q '"title":"Test Todo"'; then
+    echo "PASS: GET /todos includes created todo"
+else
+    echo "FAIL: GET /todos does not include created todo"
+    exit 1
+fi
+
+echo "ALL TESTS PASSED"
+exit 0
