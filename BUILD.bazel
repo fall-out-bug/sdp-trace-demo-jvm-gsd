@@ -1,0 +1,2 @@
+# Root BUILD.bazel - Feature Flag Service
+# Placeholder for root config, targets live in subpackages

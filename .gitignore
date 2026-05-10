@@ -1,0 +1,4 @@
+# Bazel
+/bazel-*
+/MODULE.bazel.lock
+/.edit.baseline

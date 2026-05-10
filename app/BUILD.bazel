@@ -1,0 +1,30 @@
+# Feature Flag & Entitlement Service - Bazel BUILD
+# Application binary target
+
+load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
+
+# Main application library
+kt_jvm_library(
+    name = "app_lib",
+    srcs = ["src/main/kotlin/com/example/App.kt", "src/main/kotlin/com/example/health.kt"],
+    deps = [],
+)
+
+# Application binary
+kt_jvm_binary(
+    name = "app",
+    main_class = "com.example.AppKt",
+    runtime_deps = [":app_lib"],
+)
+
+# Shell-based smoke test: starts app, hits /health, verifies "ok"
+sh_test(
+    name = "smoke_test",
+    srcs = ["smoke_test.sh"],
+    data = ["//app:app"],
+)
+
+# Test infrastructure:
+# - Integration tests require running server (see src/test/kotlin/)
+# - To verify server: bazel run //app:app then curl localhost:8080/health
+# - Tests are JUnit5 and require proper test runner configuration

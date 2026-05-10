@@ -1,0 +1,11 @@
+# Feature Flag & Entitlement Service - Bazel MODULE (Bzlmod)
+# Using Bazel 8.x compatible configuration
+module(
+    name = "sdp_trace_demo_jvm_gsd",
+    version = "0.1.0",
+)
+
+# Use rules_kotlin from BCR
+bazel_dep(name = "rules_kotlin", version = "2.1.10")
+bazel_dep(name = "rules_jvm_external", version = "6.7")
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
