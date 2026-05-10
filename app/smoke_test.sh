@@ -210,16 +210,38 @@ run_parallel_post() {
     local outfile="$TEMP_DIR/out_$num"
     local http_code
     local response
-    response=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d "{\"title\":\"Concurrent $num\"}" http://localhost:$PORT/todos)
+    response=$(curl -s --max-time 30 --connect-timeout 5 -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d "{\"title\":\"Concurrent $num\"}" http://localhost:$PORT/todos)
     http_code=$(echo "$response" | grep "HTTP_CODE:" | cut -d: -f2)
     echo "$http_code" > "$outfile"
 }
 
+PIDS=""
 for i in $(seq 1 $CONCURRENT_COUNT); do
     run_parallel_post $i &
+    PIDS="$PIDS $!"
 done
 
-wait
+TIMEOUT_SECS=60
+ELAPSED=0
+while [ $ELAPSED -lt $TIMEOUT_SECS ]; do
+    ALIVE=0
+    for pid in $PIDS; do
+        if kill -0 $pid 2>/dev/null; then
+            ALIVE=$((ALIVE + 1))
+        fi
+    done
+    if [ $ALIVE -eq 0 ]; then
+        break
+    fi
+    sleep 1
+    ELAPSED=$((ELAPSED + 1))
+done
+
+if [ $ELAPSED -ge $TIMEOUT_SECS ]; then
+    echo "FAIL: Concurrent POSTs timed out after ${TIMEOUT_SECS}s"
+    kill 0 2>/dev/null || true
+    exit 1
+fi
 
 FAILED=0
 for i in $(seq 1 $CONCURRENT_COUNT); do
@@ -239,7 +261,7 @@ fi
 echo "PASS: All $CONCURRENT_COUNT concurrent POSTs returned 201"
 
 # Verify all concurrent titles are present in GET /todos
-GET_RESPONSE=$(curl -s http://localhost:$PORT/todos)
+GET_RESPONSE=$(curl -s --max-time 30 --connect-timeout 5 http://localhost:$PORT/todos)
 MISSING=0
 for i in $(seq 1 $CONCURRENT_COUNT); do
     if ! echo "$GET_RESPONSE" | grep -q "\"title\":\"Concurrent $i\""; then
