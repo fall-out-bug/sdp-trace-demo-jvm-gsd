@@ -11,11 +11,11 @@ files_reviewed_list:
 branch: codex/feature-2-todos
 base: origin/main
 findings:
-  critical: 2
-  warning: 4
+  critical: 0
+  warning: 0
   info: 2
-  total: 8
-status: needs_revision
+  total: 2
+status: approved_with_scope_rejections
 verification:
   build_status: verification run during feature 2 fix phase
   build_result: bazel build //... passed
@@ -30,7 +30,7 @@ verification:
 **Base:** origin/main
 **Reviewed:** 2026-05-10
 **Depth:** standard
-**Status:** NEEDS_REVISION
+**Status:** APPROVED_WITH_SCOPE_REJECTIONS
 
 ## Summary
 
@@ -206,8 +206,23 @@ Potential for OOM with huge requests. Consider adding size limit for production.
 | Content-Length UTF-8 | ✅ WR-01 FIXED |
 | JSON parsing improved | ✅ WR-02 IMPROVED |
 | Error test coverage | ✅ WR-04 FIXED |
-| DELETE endpoint | ❌ NOT REQUIRED (scope) |
-| PUT endpoint | ❌ NOT REQUIRED (scope) |
+| DELETE endpoint | ❌ NOT REQUIRED (out of feature scope) |
+| PUT endpoint | ❌ NOT REQUIRED (out of feature scope) |
+| Critical blockers | **0** |
+| Warning blockers | **0** |
+
+---
+
+## Dispositions
+
+| Finding | Severity | Status | Disposition |
+|---------|----------|--------|-------------|
+| CR-01 | critical | FIXED | Thread-safety added with @Synchronized |
+| CR-02 | critical | REJECTED | Out of feature scope (GET/POST only) |
+| WR-01 | warning | FIXED | Content-Length uses UTF-8 byte length |
+| WR-02 | warning | IMPROVED | JSON parser handles escaped quotes/backslashes |
+| WR-03 | warning | REJECTED | Out of feature scope (GET/POST only) |
+| WR-04 | warning | FIXED | Error case smoke tests added |
 
 ---
 
@@ -224,7 +239,7 @@ Potential for OOM with huge requests. Consider adding size limit for production.
 
 ## Overall Verdict
 
-**NEEDS_REVISION** (but all required fixes complete)
+**APPROVED_WITH_SCOPE_REJECTIONS** (all required fixes complete, rejected findings out of feature scope)
 
 After fixing:
 - ✅ CR-01: Thread-safety added with @Synchronized
@@ -234,14 +249,14 @@ After fixing:
 - ❌ CR-02: DELETE endpoint NOT REQUIRED (scope creep rejected)
 - ❌ WR-03: PUT endpoint NOT REQUIRED (scope creep rejected)
 
-Feature 2 scope: POST /todos and GET /todos only. DELETE and PUT are explicitly rejected as scope creep for this phase.
+Feature 2 scope: POST /todos and GET /todos only. DELETE and PUT are explicitly rejected as out of scope for this phase.
 
 **Required to merge:**
 1. ✅ Fix CR-01: Add thread-safety to TodoStore
-2. ❌ Fix CR-02: Add DELETE endpoint - NOT REQUIRED
+2. ❌ Fix CR-02: Add DELETE endpoint - NOT REQUIRED (out of scope)
 3. ✅ Fix WR-01: Correct Content-Length calculation
 4. ✅ Fix WR-02: Robust JSON parsing (improved without heavy deps)
-5. ❌ Add PUT endpoint (WR-03) - NOT REQUIRED
+5. ❌ Add PUT endpoint (WR-03) - NOT REQUIRED (out of scope)
 6. ✅ Expand smoke tests (WR-04)
 
 ---

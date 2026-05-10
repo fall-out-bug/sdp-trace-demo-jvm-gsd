@@ -85,6 +85,7 @@ fun parseTitle(json: String): String? {
     if (!trimmed.startsWith("\"")) return null
     val sb = StringBuilder()
     var i = 1
+    var foundClosingQuote = false
     while (i < trimmed.length) {
         val c = trimmed[i]
         if (c == '\\' && i + 1 < trimmed.length) {
@@ -99,12 +100,14 @@ fun parseTitle(json: String): String? {
             }
             i += 2
         } else if (c == '"') {
+            foundClosingQuote = true
             break
         } else {
             sb.append(c)
             i++
         }
     }
+    if (!foundClosingQuote) return null
     return sb.toString()
 }
 

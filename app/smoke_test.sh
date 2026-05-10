@@ -151,6 +151,17 @@ if [ "$HTTP_CODE" != "400" ]; then
 fi
 echo "PASS: Whitespace title returns 400"
 
+# Verify unterminated title string returns 400
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"unterminated' http://localhost:$PORT/todos)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST unterminated title: HTTP $HTTP_CODE"
+
+if [ "$HTTP_CODE" != "400" ]; then
+    echo "FAIL: Unterminated title did not return 400"
+    exit 1
+fi
+echo "PASS: Unterminated title returns 400"
+
 # Verify escaped quotes in title works
 RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{"title":"test\"quote"}' http://localhost:$PORT/todos)
 HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
