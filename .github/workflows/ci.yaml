@@ -15,9 +15,13 @@ jobs:
         uses: actions/checkout@v4
       
       - name: Setup Bazel
-        uses: bazelbuild/setup-bazelisk@v1
-        with:
-          bazelisk-version: 1.19.0
+        run: |
+          wget -q https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64 -O /usr/local/bin/bazel
+          chmod +x /usr/local/bin/bazel
+        shell: bash
+
+      - name: Set Bazel version
+        run: echo "USE_BAZEL_VERSION=8.7.0" >> $GITHUB_ENV
       
       - name: Cache Bazel
         uses: actions/cache@v4
