@@ -16,8 +16,11 @@ jobs:
       
       - name: Setup Bazel
         run: |
-          wget -q https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64 -O /usr/local/bin/bazel
-          chmod +x /usr/local/bin/bazel
+          mkdir -p "$HOME/.bazel-bin"
+          wget -q https://github.com/bazelbuild/bazelisk/releases/download/v1.19.0/bazelisk-linux-amd64 -O "$HOME/.bazel-bin/bazel"
+          chmod +x "$HOME/.bazel-bin/bazel"
+          echo "$HOME/.bazel-bin" >> $GITHUB_ENV
+          echo "PATH=$HOME/.bazel-bin:$PATH" >> $GITHUB_ENV
         shell: bash
 
       - name: Set Bazel version
