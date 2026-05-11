@@ -4,7 +4,7 @@ This packet is evidence organization, not merge, release, compliance, production
 
 ## Executive Summary
 
-- Source change: local://demo-v2-feature-3-version PR-18.
+- Source change: https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/18 PR-18.
 - Packet state: draft.
 - Selected evidence profile: change-host-rich-v0.
 - Required rows preserve pass, partial, fail, cannot_verify, not_assessed, and not_in_scope states without a score.
@@ -16,8 +16,8 @@ This packet is evidence organization, not merge, release, compliance, production
 | --- | --- |
 | packet_id | github-pr-18-change-evidence-packet |
 | schema | change-evidence-packet.v0 |
-| generated_from | local://demo-v2-feature-3-version |
-| generated_at | 2026-05-11T21:22:29Z |
+| generated_from | https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/18 |
+| generated_at | 2026-05-11T21:43:36Z |
 | authoring_method | tool_generated |
 | selected_profile | change-host-rich-v0 |
 | redaction_policy | not_assessed |
@@ -32,7 +32,7 @@ This packet is evidence organization, not merge, release, compliance, production
 | PC-INITIATOR | partial | PR body task source is retained. | github:pr-body | PR body is weaker than a dedicated issue binding | maintainer |
 | PC-AGENT-ROUTE | partial | Agent route refs are retained. | agent:route | route refs are input refs, not a complete observed delegation chain | maintainer |
 | PC-MUTATION | pass | Commit range and changed files are retained. | git:commit-range | none | maintainer |
-| PC-VERIFICATION | cannot_verify | No GitHub check evidence was provided. | none | missing GitHub check or workflow run evidence | maintainer |
+| PC-VERIFICATION | pass | GitHub check and retained artifact evidence are retained. | github:check, artifact:change-evidence-packets, artifact:evidence-bundles | none | maintainer |
 | PC-REVIEW | pass | Review evidence is retained. | github:review | none | maintainer |
 | PC-AUTHORITY | not_assessed | Authority was not assessed for this generated GitHub input. | none | authority profile was not provided | maintainer |
 | PC-THEATER | pass | No P0 theater finding triggered by the minimal GitHub input builder. | theater:builder | none | maintainer |
@@ -61,14 +61,17 @@ Manifest: `github-pr-18-change-evidence-packet-bundle`
 
 | ref | source class | retained form | redaction status | resolver |
 | --- | --- | --- | --- | --- |
-| github:pr | change_host | external_ref | not_needed | local://demo-v2-feature-3-version |
-| git:commit-range | git | external_ref | not_needed | 8655b2537e3bce7c0f7c3f626b7bf68713a469fc..ee7853066ea343c903cf8485aeb507e4bcd8cc12 |
+| github:pr | change_host | external_ref | not_needed | https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/18 |
+| git:commit-range | git | external_ref | not_needed | 8655b2537e3bce7c0f7c3f626b7bf68713a469fc..14d39cac7bc1b1e7437a0b4f20949c21479ae6c5 |
 | theater:builder | witness | raw | not_needed | sdp-trace packet build-github |
 | decision:owners | manual | raw | not_needed | default generated decision owners |
 | gap:generated | manual | raw | not_needed | generated residual gaps |
 | github:pr-body | change_host | external_ref | not_needed | .evidence/feature-version-gsd-opencode/prompt-metadata.json |
 | agent:route | harness | external_ref | not_needed | .evidence/feature-version-gsd-opencode/manifest.json, .evidence/feature-version-gsd-opencode/prompt-metadata.json |
+| github:check | ci | external_ref | not_needed | build-and-test=https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/job/75451483105 |
 | github:review | review | external_ref | not_needed | codex-subagent-feature-review=thread-notification:019e18c5-17da-7821-a28f-fde6a71002d5 |
+| artifact:change-evidence-packets | ci | external_ref | not_needed | https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/artifacts/6930209248 |
+| artifact:evidence-bundles | ci | external_ref | not_needed | https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/artifacts/6930209528 |
 
 ## Residual Gaps
 
@@ -76,7 +79,6 @@ Manifest: `github-pr-18-change-evidence-packet-bundle`
 | --- | --- | --- | --- |
 | PC-INITIATOR | partial | PR body is weaker than a dedicated issue binding | provide retained evidence for PC-INITIATOR |
 | PC-AGENT-ROUTE | partial | route refs are input refs, not a complete observed delegation chain | provide retained evidence for PC-AGENT-ROUTE |
-| PC-VERIFICATION | cannot_verify | missing GitHub check or workflow run evidence | provide retained evidence for PC-VERIFICATION |
 | PC-AUTHORITY | not_assessed | authority profile was not provided | provide retained evidence for PC-AUTHORITY |
 | PC-ATTESTATION | not_assessed | signed trust inputs were not provided | provide retained evidence for PC-ATTESTATION |
 | PC-DECISION | not_assessed | decision owners are placeholders, not bound approval or ownership evidence | provide retained evidence for PC-DECISION |
