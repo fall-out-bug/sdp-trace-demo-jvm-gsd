@@ -1,0 +1,31 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "3eb626949f41a2e6",
+  "event_id": "3a3916d25dddefca44395b36",
+  "sequence": 3,
+  "event_type": "command_finished",
+  "timestamp": "2026-05-11T20:40:18.401294262Z",
+  "prev_event_hash": "e3956fe3d88f72e62831621997660169fbcc5e437057faedbb904192556849d2",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "1918b893e17ddefac54f4acc81f482edf6ede3f04f12cd6653d5ba90665c6736",
+  "event_payload": {
+    "command": "bash",
+    "command_id": "d89871960828",
+    "exit_code": 0,
+    "stderr_digest": "e46c820cf84d58c844fc9647522691579ea04a219ebadf9d0d868d0b86a1a2e0",
+    "stdout_digest": "47861f633d94efc3c1a3cb95fafe0b266f8dff8d53626740c7518bdeb9da01e7"
+  },
+  "payload": {
+    "command": "bash",
+    "command_id": "d89871960828",
+    "exit_code": 0,
+    "stderr_digest": "e46c820cf84d58c844fc9647522691579ea04a219ebadf9d0d868d0b86a1a2e0",
+    "stdout_digest": "47861f633d94efc3c1a3cb95fafe0b266f8dff8d53626740c7518bdeb9da01e7"
+  },
+  "event_hash": "e49da516bbe37076e297c8f7f0f319a0fce32838d2f158bb588cf0ff1d2f042f",
+  "observed_by": "local_recorder"
+}

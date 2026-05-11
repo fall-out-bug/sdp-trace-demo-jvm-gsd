@@ -1,0 +1,29 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "65fe6b6a913cdfca",
+  "event_id": "1eb5701b5dba0b3c834604de",
+  "sequence": 1,
+  "event_type": "run_started",
+  "timestamp": "2026-05-11T20:38:01.62287164Z",
+  "prev_event_hash": "975e0ad82e7ff2cd7f4a67b84bb804c2af0968d01b8fc2763a3a2604ef652c46",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "8feb159b39d8c28a72af2ea820f59fa7d8f1f9a33c7a837a41f28a02e9fcf651",
+  "event_payload": {
+    "command": "gsd",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "payload": {
+    "command": "gsd",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "event_hash": "74240047f3785c87aa0a029f787db02039a2dfb7ec5a9c9a5458b1b4d6fe456d",
+  "observed_by": "local_recorder"
+}

@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "d56a7a2e7fc98ddc",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "sdp-trace",
+      "wrapper_name": "feature-3-packet-validate",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "72b68b83a372961e1ec6bc838f5f23306e569bb0f0a27b2373a369425b5b6da3",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

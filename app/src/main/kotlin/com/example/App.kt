@@ -13,6 +13,20 @@ fun main(args: Array<String>) {
     val port = getPort()
     val server = HttpServer.create(InetSocketAddress(port), 0)
     
+    server.createContext("/version") { exchange ->
+        try {
+            val jsonResponse = """{"version":"demo-v2"}"""
+            exchange.responseHeaders.set("Content-Type", "application/json")
+            exchange.sendResponseHeaders(200, jsonResponse.toByteArray(StandardCharsets.UTF_8).size.toLong())
+            val os: OutputStream = exchange.responseBody
+            os.write(jsonResponse.toByteArray(StandardCharsets.UTF_8))
+            os.close()
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+
     server.createContext("/health") { exchange ->
         try {
             val response = HealthResponse.ok()

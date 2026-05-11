@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-11T20:40:18.409478491Z",
+  "run_count": 1,
+  "observed_count": 1,
+  "failed_count": 0,
+  "cannot_verify_count": 0,
+  "not_assessed_count": 0,
+  "trust_scope": "local_observed",
+  "audit_grade": false,
+  "audit_grade_reason": "local observed evidence has no CI/OIDC witness or external witness checkpoint",
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "3eb626949f41a2e6",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "bash",
+      "wrapper_name": "feature-version-final-verification",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "47861f633d94efc3c1a3cb95fafe0b266f8dff8d53626740c7518bdeb9da01e7",
+      "stderr_digest": "e46c820cf84d58c844fc9647522691579ea04a219ebadf9d0d868d0b86a1a2e0"
+    }
+  ]
+}

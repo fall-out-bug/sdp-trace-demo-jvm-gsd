@@ -1,0 +1,59 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 18,
+    "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/18",
+    "title": "Add version endpoint",
+    "body_ref": ".evidence/feature-version-gsd-opencode/prompt-metadata.json",
+    "author": "gsd/opencode/minimax-m2.5-free",
+    "base_ref": "demo-v2-feature-2-liveness",
+    "head_ref": "demo-v2-feature-3-version",
+    "head_sha": "14d39cac7bc1b1e7437a0b4f20949c21479ae6c5"
+  },
+  "commit_range": {
+    "base": "8655b2537e3bce7c0f7c3f626b7bf68713a469fc",
+    "head": "14d39cac7bc1b1e7437a0b4f20949c21479ae6c5",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [
+    {
+      "name": "build-and-test",
+      "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/job/75451483105",
+      "conclusion": "success",
+      "artifact_refs": [
+        "change-evidence-packets",
+        "evidence-bundles"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "change-evidence-packets",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/artifacts/6930209248",
+      "retained_form": "external_ref"
+    },
+    {
+      "name": "evidence-bundles",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698115600/artifacts/6930209528",
+      "retained_form": "external_ref"
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e18c5-17da-7821-a28f-fde6a71002d5",
+      "state": "pass"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-version-gsd-opencode/manifest.json",
+    ".evidence/feature-version-gsd-opencode/prompt-metadata.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:be5808966282005bb2836d6a012c18b22751cdeba449c2fdce898fa616dd4f25",
+  "agent_route_components": [
+    "gsd",
+    "opencode",
+    "minimax-m2.5"
+  ]
+}

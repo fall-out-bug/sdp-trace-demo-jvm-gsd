@@ -1,0 +1,44 @@
+{
+  "schema_version": "demo-route-manifest.v0",
+  "feature": "feature-3-version",
+  "route": {
+    "state": "partial",
+    "reason": "local recorder observed a GSD/OpenCode/MiniMax route, but no external CI or signed attestation proves full passivity",
+    "observed_components": [
+      "sdp-trace-wrap",
+      "gsd",
+      "opencode",
+      "minimax-m2.5"
+    ]
+  },
+  "run": {
+    "path": ".evidence/feature-version-gsd-opencode/run",
+    "run_id": "65fe6b6a913cdfca",
+    "command_finished_sha256": "8bf01463e41dbb13fb7924d2352aa47f05387b49f21f007a2412138a9af4e7d3",
+    "exit_code": 0
+  },
+  "report": {
+    "path": ".evidence/feature-version-gsd-opencode/report",
+    "summary_sha256": "230fce172cc951a249171a00eb9604d42e72ad7b2b3bb2b84cdc3e6a27a16fe3",
+    "trust_scope": "local_observed"
+  },
+  "mutation": {
+    "changed_files": [
+      "app/src/main/kotlin/com/example/App.kt",
+      "app/smoke_test.sh"
+    ],
+    "changed_files_diff_sha256": "46da699328b9e23568243c4de03ac158b96c8dadfd85c7082ff305f273cc4f89"
+  },
+  "residual_gaps": [
+    {
+      "id": "RG-FEATURE-3-CI-WITNESS-001",
+      "state": "cannot_verify",
+      "reason": "feature branch has not yet produced a retained GitHub Actions witness"
+    },
+    {
+      "id": "RG-FEATURE-3-ROUTE-PASSIVITY-001",
+      "state": "partial",
+      "reason": "prompt boundary and local recorder observation support route evidence, but not signed passivity"
+    }
+  ]
+}
