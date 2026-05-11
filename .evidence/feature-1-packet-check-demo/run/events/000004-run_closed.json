@@ -1,31 +1,31 @@
 {
   "schema_version": "block10-event-v1",
-  "run_id": "4ddec0bd1b3961e7",
-  "event_id": "4946b169a1189e41188cf131",
+  "run_id": "8d34b525d9dd1674",
+  "event_id": "11896fc00b42bb8eccf348be",
   "sequence": 4,
   "event_type": "run_closed",
-  "timestamp": "2026-05-11T18:34:31.381702413Z",
-  "prev_event_hash": "ecab9be2fbecc9f674a7ef2bfd12682ceccfb6d7b3d74af97a7e72bb28591344",
+  "timestamp": "2026-05-11T20:56:53.834916648Z",
+  "prev_event_hash": "ac29714ac741c2e8c549a0dd8cdbc464095f013540c63bbfbc04855dc8d92f0e",
   "hash_algorithm": "sha256",
   "canonicalization": {
     "algorithm": "json-canonicalization-scheme",
     "version": "1.0.0"
   },
-  "payload_digest": "999d1d5005837b4a59d93afe92395e6a80b8aa9a8b7aeec233644a1b86e2ce18",
+  "payload_digest": "e2cf8e4a2ebb420cebfeb5d81b64773539d43bb0528bc94a7c10646811998b2a",
   "event_payload": {
-    "chain_head": "ecab9be2fbecc9f674a7ef2bfd12682ceccfb6d7b3d74af97a7e72bb28591344",
+    "chain_head": "ac29714ac741c2e8c549a0dd8cdbc464095f013540c63bbfbc04855dc8d92f0e",
     "closure_state": "completed",
-    "command_id": "e6dae239d017",
+    "command_id": "b0759b84fae0",
     "missing_evidence_count": 0,
     "observed_event_count": 4
   },
   "payload": {
-    "chain_head": "ecab9be2fbecc9f674a7ef2bfd12682ceccfb6d7b3d74af97a7e72bb28591344",
+    "chain_head": "ac29714ac741c2e8c549a0dd8cdbc464095f013540c63bbfbc04855dc8d92f0e",
     "closure_state": "completed",
-    "command_id": "e6dae239d017",
+    "command_id": "b0759b84fae0",
     "missing_evidence_count": 0,
     "observed_event_count": 4
   },
-  "event_hash": "2d4c051f508e0d5106b5931dddcbf8afa22d2269359280810bfc20739c69a6cb",
+  "event_hash": "caafd26fb574ab6b03b82518a1291e8fb6c997119f723965ca97ebaa8dd8d300",
   "observed_by": "local_recorder"
 }

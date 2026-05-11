@@ -1,27 +1,27 @@
 {
   "schema_version": "block10-event-v1",
-  "run_id": "a731e7d089dc59d2",
-  "event_id": "bf36e7c860cf787b211c3f5e",
+  "run_id": "9d49756f23472aa0",
+  "event_id": "f4767125a65be3e47ca323d6",
   "sequence": 0,
   "event_type": "recorder_attached",
-  "timestamp": "2026-05-11T18:34:31.335818258Z",
+  "timestamp": "2026-05-11T20:56:53.800123365Z",
   "prev_event_hash": "",
   "hash_algorithm": "sha256",
   "canonicalization": {
     "algorithm": "json-canonicalization-scheme",
     "version": "1.0.0"
   },
-  "payload_digest": "fd47b47791b547ac01dcbc88daca901c125273d98da515eae4a70c8c6fe7d011",
+  "payload_digest": "ceca198055108991a54b2834dfaa961e598ccb5700630bb2a8b62328956a30e2",
   "event_payload": {
-    "pid": 3982994,
+    "pid": 4035266,
     "recorder_version": "0.1.0",
-    "run_nonce": "run-nonce-a731e7d089dc59d2"
+    "run_nonce": "run-nonce-9d49756f23472aa0"
   },
   "payload": {
-    "pid": 3982994,
+    "pid": 4035266,
     "recorder_version": "0.1.0",
-    "run_nonce": "run-nonce-a731e7d089dc59d2"
+    "run_nonce": "run-nonce-9d49756f23472aa0"
   },
-  "event_hash": "d5ba2d2fe11e5312733ade1938e8d083761c61cab52ff82c13c60b6c94deffde",
+  "event_hash": "bf86210190a9f30ce6a28c1701280cef266224b8bde1fda41ec09298403c5d38",
   "observed_by": "local_recorder"
 }

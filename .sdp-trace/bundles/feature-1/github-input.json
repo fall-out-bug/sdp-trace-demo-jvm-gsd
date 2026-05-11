@@ -8,11 +8,11 @@
     "author": "opencode/minimax-m2.5-free",
     "base_ref": "main",
     "head_ref": "demo-v2-packetization",
-    "head_sha": "dirty-local-feature-readiness"
+    "head_sha": "7abb6be9fca1f06f21b22d40d1c0675b3ebc86e9"
   },
   "commit_range": {
     "base": "a8f37aad8500761693feb6ce68517bd65cabc8cc",
-    "head": "dirty-local-feature-readiness",
+    "head": "7abb6be9fca1f06f21b22d40d1c0675b3ebc86e9",
     "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
   },
   "checks": [],

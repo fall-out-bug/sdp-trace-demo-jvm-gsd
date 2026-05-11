@@ -1,31 +1,31 @@
 {
   "schema_version": "block10-event-v1",
-  "run_id": "a731e7d089dc59d2",
-  "event_id": "1b27c332bc9e9b381220751b",
+  "run_id": "9d49756f23472aa0",
+  "event_id": "a10f56e8aa1c1f85352ff55b",
   "sequence": 3,
   "event_type": "command_finished",
-  "timestamp": "2026-05-11T18:34:31.343311719Z",
-  "prev_event_hash": "304e07f3026fab4bf1f44343c61146650b960af773411cb55b9860a6c0ce4fe5",
+  "timestamp": "2026-05-11T20:56:53.806254303Z",
+  "prev_event_hash": "3a7b2dd3298557dfa3113350b069faf5209c1f4308f169927984c5ed65bfda6c",
   "hash_algorithm": "sha256",
   "canonicalization": {
     "algorithm": "json-canonicalization-scheme",
     "version": "1.0.0"
   },
-  "payload_digest": "5cb84a08b588ec26c0efbacb315241a19a649cf9051bf6bb61728792449ed5e2",
+  "payload_digest": "8f4e27371e5ac0bb4ecb76eb34e25822bba8a7dd751da8777367b6325970e22f",
   "event_payload": {
     "command": "sdp-trace",
-    "command_id": "2a9d55aee428",
+    "command_id": "ef7bddeec5a0",
     "exit_code": 0,
     "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "stdout_digest": "72b68b83a372961e1ec6bc838f5f23306e569bb0f0a27b2373a369425b5b6da3"
   },
   "payload": {
     "command": "sdp-trace",
-    "command_id": "2a9d55aee428",
+    "command_id": "ef7bddeec5a0",
     "exit_code": 0,
     "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
     "stdout_digest": "72b68b83a372961e1ec6bc838f5f23306e569bb0f0a27b2373a369425b5b6da3"
   },
-  "event_hash": "f13afd1933bc51e1079cc3fd6cf3558921e8c8817e40fc61b077683b387a55c6",
+  "event_hash": "9adbb6cfc49ac8abf1ab2769926b896db25b3171ec6cf232804c71a2df5850f6",
   "observed_by": "local_recorder"
 }
