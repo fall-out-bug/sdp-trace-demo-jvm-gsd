@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "767f61490df821e8",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "opencode",
+      "wrapper_name": "feature-ping-opencode",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "14d490dfde4605f11f716d6cfe6d8d6c9f9052d26e5664e23958341fae0eaae2",
+      "stderr_digest": "a9a588382d4ae2ec16a0fb97905f706ca02db6cb7e0389b7d30ec4d6e19811f3"
+    }
+  ]
+}

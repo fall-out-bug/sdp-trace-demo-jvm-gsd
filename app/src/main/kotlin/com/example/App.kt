@@ -169,6 +169,20 @@ fun main(args: Array<String>) {
         }
     }
     
+    server.createContext("/ping") { exchange ->
+        try {
+            exchange.responseHeaders.set("Content-Type", "text/plain")
+            val body = "pong"
+            exchange.sendResponseHeaders(200, body.toByteArray(StandardCharsets.UTF_8).size.toLong())
+            val os: OutputStream = exchange.responseBody
+            os.write(body.toByteArray(StandardCharsets.UTF_8))
+            os.close()
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+
     server.createContext("/stats") { exchange ->
         try {
             val method = exchange.requestMethod

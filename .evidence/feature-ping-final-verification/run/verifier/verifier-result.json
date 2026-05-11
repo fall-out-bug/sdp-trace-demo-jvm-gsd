@@ -1,0 +1,9 @@
+{
+  "run_id": "eb39f1fe0466a554",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-ping-final-verification/run"
+}
