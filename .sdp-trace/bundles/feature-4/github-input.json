@@ -1,0 +1,39 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 19,
+    "url": "local://demo-v2-feature-4-ping",
+    "title": "Add ping endpoint",
+    "body_ref": ".evidence/feature-ping-opencode/prompt-metadata.json",
+    "author": "opencode/minimax-m2.5-free",
+    "base_ref": "demo-v2-feature-3-version",
+    "head_ref": "demo-v2-feature-4-ping",
+    "head_sha": "1cbe77e45f66e9c0371ca766dfbded2534a6cec8"
+  },
+  "commit_range": {
+    "base": "14d39cac7bc1b1e7437a0b4f20949c21479ae6c5",
+    "head": "1cbe77e45f66e9c0371ca766dfbded2534a6cec8",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [],
+  "artifacts": [],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e18c8-df18-7512-9316-1f6a587bb86d",
+      "state": "pass"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-ping-opencode/manifest.json",
+    ".evidence/feature-ping-opencode/prompt-metadata.json",
+    ".evidence/feature-ping-gsd-review-repair/run"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:357948253fa26699070798449e0ce676ac88f37241184a17bf2a08059dd8698f",
+  "agent_route_components": [
+    "gsd",
+    "opencode",
+    "minimax-m2.5"
+  ]
+}

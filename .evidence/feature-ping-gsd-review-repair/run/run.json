@@ -1,0 +1,15 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "77d5e9e38be453db",
+  "recorder_version": "0.1.0",
+  "created_at": "2026-05-11T20:46:32.548285676Z",
+  "closed_at": "2026-05-11T20:46:56.356937487Z",
+  "contract_id": "local-default-v1",
+  "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+  "source_snapshot_digest": "a638e9b6bfa3033d7b97010926057e4795c05e5312d512453f9331e315e58eeb",
+  "source_snapshot_state": "git_tree_dirty",
+  "event_count": 5,
+  "event_chain_head": "cdc74ea04362bda99a477915422efe967fa4527e066efe22be68ecc87b0a09b7",
+  "final_chain_head": "cdc74ea04362bda99a477915422efe967fa4527e066efe22be68ecc87b0a09b7",
+  "closure_state": "completed"
+}

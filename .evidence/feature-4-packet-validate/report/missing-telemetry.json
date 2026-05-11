@@ -1,0 +1,11 @@
+{
+  "missing_audit_evidence": [
+    "ci_oidc_witness",
+    "external_witness_checkpoint"
+  ],
+  "missing_harness_evidence": [],
+  "notes": [
+    "raw stdout and stderr are not copied into demo report artifacts",
+    "contract evidence is matched from redacted event metadata only"
+  ]
+}

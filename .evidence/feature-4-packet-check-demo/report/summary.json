@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-11T20:47:35.84817238Z",
+  "run_count": 1,
+  "observed_count": 1,
+  "failed_count": 0,
+  "cannot_verify_count": 0,
+  "not_assessed_count": 0,
+  "trust_scope": "local_observed",
+  "audit_grade": false,
+  "audit_grade_reason": "local observed evidence has no CI/OIDC witness or external witness checkpoint",
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "71257b80627e18e7",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "sdp-trace",
+      "wrapper_name": "feature-4-packet-check-demo",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "72b68b83a372961e1ec6bc838f5f23306e569bb0f0a27b2373a369425b5b6da3",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

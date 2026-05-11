@@ -1,0 +1,27 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "77d5e9e38be453db",
+  "event_id": "8b78f338eb899dfe92ccd545",
+  "sequence": 0,
+  "event_type": "recorder_attached",
+  "timestamp": "2026-05-11T20:46:32.562119523Z",
+  "prev_event_hash": "",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "f4fb63d2502ff08ee5327d779c1d95a441dfecd5c3872c939689d55bcf8eb464",
+  "event_payload": {
+    "pid": 4028136,
+    "recorder_version": "0.1.0",
+    "run_nonce": "run-nonce-77d5e9e38be453db"
+  },
+  "payload": {
+    "pid": 4028136,
+    "recorder_version": "0.1.0",
+    "run_nonce": "run-nonce-77d5e9e38be453db"
+  },
+  "event_hash": "2a9d60bd2b26209429bac6ffb55fd8881c2ec6b7f3f41085e2a1f67a52c620fa",
+  "observed_by": "local_recorder"
+}

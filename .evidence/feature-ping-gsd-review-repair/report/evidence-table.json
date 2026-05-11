@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "77d5e9e38be453db",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "gsd",
+      "wrapper_name": "feature-ping-gsd-review-repair",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "99a0c022d99e738a5faa08652d72e979cbd614db9034f618598fb550bcb776fb",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -8,7 +8,7 @@
 | feature 1 | not_assessed | not_assessed | cannot_verify | pass | in_progress | not_assessed | owner state: not_assessed |
 | feature 2 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 3 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
-| feature 4 | not_assessed | not_assessed | cannot_verify | not_assessed | pass | not_assessed | owner state: not_assessed |
+| feature 4 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 5 | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
 | negative | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
 
@@ -44,8 +44,12 @@ and `.evidence/feature-3-packet-check-demo/`. CI remains `cannot_verify` until
 a PR run retains artifacts.
 
 Feature 4 route: `GET /ping` has local OpenCode/MiniMax route observation in
-`.evidence/feature-ping-opencode/`, local verification in
+`.evidence/feature-ping-opencode/`, GSD/OpenCode/MiniMax review-repair route in
+`.evidence/feature-ping-gsd-review-repair/`, local verification in
 `.evidence/feature-ping-final-verification/`, and review disposition via
 subagent thread `019e18c8-df18-7512-9316-1f6a587bb86d`. Route proof is
 `partial`; observed OpenCode tool-schema friction is retained in the feature
-route manifest. CI remains `cannot_verify` until a PR run retains artifacts.
+route manifest. Packet checks are retained in
+`.evidence/feature-4-packet-validate/` and
+`.evidence/feature-4-packet-check-demo/`. CI remains `cannot_verify` until a PR
+run retains artifacts.
