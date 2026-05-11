@@ -8,10 +8,10 @@
       "url": "local://demo-v2-negative-agent-claimed-verification",
       "base_ref": "demo-v2-feature-5-info",
       "head_ref": "demo-v2-negative-agent-claimed-verification",
-      "commit_range": "b99ac40..67d872bdbb5c898d9989f3086a31a7493d855c44",
-      "head_sha": "67d872bdbb5c898d9989f3086a31a7493d855c44"
+      "commit_range": "fb6c316c187a1b69c6ff25db34a37367e0c72382..48d061ae68673009d06b1736cc6e3b85261159ef",
+      "head_sha": "48d061ae68673009d06b1736cc6e3b85261159ef"
     },
-    "generated_at": "2026-05-11T20:54:02Z",
+    "generated_at": "2026-05-11T21:25:08Z",
     "authoring_method": "tool_generated",
     "selected_profile": "change-host-rich-v0",
     "redaction_policy": "not_assessed",
@@ -221,7 +221,7 @@
   "manifest": {
     "schema_version": "evidence-bundle-manifest.v0",
     "bundle_id": "github-pr-21-change-evidence-packet-bundle",
-    "packet_digest": "sha256:2c60f282400d31f0b8ba0a10b63b2ed5039f1483bca852cacaabaad35211c4f0",
+    "packet_digest": "sha256:40535ef50e0223521df1629f1b78ecc631bb2e6620923af2dbae036c7884569f",
     "entries": [
       {
         "ref": "github:pr",
@@ -235,10 +235,10 @@
       {
         "ref": "git:commit-range",
         "source_class": "git",
-        "digest": "sha256:fc2417c04a4630464f79a2222a2331ceef40294d3825cbb9d2e05c2131c4c2ce",
+        "digest": "sha256:439fd0eab05d1942b4dc2612febd6a5fc52925f9037be438b49d138c66327eab",
         "retained_form": "external_ref",
         "redaction_status": "not_needed",
-        "resolver": "b99ac40..67d872bdbb5c898d9989f3086a31a7493d855c44",
+        "resolver": "fb6c316c187a1b69c6ff25db34a37367e0c72382..48d061ae68673009d06b1736cc6e3b85261159ef",
         "artifact_access": "present"
       },
       {

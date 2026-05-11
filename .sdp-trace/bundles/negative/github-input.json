@@ -8,11 +8,11 @@
     "author": "demo-negative-fixture",
     "base_ref": "demo-v2-feature-5-info",
     "head_ref": "demo-v2-negative-agent-claimed-verification",
-    "head_sha": "67d872bdbb5c898d9989f3086a31a7493d855c44"
+    "head_sha": "48d061ae68673009d06b1736cc6e3b85261159ef"
   },
   "commit_range": {
-    "base": "b99ac40",
-    "head": "67d872bdbb5c898d9989f3086a31a7493d855c44",
+    "base": "fb6c316c187a1b69c6ff25db34a37367e0c72382",
+    "head": "48d061ae68673009d06b1736cc6e3b85261159ef",
     "changed_files_ref": "docs/demo-negative-agent-claimed-verification.md, .evidence/negative-agent-claimed-verification/agent-claim.json"
   },
   "checks": [],

@@ -17,7 +17,7 @@ This packet is evidence organization, not merge, release, compliance, production
 | packet_id | github-pr-21-change-evidence-packet |
 | schema | change-evidence-packet.v0 |
 | generated_from | local://demo-v2-negative-agent-claimed-verification |
-| generated_at | 2026-05-11T20:54:02Z |
+| generated_at | 2026-05-11T21:25:08Z |
 | authoring_method | tool_generated |
 | selected_profile | change-host-rich-v0 |
 | redaction_policy | not_assessed |
@@ -62,7 +62,7 @@ Manifest: `github-pr-21-change-evidence-packet-bundle`
 | ref | source class | retained form | redaction status | resolver |
 | --- | --- | --- | --- | --- |
 | github:pr | change_host | external_ref | not_needed | local://demo-v2-negative-agent-claimed-verification |
-| git:commit-range | git | external_ref | not_needed | b99ac40..67d872bdbb5c898d9989f3086a31a7493d855c44 |
+| git:commit-range | git | external_ref | not_needed | fb6c316c187a1b69c6ff25db34a37367e0c72382..48d061ae68673009d06b1736cc6e3b85261159ef |
 | theater:builder | witness | raw | not_needed | sdp-trace packet build-github |
 | decision:owners | manual | raw | not_needed | default generated decision owners |
 | gap:generated | manual | raw | not_needed | generated residual gaps |
