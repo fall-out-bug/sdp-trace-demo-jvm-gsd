@@ -1,0 +1,9 @@
+{
+  "run_id": "1cf9b688f5124cda",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-2-packet-check-demo/run"
+}

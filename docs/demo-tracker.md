@@ -6,7 +6,7 @@
 | packetization setup | not_assessed | not_assessed | cannot_verify | not_assessed | partial | not_assessed | owner state: not_assessed |
 | selected feature packet | not_assessed | not_assessed | cannot_verify | pass | in_progress | not_assessed | owner state: not_assessed |
 | feature 1 | not_assessed | not_assessed | cannot_verify | pass | in_progress | not_assessed | owner state: not_assessed |
-| feature 2 | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
+| feature 2 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 3 | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
 | feature 4 | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
 | feature 5 | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
@@ -26,3 +26,11 @@ Feature 1 route: `GET /ready` has local OpenCode/MiniMax route observation in
 review-fix route in `.evidence/feature-readiness-review-fix/`. Route proof is
 `partial`: the package does not claim source-bound authorship or CI witness
 until the feature is committed and a PR run retains artifacts.
+
+Feature 2 route: `GET /live` has local OpenCode/MiniMax route observation in
+`.evidence/feature-liveness-opencode/`, local verification in
+`.evidence/feature-liveness-final-verification/`, review disposition via
+subagent thread `019e18a2-efb0-7963-ac3d-9688203c32d3`, and packet checks in
+`.evidence/feature-2-packet-validate/` plus
+`.evidence/feature-2-packet-check-demo/`. Route and verification proof remain
+`partial`/`cannot_verify` where no source-bound PR CI witness exists yet.

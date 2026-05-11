@@ -1,0 +1,9 @@
+{
+  "run_id": "95b2ffbb60c7db98",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-liveness-opencode/run"
+}

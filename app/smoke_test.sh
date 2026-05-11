@@ -66,6 +66,24 @@ else
     exit 1
 fi
 
+# Verify GET /live returns HTTP 200 with exact body {"live":true}
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/live)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "Live response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /live did not return HTTP 200"
+    exit 1
+fi
+
+if [ "$BODY" = '{"live":true}' ]; then
+    echo "PASS: GET /live returned exact body {\"live\":true}"
+else
+    echo "FAIL: GET /live response body was not exactly {\"live\":true}"
+    exit 1
+fi
+
 # Verify GET /todos returns empty array
 RESPONSE=$(curl -s http://localhost:$PORT/todos)
 echo "GET /todos response: $RESPONSE"

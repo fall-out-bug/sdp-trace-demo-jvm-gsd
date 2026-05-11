@@ -1,0 +1,59 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 17,
+    "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/17",
+    "title": "Add liveness endpoint",
+    "body_ref": ".evidence/feature-liveness-opencode/prompt-metadata.json",
+    "author": "opencode/minimax-m2.5-free",
+    "base_ref": "demo-v2-packetization",
+    "head_ref": "demo-v2-feature-2-liveness",
+    "head_sha": "8655b2537e3bce7c0f7c3f626b7bf68713a469fc"
+  },
+  "commit_range": {
+    "base": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed",
+    "head": "8655b2537e3bce7c0f7c3f626b7bf68713a469fc",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [
+    {
+      "name": "build-and-test",
+      "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/job/75451351556",
+      "conclusion": "success",
+      "artifact_refs": [
+        "change-evidence-packets",
+        "evidence-bundles"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "change-evidence-packets",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/artifacts/6930192385",
+      "retained_form": "external_ref"
+    },
+    {
+      "name": "evidence-bundles",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/artifacts/6930192716",
+      "retained_form": "external_ref"
+    }
+  ],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e18a2-efb0-7963-ac3d-9688203c32d3",
+      "state": "pass"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-liveness-opencode/manifest.json",
+    ".evidence/feature-liveness-opencode/prompt-metadata.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:6bb871c6917d606ccc49ec8c051c13e0eb1f3e24438fadeb451d6820517d9755",
+  "agent_route_components": [
+    "opencode",
+    "gsd",
+    "minimax-m2.5"
+  ]
+}

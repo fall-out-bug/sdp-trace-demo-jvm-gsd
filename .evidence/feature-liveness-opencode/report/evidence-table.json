@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "95b2ffbb60c7db98",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "opencode",
+      "wrapper_name": "feature-liveness-opencode",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "9219eecc59d7b425b098d37eab99bdcd4f4afbc94ebb12e71c68a1be21225275",
+      "stderr_digest": "e31f47ba905677e114ebeb6db4a83a703ea703579a6b73745a84cfa48bc41544"
+    }
+  ]
+}

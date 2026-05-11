@@ -1,0 +1,9 @@
+{
+  "run_id": "548eeb54be4a40c5",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-liveness-final-verification/run"
+}
