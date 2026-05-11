@@ -1,0 +1,301 @@
+{
+  "packet": {
+    "packet_version": "change-evidence-packet.v0",
+    "packet_id": "github-pr-20-change-evidence-packet",
+    "source_change": {
+      "repository": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/20",
+      "change_id": "PR-20",
+      "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/20",
+      "base_ref": "demo-v2-feature-4-ping",
+      "head_ref": "demo-v2-feature-5-info",
+      "commit_range": "a5d167c93ff8450eb27ceb66c2e10cc4fbe801fd..fb6c316c187a1b69c6ff25db34a37367e0c72382",
+      "head_sha": "fb6c316c187a1b69c6ff25db34a37367e0c72382"
+    },
+    "generated_at": "2026-05-11T21:43:36Z",
+    "authoring_method": "tool_generated",
+    "selected_profile": "change-host-rich-v0",
+    "redaction_policy": "not_assessed",
+    "bundle_ref": "github-pr-20-change-evidence-packet-bundle",
+    "packet_state": "draft",
+    "projection": {
+      "kind": "canonical_markdown_artifact",
+      "canonical": true,
+      "artifact_ref": "packet:markdown"
+    },
+    "rows": [
+      {
+        "id": "PC-CHANGE",
+        "state": "pass",
+        "summary": "Change-host metadata and commit range are retained.",
+        "evidence_refs": [
+          "github:pr",
+          "git:commit-range"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-INITIATOR",
+        "state": "partial",
+        "summary": "PR body task source is retained.",
+        "evidence_refs": [
+          "github:pr-body"
+        ],
+        "reason": "PR body is weaker than a dedicated issue binding",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-AGENT-ROUTE",
+        "state": "partial",
+        "summary": "Agent route refs are retained.",
+        "evidence_refs": [
+          "agent:route"
+        ],
+        "reason": "route refs are input refs, not a complete observed delegation chain",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-MUTATION",
+        "state": "pass",
+        "summary": "Commit range and changed files are retained.",
+        "evidence_refs": [
+          "git:commit-range"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-VERIFICATION",
+        "state": "pass",
+        "summary": "GitHub check and retained artifact evidence are retained.",
+        "evidence_refs": [
+          "github:check",
+          "artifact:change-evidence-packets",
+          "artifact:evidence-bundles"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-REVIEW",
+        "state": "pass",
+        "summary": "Review evidence is retained.",
+        "evidence_refs": [
+          "github:review"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-AUTHORITY",
+        "state": "not_assessed",
+        "summary": "Authority was not assessed for this generated GitHub input.",
+        "evidence_refs": null,
+        "reason": "authority profile was not provided",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-THEATER",
+        "state": "pass",
+        "summary": "No P0 theater finding triggered by the minimal GitHub input builder.",
+        "evidence_refs": [
+          "theater:builder"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-ATTESTATION",
+        "state": "not_assessed",
+        "summary": "Signed or external attestation was not assessed.",
+        "evidence_refs": null,
+        "reason": "signed trust inputs were not provided",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-DECISION",
+        "state": "not_assessed",
+        "summary": "Default decision owner placeholders are recorded.",
+        "evidence_refs": [
+          "decision:owners"
+        ],
+        "reason": "decision owners are placeholders, not bound approval or ownership evidence",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-RESIDUAL-GAPS",
+        "state": "partial",
+        "summary": "Non-pass rows remain explicit in residual gaps.",
+        "evidence_refs": [
+          "gap:generated"
+        ],
+        "reason": "generated packet contains explicit non-pass rows",
+        "owner": "maintainer"
+      }
+    ],
+    "residual_gaps": [
+      {
+        "row_id": "PC-INITIATOR",
+        "state": "partial",
+        "reason": "PR body is weaker than a dedicated issue binding",
+        "closure_evidence": "provide retained evidence for PC-INITIATOR"
+      },
+      {
+        "row_id": "PC-AGENT-ROUTE",
+        "state": "partial",
+        "reason": "route refs are input refs, not a complete observed delegation chain",
+        "closure_evidence": "provide retained evidence for PC-AGENT-ROUTE"
+      },
+      {
+        "row_id": "PC-AUTHORITY",
+        "state": "not_assessed",
+        "reason": "authority profile was not provided",
+        "closure_evidence": "provide retained evidence for PC-AUTHORITY"
+      },
+      {
+        "row_id": "PC-ATTESTATION",
+        "state": "not_assessed",
+        "reason": "signed trust inputs were not provided",
+        "closure_evidence": "provide retained evidence for PC-ATTESTATION"
+      },
+      {
+        "row_id": "PC-DECISION",
+        "state": "not_assessed",
+        "reason": "decision owners are placeholders, not bound approval or ownership evidence",
+        "closure_evidence": "provide retained evidence for PC-DECISION"
+      }
+    ],
+    "decision_owners": [
+      {
+        "decision": "merge",
+        "owner": "maintainer",
+        "state": "not_assessed",
+        "reason": "packet is not approval"
+      },
+      {
+        "decision": "release",
+        "owner": "release owner",
+        "state": "not_assessed",
+        "reason": "packet is not release approval"
+      },
+      {
+        "decision": "risk_acceptance",
+        "owner": "risk owner",
+        "state": "not_assessed",
+        "reason": "packet is not risk acceptance"
+      },
+      {
+        "decision": "security_review",
+        "owner": "security owner",
+        "state": "not_assessed",
+        "reason": "packet is not security review"
+      }
+    ],
+    "non_approval": "This packet does not approve merge, release, compliance, production trust, semantic correctness, or signed external trust."
+  },
+  "manifest": {
+    "schema_version": "evidence-bundle-manifest.v0",
+    "bundle_id": "github-pr-20-change-evidence-packet-bundle",
+    "packet_digest": "sha256:a37ad418fef282e7e3d4d4a4a0465d88d1411ddec24ee38d45518a17e2954ac8",
+    "entries": [
+      {
+        "ref": "github:pr",
+        "source_class": "change_host",
+        "digest": "sha256:3e7c70a2426d6c3bc1804e5ca5d462c425afc595ea5715c824df577cc296d2c2",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/20",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "git:commit-range",
+        "source_class": "git",
+        "digest": "sha256:992cab336784adaee1c3e8e1bcbc9bf689682a474fea2a39c771bcbabdd1d26e",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "a5d167c93ff8450eb27ceb66c2e10cc4fbe801fd..fb6c316c187a1b69c6ff25db34a37367e0c72382",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "theater:builder",
+        "source_class": "witness",
+        "digest": "sha256:50eb5759acce603066f3c74aea025c97d29f033fe0638de1201f110665f49965",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "sdp-trace packet build-github",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "decision:owners",
+        "source_class": "manual",
+        "digest": "sha256:8231bc3ffe295522805ffa6a5ce5141a5e0acb5cdef68142704cedbf239167d3",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "default generated decision owners",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "gap:generated",
+        "source_class": "manual",
+        "digest": "sha256:c924f9e4df5d5847c692c7b2c526506f8735e20ce1e05a81f477060a95e4ebd5",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "generated residual gaps",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "github:pr-body",
+        "source_class": "change_host",
+        "digest": "sha256:552e61349d6852b093786e55a34b5417deabe607be5388e59a11b9cfacced037",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": ".evidence/feature-info-gsd-opencode/prompt-metadata.json",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "agent:route",
+        "source_class": "harness",
+        "digest": "sha256:9e6fbd7284750b073cadd5c4bd5ffb34605a26672ff68f057fc37baad6cf4df4",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": ".evidence/feature-info-gsd-opencode/manifest.json, .evidence/feature-info-gsd-opencode/prompt-metadata.json",
+        "artifact_access": "present",
+        "evidence_kind": "harness_route_observation",
+        "observed_components": [
+          "gsd",
+          "opencode",
+          "minimax-m2.5"
+        ]
+      },
+      {
+        "ref": "github:check",
+        "source_class": "ci",
+        "digest": "sha256:877abaad8914a9fd8cf24ea07be24c19e1f05d5cb8fb8f78b415b60d7e159a0f",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "build-and-test=https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698202440/job/75451777957",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "github:review",
+        "source_class": "review",
+        "digest": "sha256:3810e647d37781d3dc19db0d5fb338453ba5c21bcfe6bf880937e9099f9d1f27",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "codex-subagent-feature-review=thread-notification:019e18ce-3105-7272-98db-34c27dc9b381",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "artifact:change-evidence-packets",
+        "source_class": "ci",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698202440/artifacts/6930241887",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "artifact:evidence-bundles",
+        "source_class": "ci",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698202440/artifacts/6930242184",
+        "artifact_access": "present"
+      }
+    ]
+  }
+}

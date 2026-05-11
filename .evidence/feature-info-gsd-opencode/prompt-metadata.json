@@ -1,0 +1,18 @@
+{
+  "schema_version": "demo-prompt-metadata.v0",
+  "feature": "feature-5-info",
+  "route": "gsd-opencode-minimax",
+  "developer_prompt_sha256": "e6374f4020139a5c2198aa7c2a830f989c4997269c88f67d78e1c3c0672c3d2c",
+  "developer_prompt_boundary": {
+    "mentions_sdp_trace": false,
+    "asks_developer_to_author_evidence": false,
+    "asks_developer_to_update_trace_files": false,
+    "asks_developer_to_close_packet_rows": false
+  },
+  "command": {
+    "tool": "gsd",
+    "model": "opencode/minimax-m2.5-free",
+    "mode": "print"
+  },
+  "prompt_summary": "Add GET /info returning exact JSON and smoke-test it."
+}

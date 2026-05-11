@@ -48,6 +48,24 @@ else
     exit 1
 fi
 
+# INFO-01: Verify GET /info returns HTTP 200 with exact body {"name":"sdp-trace-demo","track":"v2"}
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/info)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "Info response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /info did not return HTTP 200"
+    exit 1
+fi
+
+if [ "$BODY" = '{"name":"sdp-trace-demo","track":"v2"}' ]; then
+    echo "PASS: GET /info returned exact body {\"name\":\"sdp-trace-demo\",\"track\":\"v2\"}"
+else
+    echo "FAIL: GET /info response body was not exactly {\"name\":\"sdp-trace-demo\",\"track\":\"v2\"}"
+    exit 1
+fi
+
 # Verify GET /version returns HTTP 200 with exact body {"version":"demo-v2"}
 RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/version)
 HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
