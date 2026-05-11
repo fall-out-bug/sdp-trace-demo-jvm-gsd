@@ -10,7 +10,7 @@
 | feature 3 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 4 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 5 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
-| negative | not_assessed | draft PR pending | cannot_verify | pass | not_assessed | triggered | not approved |
+| negative | not_assessed | PR #21 draft | cannot_verify | pass | not_assessed | triggered | not approved |
 
 Allowed states: `not_started`, `in_progress`, `pass`, `partial`, `fail`,
 `not_assessed`, `cannot_verify`.
