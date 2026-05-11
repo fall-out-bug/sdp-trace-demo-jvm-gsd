@@ -1,0 +1,33 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "9d49756f23472aa0",
+  "event_id": "f65b187cc8fafcca00b1b6ec",
+  "sequence": 2,
+  "event_type": "command_started",
+  "timestamp": "2026-05-11T20:56:53.800672199Z",
+  "prev_event_hash": "675e6d751be451e8cad2f638fc47727e67bc65223e2042a44575a035d13a164e",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "58058df2a532009874bd76fc71e03bb8b48efa6f94bd4859e1f369216f0fd656",
+  "event_payload": {
+    "cmd_pid": 0,
+    "command": "sdp-trace",
+    "command_id": "ef7bddeec5a0",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-1-packet-validate"
+  },
+  "payload": {
+    "cmd_pid": 0,
+    "command": "sdp-trace",
+    "command_id": "ef7bddeec5a0",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-1-packet-validate"
+  },
+  "event_hash": "3a7b2dd3298557dfa3113350b069faf5209c1f4308f169927984c5ed65bfda6c",
+  "observed_by": "local_recorder"
+}

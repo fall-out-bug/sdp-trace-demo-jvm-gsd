@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-11T18:23:36.756839115Z",
+  "run_count": 1,
+  "observed_count": 1,
+  "failed_count": 0,
+  "cannot_verify_count": 0,
+  "not_assessed_count": 0,
+  "trust_scope": "local_observed",
+  "audit_grade": false,
+  "audit_grade_reason": "local observed evidence has no CI/OIDC witness or external witness checkpoint",
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "0087cac3adf34ecf",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "codex-subagent",
+      "wrapper_name": "feature-readiness-route",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "32ddf3596fef4a3f0778e68412494fb9890550daa30678a527f09b63c3b1f4d5",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "47267aaf84e71809",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "bash",
+      "wrapper_name": "bazel-build-test",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "ed8adbf5f6c6962b626984c9aedc8fef04a9b16d85e9a92967fa5ae5d4f82850",
+      "stderr_digest": "445e0880b7233c4b1f3028367e7e1183f5c8a96c4839c2eeffe803130383b5d4"
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "schema_version": "block14-gate-result-v1",
+  "generated_at": "2026-05-11T18:25:32Z",
+  "local_gate": "pass",
+  "ci_witness_gate": "cannot_verify",
+  "audit_grade_gate": "cannot_verify",
+  "gate_mode": "observation",
+  "trust_cap": "local_observed",
+  "reasons": [
+    "audit-grade release gate cannot verify without CI/OIDC witness and external witness checkpoint",
+    "local contract evidence is complete for the local gate"
+  ],
+  "next_actions": [],
+  "required_runs": [],
+  "required_evidence": [],
+  "observed_evidence": [],
+  "gate_conditions": [
+    {
+      "id": "all_required_runs_present",
+      "state": "pass",
+      "reason": "required run observations are evaluated from contract declarations"
+    },
+    {
+      "id": "all_required_evidence_observed",
+      "state": "pass",
+      "reason": "contract evidence ids are matched against observed run events"
+    },
+    {
+      "id": "ci_witness_bound_when_required",
+      "state": "cannot_verify",
+      "reason": "CI witness binding is advisory in Block 14"
+    },
+    {
+      "id": "audit_grade_external_witness_present",
+      "state": "cannot_verify",
+      "reason": "external witness profile is not implemented in Block 14"
+    }
+  ],
+  "missing_audit_evidence": [
+    "ci_oidc_witness",
+    "external_witness_checkpoint"
+  ],
+  "witness_bindings": [],
+  "override_requests": [],
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "c483326039ca9b4f",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "bash",
+      "wrapper_name": "feature-readiness-verification",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "1bcf2534212e7cae751a26bd17ddd07239e71b3df7112b5a8e6e61e9d399d102",
+      "stderr_digest": "7792ccdf35a19c37c8fe2f72538265402b9955653188096b667a88032ea3a5d7"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "d5c1aa4b4f11c8c4",
+  "event_id": "9e6dcade88763e118ebe3bfb",
+  "sequence": 2,
+  "event_type": "command_started",
+  "timestamp": "2026-05-11T18:28:14.845562251Z",
+  "prev_event_hash": "69a41512db3064aab149a30da578da4423375efe87c2cecb61e6e65e572d5ad9",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "51f88857b7e536a8abb48bcc49dbc76f45bad1463adc0d0db042b0650d33dbb5",
+  "event_payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "219bf93592c5",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-readiness-review-fix"
+  },
+  "payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "219bf93592c5",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-readiness-review-fix"
+  },
+  "event_hash": "893b938293fa6bd2949690902a0540145b345d08094f175e13026d7d65253b9a",
+  "observed_by": "local_recorder"
+}

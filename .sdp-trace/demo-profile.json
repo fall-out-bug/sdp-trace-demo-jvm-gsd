@@ -1,0 +1,17 @@
+{
+  "schema_version": "demo-profile-v1",
+  "profile_id": "github-oss-demo-local-observed",
+  "authority_scope": "demo_pilot_only",
+  "trust_scope": "local_observed",
+  "packet_paths": {
+    "packets": ".sdp-trace/packets",
+    "bundles": ".sdp-trace/bundles"
+  },
+  "non_claims": [
+    "not merge approval",
+    "not release approval",
+    "not compliance approval",
+    "not production trust",
+    "not semantic quality approval"
+  ]
+}

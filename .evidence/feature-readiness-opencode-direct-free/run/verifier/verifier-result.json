@@ -1,0 +1,9 @@
+{
+  "run_id": "b3a09a5c1a3c0ffc",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-readiness-opencode-direct-free/run"
+}

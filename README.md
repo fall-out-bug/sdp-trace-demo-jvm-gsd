@@ -1,12 +1,15 @@
-# SDP Trace Demo JVM/GSD
+# Todo Service JVM/GSD Demo
 
-This is a minimal todo REST API demo application that demonstrates GSD (Guaranteed Shipping with Evidence) principles. It uses JDK HttpServer and Kotlin without frameworks, serving as a baseline for evidence collection using sdp-trace.
+This is a minimal todo REST API demo application built with Kotlin, Bazel, and
+JDK HttpServer. It is intentionally small so a developer can work through normal
+GSD planning, implementation, review, and verification without learning a custom
+demo harness first.
 
 ## Demo Purpose
 
-This demo showcases a lightweight REST API with five features, providing a clear implementation baseline for evidence collection. The purpose is to demonstrate how [sdp-trace](https://github.com/fall-out-bug/sdp-trace) records harness/process evidence from build and test execution without inferring semantic quality.
-
-**Important**: sdp-trace records harness/process evidence (build success, test pass/fail, execution traces) and does NOT infer semantic quality. Quality assessment requires review/test evidence from human evaluators or separate evaluation frameworks.
+This demo provides a clear implementation baseline for an AI-assisted delivery
+run. The application is the thing the developer sees: a lightweight REST API
+with five features and ordinary build/test commands.
 
 ## Features
 
@@ -38,25 +41,7 @@ bazel run //app:app
 # curl http://localhost:8080/stats
 ```
 
-## sdp-trace Evidence Conventions
+## Review Artifacts
 
-This demo is linked to [sdp-trace](https://github.com/fall-out-bug/sdp-trace) which provides:
-
-- **Harness evidence**: Build artifacts, test execution results, process traces
-- **Process evidence**: Execution flow, timing, resource usage
-- **NOT semantic quality**: The trace records WHAT executed and HOW, not whether the behavior is CORRECT
-
-Evidence collection follows sdp-trace conventions:
-- Build outcomes are captured from Bazel execution
-- Test results include pass/fail status and output
-- Process traces record execution flow without inferring correctness
-
-For semantic quality assessment, refer to:
-- REVIEW.md files in this repository for human review artifacts
-- Test output for functional verification
-- Manual code review for design quality
-
-## Repository
-
-- **sdp-trace**: https://github.com/fall-out-bug/sdp-trace
-- **Demo repo**: https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd
+For semantic quality assessment, refer to review files in this repository, test
+output for functional verification, and manual code review for design quality.

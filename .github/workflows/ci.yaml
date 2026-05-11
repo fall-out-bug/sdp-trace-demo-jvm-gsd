@@ -7,7 +7,7 @@ on:
   push:
     branches: [main, master, develop]
   pull_request:
-    branches: [main, master, develop]
+    branches: ["**"]
 
 jobs:
   build-and-test:
@@ -42,10 +42,26 @@ jobs:
       - name: Test
         run: bazel test //... --test_output=errors
 
+      - name: Upload Change Evidence Packets
+        uses: actions/upload-artifact@v4
+        with:
+          name: change-evidence-packets
+          path: .sdp-trace/packets/
+          if-no-files-found: ignore
+          retention-days: 180
+
+      - name: Upload Evidence Bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-bundles
+          path: .sdp-trace/bundles/
+          if-no-files-found: ignore
+          retention-days: 180
+
       - name: Upload Test Logs
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: test-logs
           path: bazel-testlogs/
-          retention-days: 7
+          retention-days: 180

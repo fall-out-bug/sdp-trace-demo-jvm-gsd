@@ -1,0 +1,9 @@
+{
+  "run_id": "47267aaf84e71809",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/local-build-test/run"
+}

@@ -2,6 +2,7 @@
 # Application binary target
 
 load("@rules_kotlin//kotlin:jvm.bzl", "kt_jvm_binary", "kt_jvm_library")
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
 
 # Main application library
 kt_jvm_library(

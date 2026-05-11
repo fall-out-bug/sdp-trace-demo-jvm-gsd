@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "d5c1aa4b4f11c8c4",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "opencode",
+      "wrapper_name": "feature-readiness-review-fix",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "a95fef10f8d96743de1b824365f4d5f9f690505cc45961ab692485be723673c7",
+      "stderr_digest": "8350abebcc56aeeaed59fc1692cecaab708ab64a8797c7c7837acc738217ea4d"
+    }
+  ]
+}

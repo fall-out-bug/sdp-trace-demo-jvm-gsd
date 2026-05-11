@@ -1,0 +1,31 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "d5c1aa4b4f11c8c4",
+  "event_id": "ef7641ff3b85e331f51a6f74",
+  "sequence": 4,
+  "event_type": "run_closed",
+  "timestamp": "2026-05-11T18:28:45.672576984Z",
+  "prev_event_hash": "4051a0128dd564cf6f318b7d84af6de72bd828dd43e6b4b1edd9c025308675b2",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "7df61903ebf25e448a7c8a5a082e5d168e58cd1757364a15715d459d3a7933c8",
+  "event_payload": {
+    "chain_head": "4051a0128dd564cf6f318b7d84af6de72bd828dd43e6b4b1edd9c025308675b2",
+    "closure_state": "completed",
+    "command_id": "219bf93592c5",
+    "missing_evidence_count": 0,
+    "observed_event_count": 4
+  },
+  "payload": {
+    "chain_head": "4051a0128dd564cf6f318b7d84af6de72bd828dd43e6b4b1edd9c025308675b2",
+    "closure_state": "completed",
+    "command_id": "219bf93592c5",
+    "missing_evidence_count": 0,
+    "observed_event_count": 4
+  },
+  "event_hash": "ac1cfda5f11f6e492d5162775712f6b6f7b9131917648a24bace19c3ac8fedd8",
+  "observed_by": "local_recorder"
+}

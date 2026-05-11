@@ -1,0 +1,29 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "0087cac3adf34ecf",
+  "event_id": "c9bbecf0ea7277b975eb26d1",
+  "sequence": 1,
+  "event_type": "run_started",
+  "timestamp": "2026-05-11T18:08:06.512057431Z",
+  "prev_event_hash": "41dc597b174dc2d688ac5c4f05cc457a74dc0d8da9268f79b5258f011a8864ce",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "67dc5b7d94a0accb45c984dc32eb194feb58e50b7d756abb4dcd8f37070bbe8e",
+  "event_payload": {
+    "command": "codex-subagent",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "payload": {
+    "command": "codex-subagent",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "event_hash": "06bb409fcb85520224625e9a29e1d035dd35b90e59f96047d982d156dbcf12b3",
+  "observed_by": "local_recorder"
+}
