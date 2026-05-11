@@ -3,15 +3,15 @@
     "packet_version": "change-evidence-packet.v0",
     "packet_id": "github-pr-17-change-evidence-packet",
     "source_change": {
-      "repository": "local://demo-v2-feature-2-liveness",
+      "repository": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/17",
       "change_id": "PR-17",
-      "url": "local://demo-v2-feature-2-liveness",
+      "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/17",
       "base_ref": "demo-v2-packetization",
       "head_ref": "demo-v2-feature-2-liveness",
-      "commit_range": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed..e3ce8cc44f7055530c01ecfc1ede0374083769b9",
-      "head_sha": "e3ce8cc44f7055530c01ecfc1ede0374083769b9"
+      "commit_range": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed..8655b2537e3bce7c0f7c3f626b7bf68713a469fc",
+      "head_sha": "8655b2537e3bce7c0f7c3f626b7bf68713a469fc"
     },
-    "generated_at": "2026-05-11T21:21:39Z",
+    "generated_at": "2026-05-11T21:43:36Z",
     "authoring_method": "tool_generated",
     "selected_profile": "change-host-rich-v0",
     "redaction_policy": "not_assessed",
@@ -64,10 +64,13 @@
       },
       {
         "id": "PC-VERIFICATION",
-        "state": "cannot_verify",
-        "summary": "No GitHub check evidence was provided.",
-        "evidence_refs": null,
-        "reason": "missing GitHub check or workflow run evidence",
+        "state": "pass",
+        "summary": "GitHub check and retained artifact evidence are retained.",
+        "evidence_refs": [
+          "github:check",
+          "artifact:change-evidence-packets",
+          "artifact:evidence-bundles"
+        ],
         "owner": "maintainer"
       },
       {
@@ -139,12 +142,6 @@
         "closure_evidence": "provide retained evidence for PC-AGENT-ROUTE"
       },
       {
-        "row_id": "PC-VERIFICATION",
-        "state": "cannot_verify",
-        "reason": "missing GitHub check or workflow run evidence",
-        "closure_evidence": "provide retained evidence for PC-VERIFICATION"
-      },
-      {
         "row_id": "PC-AUTHORITY",
         "state": "not_assessed",
         "reason": "authority profile was not provided",
@@ -194,24 +191,24 @@
   "manifest": {
     "schema_version": "evidence-bundle-manifest.v0",
     "bundle_id": "github-pr-17-change-evidence-packet-bundle",
-    "packet_digest": "sha256:ae1f19f244ada209eb8a2e2df500e237c5652e899b05f12de16f7fdfebd25e6d",
+    "packet_digest": "sha256:f80ce4e74cdb0e2aebd260b2cf72e57c2520c3dcea0f62794696954bab729444",
     "entries": [
       {
         "ref": "github:pr",
         "source_class": "change_host",
-        "digest": "sha256:f5c27b8db6642bb58695884293e4519300dbcc3af68bf173f40902f252cabd7d",
+        "digest": "sha256:2581a4d793bd27cff9b0821a288005f9e3a2006d96d58ec575db81ec4957661d",
         "retained_form": "external_ref",
         "redaction_status": "not_needed",
-        "resolver": "local://demo-v2-feature-2-liveness",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/17",
         "artifact_access": "present"
       },
       {
         "ref": "git:commit-range",
         "source_class": "git",
-        "digest": "sha256:1b277301335c55cbeda0664a39329476a553ba94dfa324ad589fa663d3e5004f",
+        "digest": "sha256:975a5aa6e514adb2dfd4268fec23c4edea3b904fe0bf7b7ad816fd7ef0e8dafa",
         "retained_form": "external_ref",
         "redaction_status": "not_needed",
-        "resolver": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed..e3ce8cc44f7055530c01ecfc1ede0374083769b9",
+        "resolver": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed..8655b2537e3bce7c0f7c3f626b7bf68713a469fc",
         "artifact_access": "present"
       },
       {
@@ -266,12 +263,37 @@
         ]
       },
       {
+        "ref": "github:check",
+        "source_class": "ci",
+        "digest": "sha256:90abf1fc566fa290d455b85e33464a3757a8cdbad7652e561b90a51f78b5ce5d",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "build-and-test=https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/job/75451351556",
+        "artifact_access": "present"
+      },
+      {
         "ref": "github:review",
         "source_class": "review",
         "digest": "sha256:43887886d5eef70a5d8680a642da807c52a21986dbc9304fd02c7074caec81c6",
         "retained_form": "external_ref",
         "redaction_status": "not_needed",
         "resolver": "codex-subagent-feature-review=thread-notification:019e18a2-efb0-7963-ac3d-9688203c32d3",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "artifact:change-evidence-packets",
+        "source_class": "ci",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/artifacts/6930192385",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "artifact:evidence-bundles",
+        "source_class": "ci",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698077552/artifacts/6930192716",
         "artifact_access": "present"
       }
     ]
