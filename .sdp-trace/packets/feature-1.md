@@ -17,7 +17,7 @@ This packet is evidence organization, not merge, release, compliance, production
 | packet_id | github-pr-16-change-evidence-packet |
 | schema | change-evidence-packet.v0 |
 | generated_from | local://demo-v2-packetization/feature-readiness |
-| generated_at | 2026-05-11T20:56:53Z |
+| generated_at | 2026-05-11T21:20:08Z |
 | authoring_method | tool_generated |
 | selected_profile | change-host-rich-v0 |
 | redaction_policy | not_assessed |

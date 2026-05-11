@@ -11,7 +11,7 @@
       "commit_range": "a8f37aad8500761693feb6ce68517bd65cabc8cc..7abb6be9fca1f06f21b22d40d1c0675b3ebc86e9",
       "head_sha": "7abb6be9fca1f06f21b22d40d1c0675b3ebc86e9"
     },
-    "generated_at": "2026-05-11T20:56:53Z",
+    "generated_at": "2026-05-11T21:20:08Z",
     "authoring_method": "tool_generated",
     "selected_profile": "change-host-rich-v0",
     "redaction_policy": "not_assessed",
@@ -201,7 +201,7 @@
   "manifest": {
     "schema_version": "evidence-bundle-manifest.v0",
     "bundle_id": "github-pr-16-change-evidence-packet-bundle",
-    "packet_digest": "sha256:f47c3668ed8caab6dfa56264df46e060046493f6cd315a40b2e4ccae398fc29c",
+    "packet_digest": "sha256:ce4662ed0133e272fdd3120bfc1647853b1ad613fc9c4b97131ae2ee53a63ad6",
     "entries": [
       {
         "ref": "github:pr",
@@ -260,7 +260,7 @@
       {
         "ref": "agent:route",
         "source_class": "harness",
-        "digest": "sha256:b622364d4b03c1000fd9142f15640f1a7e019394395f8fafced9bb096b95f17f",
+        "digest": "sha256:495f3e3249d572107d2a479c6c3fc5cd66114179d4dcba4ab6e3e88999e363d1",
         "retained_form": "external_ref",
         "redaction_status": "not_needed",
         "resolver": ".evidence/feature-readiness-opencode-direct-free/manifest.json, .evidence/feature-readiness-opencode-direct-free/prompt-metadata.json",

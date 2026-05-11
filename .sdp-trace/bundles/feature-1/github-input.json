@@ -29,5 +29,6 @@
     ".evidence/feature-readiness-opencode-direct-free/prompt-metadata.json"
   ],
   "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:495f3e3249d572107d2a479c6c3fc5cd66114179d4dcba4ab6e3e88999e363d1",
   "agent_route_components": ["opencode", "gsd", "minimax-m2.5"]
 }
