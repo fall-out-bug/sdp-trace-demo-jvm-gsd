@@ -1,0 +1,61 @@
+{
+  "schema_version": "demo-evidence-manifest-v1",
+  "generated_at": "2026-05-11T18:06:01Z",
+  "subject": {
+    "repository": "sdp-trace-demo-jvm-gsd",
+    "branch": "demo-v2-packetization",
+    "head_commit": "a8f37aad8500761693feb6ce68517bd65cabc8cc",
+    "head_tree": "652293bcbb48fe28c26d5ca6073e1654e78b995a",
+    "dirty_checkout": true,
+    "dirty_checkout_reason": "setup slice records local setup/build-system changes before PR commit; source-bound release proof is not claimed"
+  },
+  "observer": {
+    "binary": "/home/fall_out_bug/.local/bin/sdp-trace",
+    "version": "sdp-trace demo-local-20260511-checkdemo",
+    "sha256": "c8e847e773bfbc77756dcfe7388f940ac94a8010c3fb81685aa7c1793e5345ee"
+  },
+  "harness": {
+    "command": "bazel build //... && bazel test //... --test_output=errors",
+    "wrapper_name": "setup-verification"
+  },
+  "run": {
+    "path": ".evidence/setup-verification/run",
+    "run_id": "d75dfb510ab4e3c1"
+  },
+  "report": {
+    "path": ".evidence/setup-verification/report",
+    "local_gate": "pass",
+    "ci_witness_gate": "cannot_verify",
+    "audit_grade_gate": "cannot_verify"
+  },
+  "review": {
+    "path": "docs/setup-boundary-review.md",
+    "state": "partial",
+    "reason": "independent review classifies dirty demo changes as setup/build-system repair only; feature rows remain unclosed"
+  },
+  "non_claims": [
+    "no feature behavior implemented or repaired by Codex",
+    "no feature packet row closure",
+    "no CI witness",
+    "no audit-grade external witness",
+    "no source-bound release proof for dirty checkout",
+    "no merge approval",
+    "no production trust"
+  ],
+  "residual_gaps": [
+    {
+      "id": "RG-SETUP-CI-WITNESS-001",
+      "state": "cannot_verify",
+      "owner": "demo-ci",
+      "reason": "Setup verification was local only; GitHub Actions artifact upload is not witnessed until a PR run executes.",
+      "required_closure": "Open setup PR and retain GitHub Actions run plus packet/bundle artifact upload evidence."
+    },
+    {
+      "id": "RG-FEATURE-ROUTE-001",
+      "state": "not_assessed",
+      "owner": "opencode-gsd-route",
+      "reason": "This setup slice did not run a feature implementation route.",
+      "required_closure": "Run OpenCode/GSD/MiniMax feature slice under passive recorder and generate a 006 packet that passes the 007 first-packet gate."
+    }
+  ]
+}

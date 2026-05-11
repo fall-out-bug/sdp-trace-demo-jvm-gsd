@@ -3,4 +3,7 @@ bazel-*
 bazel_bin/
 bazel_out/
 bazel_testlogs/
-.opencode/
+.codex-subagents/
+tmp/
+.opencode/*
+!.opencode/opencode.json

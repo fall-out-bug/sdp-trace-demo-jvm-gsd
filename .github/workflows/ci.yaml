@@ -42,6 +42,22 @@ jobs:
       - name: Test
         run: bazel test //... --test_output=errors
 
+      - name: Upload Change Evidence Packets
+        uses: actions/upload-artifact@v4
+        with:
+          name: change-evidence-packets
+          path: .sdp-trace/packets/
+          if-no-files-found: ignore
+          retention-days: 7
+
+      - name: Upload Evidence Bundles
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-bundles
+          path: .sdp-trace/bundles/
+          if-no-files-found: ignore
+          retention-days: 7
+
       - name: Upload Test Logs
         if: failure()
         uses: actions/upload-artifact@v4

@@ -1,0 +1,33 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "67787a34a21b0d3f",
+  "event_id": "65a00d817c644daf1271c7e9",
+  "sequence": 2,
+  "event_type": "command_started",
+  "timestamp": "2026-05-11T18:23:55.919506307Z",
+  "prev_event_hash": "aa3e3cd55250ab87f558081ba1b809574dbd463edf940941c6044226a5c31cea",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "9472a1ec57738503cbfd483dedb1d6d4617a8e78e8d966fc39bc9079dc2ff4cf",
+  "event_payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "85ac89c90fc7",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-readiness-opencode-direct"
+  },
+  "payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "85ac89c90fc7",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/sdp-trace-demo-jvm-gsd",
+    "wrapper_name": "feature-readiness-opencode-direct"
+  },
+  "event_hash": "0ccc0d06050f48b574d68275920bd1a1e86b923516e0ff3de17c82916bf0a213",
+  "observed_by": "local_recorder"
+}

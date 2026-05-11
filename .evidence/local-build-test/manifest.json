@@ -1,0 +1,51 @@
+{
+  "schema_version": "demo-evidence-manifest-v1",
+  "generated_at": "2026-05-11T14:05:27Z",
+  "subject": {
+    "repository": "sdp-trace-demo-jvm-gsd",
+    "head_commit": "a8f37aad8500761693feb6ce68517bd65cabc8cc",
+    "head_tree": "652293bcbb48fe28c26d5ca6073e1654e78b995a",
+    "dirty_checkout": true,
+    "dirty_checkout_reason": "manifest records local demo changes before commit; source-bound release proof is not claimed"
+  },
+  "observer": {
+    "binary": "/home/fall_out_bug/.local/bin/sdp-trace",
+    "version": "sdp-trace demo-local-20260511",
+    "sha256": "521ad0c49d751b299cd7deb98c6817089a7f426cab08222df797732cd9de8994"
+  },
+  "harness": {
+    "command": "bazel build //... && bazel test //... --test_output=errors",
+    "wrapper_name": "bazel-build-test"
+  },
+  "run": {
+    "path": ".evidence/local-build-test/run",
+    "run_id": "47267aaf84e71809",
+    "event_chain_head": "2e901a586cb18ee36274704929162bd7ed12d6685028bdd8b2d79c0866a4cefa"
+  },
+  "report": {
+    "path": ".evidence/local-build-test/report",
+    "local_gate": "pass",
+    "ci_witness_gate": "cannot_verify",
+    "audit_grade_gate": "cannot_verify"
+  },
+  "isolation": {
+    "opencode_discovery_ignore": ".ignore hides .evidence/ from file listing and search",
+    "opencode_read_permission": ".opencode/opencode.json denies read on */.evidence/*",
+    "prompt_injection_state": "not_assessed",
+    "prompt_injection_reason": "no live OpenCode session evidence collected in this package"
+  },
+  "non_claims": [
+    "no CI witness",
+    "no audit-grade external witness",
+    "no source-bound release proof for dirty checkout"
+  ],
+  "residual_gaps": [
+    {
+      "id": "RG-OPENCODE-CONTEXT-IGNORE-001",
+      "state": "cannot_verify",
+      "owner": "sdp-trace",
+      "reason": "The demo relies on OpenCode .ignore plus read permission deny to keep .evidence out of model context. sdp-trace does not yet install or verify this isolation contract as part of a one-command wrapper/adoption flow.",
+      "required_closure": "Add sdp-trace install/wrap support that creates and verifies harness-specific context exclusion rules without prompt injection, then collect live OpenCode session evidence proving .evidence is not read."
+    }
+  ]
+}

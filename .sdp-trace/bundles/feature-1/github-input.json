@@ -1,0 +1,33 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 16,
+    "url": "local://demo-v2-packetization/feature-readiness",
+    "title": "Add readiness endpoint",
+    "body_ref": ".evidence/feature-readiness-opencode-direct-free/prompt-metadata.json",
+    "author": "opencode/minimax-m2.5-free",
+    "base_ref": "main",
+    "head_ref": "demo-v2-packetization",
+    "head_sha": "dirty-local-feature-readiness"
+  },
+  "commit_range": {
+    "base": "a8f37aad8500761693feb6ce68517bd65cabc8cc",
+    "head": "dirty-local-feature-readiness",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [],
+  "artifacts": [],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e1849-db00-7323-aa54-a8ff88c53578",
+      "state": "partial"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-readiness-opencode-direct-free/manifest.json",
+    ".evidence/feature-readiness-opencode-direct-free/prompt-metadata.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_components": ["opencode", "gsd", "minimax-m2.5"]
+}

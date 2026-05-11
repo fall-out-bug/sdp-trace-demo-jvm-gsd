@@ -1,0 +1,29 @@
+{
+  "generated_at": "2026-05-11T18:25:05.967611756Z",
+  "run_count": 1,
+  "observed_count": 1,
+  "failed_count": 0,
+  "cannot_verify_count": 0,
+  "not_assessed_count": 0,
+  "trust_scope": "local_observed",
+  "audit_grade": false,
+  "audit_grade_reason": "local observed evidence has no CI/OIDC witness or external witness checkpoint",
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "b3a09a5c1a3c0ffc",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "opencode",
+      "wrapper_name": "feature-readiness-opencode-direct-free",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "a85d4e157b789c640d6a31f29faec4763c29ebf189da60ff3970806dfc33b5e5",
+      "stderr_digest": "88aedd9cc734d54aaf5acb14b9ce1709b75dd1135843a73b3ded1697dae3bcf9"
+    }
+  ]
+}

@@ -27,7 +27,21 @@ fun main(args: Array<String>) {
             exchange.close()
         }
     }
-    
+
+    server.createContext("/ready") { exchange ->
+        try {
+            val jsonResponse = """{"ready":true}"""
+            exchange.responseHeaders.set("Content-Type", "application/json")
+            exchange.sendResponseHeaders(200, jsonResponse.toByteArray(StandardCharsets.UTF_8).size.toLong())
+            val os: OutputStream = exchange.responseBody
+            os.write(jsonResponse.toByteArray(StandardCharsets.UTF_8))
+            os.close()
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
+
     server.createContext("/todos") { exchange ->
         try {
             val method = exchange.requestMethod

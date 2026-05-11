@@ -48,6 +48,24 @@ else
     exit 1
 fi
 
+# Verify GET /ready returns HTTP 200 with exact body {"ready":true}
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/ready)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "Ready response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /ready did not return HTTP 200"
+    exit 1
+fi
+
+if [ "$BODY" = '{"ready":true}' ]; then
+    echo "PASS: GET /ready returned exact body {\"ready\":true}"
+else
+    echo "FAIL: GET /ready response body was not exactly {\"ready\":true}"
+    exit 1
+fi
+
 # Verify GET /todos returns empty array
 RESPONSE=$(curl -s http://localhost:$PORT/todos)
 echo "GET /todos response: $RESPONSE"

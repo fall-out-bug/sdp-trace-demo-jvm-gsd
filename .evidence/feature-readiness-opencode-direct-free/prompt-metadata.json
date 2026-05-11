@@ -1,0 +1,15 @@
+{
+  "schema_version": "demo-prompt-metadata-v1",
+  "task_id": "feature-readiness",
+  "route": "opencode/minimax-m2.5-free",
+  "prompt_sha256": "4165603c597de223efcf8517b96fde9a33be1d69a035f46d2ab47037d7246d7b",
+  "prompt_boundary_review": {
+    "state": "pass",
+    "reason": "Prompt asked for the GET /ready application feature and explicitly excluded hidden directories, generated artifacts, CI, PR templates, setup review records, tracker files, and packet files."
+  },
+  "non_claims": [
+    "prompt body retention is digest-only in this package",
+    "route proof is partial until CI-retained or stronger recorder integrity evidence is available",
+    "this prompt metadata does not approve merge or release"
+  ]
+}

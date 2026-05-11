@@ -1,0 +1,69 @@
+{
+  "schema_version": "demo-feature-route-manifest-v1",
+  "generated_at": "2026-05-11T18:25:32Z",
+  "subject": {
+    "repository": "sdp-trace-demo-jvm-gsd",
+    "branch": "demo-v2-packetization",
+    "head_commit_before_feature": "a8f37aad8500761693feb6ce68517bd65cabc8cc",
+    "dirty_checkout": true,
+    "dirty_checkout_reason": "feature route, OpenCode review-fix, and setup changes are not committed yet; source-bound release proof is not claimed"
+  },
+  "route": {
+    "agent": "OpenCode",
+    "model": "opencode/minimax-m2.5-free",
+    "state": "partial",
+    "reason": "Recorder observed OpenCode process execution and digests, but route proof is local-only and prompt body retention is digest-only."
+  },
+  "prompt": {
+    "metadata_path": ".evidence/feature-readiness-opencode-direct-free/prompt-metadata.json",
+    "sha256": "4165603c597de223efcf8517b96fde9a33be1d69a035f46d2ab47037d7246d7b"
+  },
+  "run": {
+    "path": ".evidence/feature-readiness-opencode-direct-free/run",
+    "run_id": "b3a09a5c1a3c0ffc",
+    "command_started_sha256": "e563e5c478102f0cc92c4c0c383bcdd448c638e8a0f722513ed20e9d8bf7bd73",
+    "command_finished_sha256": "da7433025e53f6c9ab4b29da82e94087e672747af1c28f5d296ced846ca7bdc2"
+  },
+  "verification": {
+    "path": ".evidence/feature-readiness-final-verification",
+    "run_id": "521c321a7864ddf2",
+    "local_gate": "pass",
+    "ci_witness_gate": "cannot_verify",
+    "audit_grade_gate": "cannot_verify",
+    "gate_result_sha256": "3d6efdbce966c650f2a1f700a74c5c5872c050b1570c6416a8ef2e1ec953de74"
+  },
+  "review_fix": {
+    "path": ".evidence/feature-readiness-review-fix",
+    "run_id": "d5c1aa4b4f11c8c4",
+    "command_finished_sha256": "909963e448f8119551cac24223d23589f980030d5274d267eb8e5572ef97ec2e",
+    "summary_sha256": "8c9da7b7ec0f11a800e4003e01ed0e21c1ba1ff1f4ba8fefca64c104040ad3c3"
+  },
+  "changed_files": [
+    "app/src/main/kotlin/com/example/App.kt",
+    "app/smoke_test.sh"
+  ],
+  "changed_files_diff_sha256": "1d9eb972a36cfa9e74700cbae0c3f6185bb661deef91191964d5db548c87b8ca",
+  "non_claims": [
+    "no CI witness",
+    "no audit-grade external witness",
+    "no source-bound release proof for dirty checkout",
+    "no merge approval",
+    "no production trust"
+  ],
+  "residual_gaps": [
+    {
+      "id": "RG-FEATURE-CI-WITNESS-001",
+      "state": "cannot_verify",
+      "owner": "demo-ci",
+      "reason": "Feature verification is local-only until a PR run uploads retained packet and bundle artifacts.",
+      "required_closure": "Open feature PR and retain GitHub Actions run plus uploaded packet/bundle artifacts."
+    },
+    {
+      "id": "RG-ROUTE-INTEGRITY-001",
+      "state": "partial",
+      "owner": "sdp-trace",
+      "reason": "Local recorder observed OpenCode process execution, but stronger recorder integrity/passivity evidence is not available.",
+      "required_closure": "Use CI-retained or signed route observation artifacts and validate them in the packet bundle."
+    }
+  ]
+}
