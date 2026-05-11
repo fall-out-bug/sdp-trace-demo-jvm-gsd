@@ -1,0 +1,9 @@
+{
+  "run_id": "767f61490df821e8",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-ping-opencode/run"
+}

@@ -102,6 +102,24 @@ else
     exit 1
 fi
 
+# Verify GET /ping returns HTTP 200 with exact body pong
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/ping)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "Ping response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /ping did not return HTTP 200"
+    exit 1
+fi
+
+if [ "$BODY" = "pong" ]; then
+    echo "PASS: GET /ping returned exact body pong"
+else
+    echo "FAIL: GET /ping response body was not exactly pong"
+    exit 1
+fi
+
 # Verify GET /todos returns empty array
 RESPONSE=$(curl -s http://localhost:$PORT/todos)
 echo "GET /todos response: $RESPONSE"

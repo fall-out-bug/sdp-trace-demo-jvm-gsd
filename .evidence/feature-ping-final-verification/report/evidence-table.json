@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "eb39f1fe0466a554",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "bash",
+      "wrapper_name": "feature-ping-final-verification",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "47861f633d94efc3c1a3cb95fafe0b266f8dff8d53626740c7518bdeb9da01e7",
+      "stderr_digest": "8335b448c2d218f30d9cb623120c5381264e8ee95674332f5c99856661e7fc5b"
+    }
+  ]
+}

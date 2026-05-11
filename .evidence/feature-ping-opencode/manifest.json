@@ -1,0 +1,50 @@
+{
+  "schema_version": "demo-route-manifest.v0",
+  "feature": "feature-4-ping",
+  "route": {
+    "state": "partial",
+    "reason": "local recorder observed an OpenCode/MiniMax route, but no external CI or signed attestation proves full passivity",
+    "observed_components": [
+      "sdp-trace-wrap",
+      "opencode",
+      "minimax-m2.5"
+    ]
+  },
+  "run": {
+    "path": ".evidence/feature-ping-opencode/run",
+    "run_id": "767f61490df821e8",
+    "command_finished_sha256": "3bd6d79b3483987a3fa6cabe439da24e2c67465264fc4a23afa8af928bb93176",
+    "exit_code": 0
+  },
+  "report": {
+    "path": ".evidence/feature-ping-opencode/report",
+    "summary_sha256": "88104efc718e02a08529d58bee8b6ae05dc04854a142d94bc19e298d6a627c62",
+    "trust_scope": "local_observed"
+  },
+  "mutation": {
+    "changed_files": [
+      "app/src/main/kotlin/com/example/App.kt",
+      "app/smoke_test.sh"
+    ],
+    "changed_files_diff_sha256": "949b169921b38da5ebbff511fa7eb0e1f094fcd6abfa0b350d960a01b73aa53c"
+  },
+  "friction": [
+    {
+      "id": "FR-FEATURE-4-OPENCODE-TOOL-SCHEMA-001",
+      "state": "observed",
+      "reason": "OpenCode first attempted a bash tool call with invalid timeout schema, then reran the Bazel smoke test successfully"
+    }
+  ],
+  "residual_gaps": [
+    {
+      "id": "RG-FEATURE-4-CI-WITNESS-001",
+      "state": "cannot_verify",
+      "reason": "feature branch has not yet produced a retained GitHub Actions witness"
+    },
+    {
+      "id": "RG-FEATURE-4-ROUTE-PASSIVITY-001",
+      "state": "partial",
+      "reason": "prompt boundary and local recorder observation support route evidence, but not signed passivity"
+    }
+  ]
+}
