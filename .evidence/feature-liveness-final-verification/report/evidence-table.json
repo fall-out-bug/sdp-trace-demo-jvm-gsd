@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "548eeb54be4a40c5",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "bash",
+      "wrapper_name": "feature-liveness-final-verification",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "1bcf2534212e7cae751a26bd17ddd07239e71b3df7112b5a8e6e61e9d399d102",
+      "stderr_digest": "bc2eb87587d3aac36aced16eded38cffeb461b7379dddd8fc6986a0c996321ff"
+    }
+  ]
+}

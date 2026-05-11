@@ -1,0 +1,15 @@
+{
+  "schema_version": "demo-prompt-metadata-v1",
+  "task_id": "feature-liveness",
+  "route": "opencode/minimax-m2.5-free",
+  "prompt_sha256": "c8e76478bc7c6e910a5b3e03c168a866bd80719381fc2131d1c5bc0da6566eb3",
+  "prompt_boundary_review": {
+    "state": "pass",
+    "reason": "Prompt asked for the GET /live application feature and explicitly excluded hidden directories, generated artifacts, CI, PR templates, setup review records, tracker files, packet files, and prior evidence files."
+  },
+  "non_claims": [
+    "prompt body retention is digest-only in this package",
+    "route proof is partial until CI-retained or stronger recorder integrity evidence is available",
+    "this prompt metadata does not approve merge or release"
+  ]
+}
