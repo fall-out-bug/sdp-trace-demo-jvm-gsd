@@ -2,21 +2,42 @@
   "schema_version": "github-pr-evidence-input.v0",
   "pr": {
     "number": 19,
-    "url": "local://demo-v2-feature-4-ping",
+    "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/pull/19",
     "title": "Add ping endpoint",
     "body_ref": ".evidence/feature-ping-opencode/prompt-metadata.json",
     "author": "opencode/minimax-m2.5-free",
     "base_ref": "demo-v2-feature-3-version",
     "head_ref": "demo-v2-feature-4-ping",
-    "head_sha": "1cbe77e45f66e9c0371ca766dfbded2534a6cec8"
+    "head_sha": "a5d167c93ff8450eb27ceb66c2e10cc4fbe801fd"
   },
   "commit_range": {
     "base": "14d39cac7bc1b1e7437a0b4f20949c21479ae6c5",
-    "head": "1cbe77e45f66e9c0371ca766dfbded2534a6cec8",
+    "head": "a5d167c93ff8450eb27ceb66c2e10cc4fbe801fd",
     "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
   },
-  "checks": [],
-  "artifacts": [],
+  "checks": [
+    {
+      "name": "build-and-test",
+      "url": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698160567/job/75451640614",
+      "conclusion": "success",
+      "artifact_refs": [
+        "change-evidence-packets",
+        "evidence-bundles"
+      ]
+    }
+  ],
+  "artifacts": [
+    {
+      "name": "change-evidence-packets",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698160567/artifacts/6930226068",
+      "retained_form": "external_ref"
+    },
+    {
+      "name": "evidence-bundles",
+      "resolver": "https://github.com/fall-out-bug/sdp-trace-demo-jvm-gsd/actions/runs/25698160567/artifacts/6930226324",
+      "retained_form": "external_ref"
+    }
+  ],
   "reviews": [
     {
       "reviewer": "codex-subagent-feature-review",
