@@ -1,0 +1,9 @@
+{
+  "run_id": "b5b38040956ebd49",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-info-final-verification/run"
+}

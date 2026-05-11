@@ -1,0 +1,20 @@
+{
+  "runs": [
+    {
+      "name": "run",
+      "run_id": "144ad62a13dd971a",
+      "kind": "unmatched",
+      "kind_reason": "no contract evidence requirement matched",
+      "command": "gsd",
+      "wrapper_name": "feature-info-gsd-opencode",
+      "exit_code": 0,
+      "closure_state": "completed",
+      "result": "observed",
+      "trust_scope": "local_observed",
+      "completeness": "complete",
+      "replayability": "partial",
+      "stdout_digest": "be86ec71902c8cefc185fe987daf1c01de9bdd25d0f8bec90322ad69cf290717",
+      "stderr_digest": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ]
+}
