@@ -1,0 +1,38 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 20,
+    "url": "local://demo-v2-feature-5-info",
+    "title": "Add info endpoint",
+    "body_ref": ".evidence/feature-info-gsd-opencode/prompt-metadata.json",
+    "author": "gsd/opencode/minimax-m2.5-free",
+    "base_ref": "demo-v2-feature-4-ping",
+    "head_ref": "demo-v2-feature-5-info",
+    "head_sha": "de8dc88ca45abc21200de3b016ee2b191b97546e"
+  },
+  "commit_range": {
+    "base": "a5d167c93ff8450eb27ceb66c2e10cc4fbe801fd",
+    "head": "de8dc88ca45abc21200de3b016ee2b191b97546e",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [],
+  "artifacts": [],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e18ce-3105-7272-98db-34c27dc9b381",
+      "state": "pass"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-info-gsd-opencode/manifest.json",
+    ".evidence/feature-info-gsd-opencode/prompt-metadata.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:9e6fbd7284750b073cadd5c4bd5ffb34605a26672ff68f057fc37baad6cf4df4",
+  "agent_route_components": [
+    "gsd",
+    "opencode",
+    "minimax-m2.5"
+  ]
+}

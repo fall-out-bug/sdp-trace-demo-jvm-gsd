@@ -1,0 +1,9 @@
+{
+  "run_id": "718be4f11b5b7146",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-5-packet-validate/run"
+}

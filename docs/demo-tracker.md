@@ -9,7 +9,7 @@
 | feature 2 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 3 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 4 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
-| feature 5 | not_assessed | not_assessed | cannot_verify | not_assessed | pass | not_assessed | owner state: not_assessed |
+| feature 5 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | negative | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
 
 Allowed states: `not_started`, `in_progress`, `pass`, `partial`, `fail`,
@@ -58,4 +58,6 @@ Feature 5 route: `GET /info` has local GSD/OpenCode/MiniMax route observation
 in `.evidence/feature-info-gsd-opencode/`, local verification in
 `.evidence/feature-info-final-verification/`, and review disposition via
 subagent thread `019e18ce-3105-7272-98db-34c27dc9b381`. Route proof is
-`partial`; CI remains `cannot_verify` until a PR run retains artifacts.
+`partial`; packet checks are retained in `.evidence/feature-5-packet-validate/`
+and `.evidence/feature-5-packet-check-demo/`. CI remains `cannot_verify` until
+a PR run retains artifacts.
