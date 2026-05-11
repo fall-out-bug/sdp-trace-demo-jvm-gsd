@@ -1,0 +1,34 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 17,
+    "url": "local://demo-v2-feature-2-liveness",
+    "title": "Add liveness endpoint",
+    "body_ref": ".evidence/feature-liveness-opencode/prompt-metadata.json",
+    "author": "opencode/minimax-m2.5-free",
+    "base_ref": "demo-v2-packetization",
+    "head_ref": "demo-v2-feature-2-liveness",
+    "head_sha": "e3ce8cc44f7055530c01ecfc1ede0374083769b9"
+  },
+  "commit_range": {
+    "base": "ebdaf7d466fe9a53fbd8a062ae4312ce10f8a6ed",
+    "head": "e3ce8cc44f7055530c01ecfc1ede0374083769b9",
+    "changed_files_ref": "app/src/main/kotlin/com/example/App.kt, app/smoke_test.sh"
+  },
+  "checks": [],
+  "artifacts": [],
+  "reviews": [
+    {
+      "reviewer": "codex-subagent-feature-review",
+      "resolver": "thread-notification:019e18a2-efb0-7963-ac3d-9688203c32d3",
+      "state": "pass"
+    }
+  ],
+  "agent_route_refs": [
+    ".evidence/feature-liveness-opencode/manifest.json",
+    ".evidence/feature-liveness-opencode/prompt-metadata.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_digest": "sha256:6bb871c6917d606ccc49ec8c051c13e0eb1f3e24438fadeb451d6820517d9755",
+  "agent_route_components": ["opencode", "gsd", "minimax-m2.5"]
+}
