@@ -48,6 +48,24 @@ else
     exit 1
 fi
 
+# Verify GET /version returns HTTP 200 with exact body {"version":"demo-v2"}
+RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/version)
+HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)
+BODY=$(echo "$RESPONSE" | grep -v "HTTP_CODE:")
+echo "Version response: $BODY (HTTP $HTTP_CODE)"
+
+if [ "$HTTP_CODE" != "200" ]; then
+    echo "FAIL: GET /version did not return HTTP 200"
+    exit 1
+fi
+
+if [ "$BODY" = '{"version":"demo-v2"}' ]; then
+    echo "PASS: GET /version returned exact body {\"version\":\"demo-v2\"}"
+else
+    echo "FAIL: GET /version response body was not exactly {\"version\":\"demo-v2\"}"
+    exit 1
+fi
+
 # Verify GET /ready returns HTTP 200 with exact body {"ready":true}
 RESPONSE=$(curl -s -w "\nHTTP_CODE:%{http_code}" http://localhost:$PORT/ready)
 HTTP_CODE=$(echo "$RESPONSE" | grep "HTTP_CODE:" | cut -d: -f2)

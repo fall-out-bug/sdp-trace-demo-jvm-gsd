@@ -1,0 +1,9 @@
+{
+  "run_id": "65fe6b6a913cdfca",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/feature-version-gsd-opencode/run"
+}
