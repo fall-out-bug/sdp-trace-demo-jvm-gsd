@@ -1,0 +1,297 @@
+{
+  "packet": {
+    "packet_version": "change-evidence-packet.v0",
+    "packet_id": "github-pr-21-change-evidence-packet",
+    "source_change": {
+      "repository": "local://demo-v2-negative-agent-claimed-verification",
+      "change_id": "PR-21",
+      "url": "local://demo-v2-negative-agent-claimed-verification",
+      "base_ref": "demo-v2-feature-5-info",
+      "head_ref": "demo-v2-negative-agent-claimed-verification",
+      "commit_range": "b99ac40..67d872bdbb5c898d9989f3086a31a7493d855c44",
+      "head_sha": "67d872bdbb5c898d9989f3086a31a7493d855c44"
+    },
+    "generated_at": "2026-05-11T20:54:02Z",
+    "authoring_method": "tool_generated",
+    "selected_profile": "change-host-rich-v0",
+    "redaction_policy": "not_assessed",
+    "bundle_ref": "github-pr-21-change-evidence-packet-bundle",
+    "packet_state": "draft",
+    "projection": {
+      "kind": "canonical_markdown_artifact",
+      "canonical": true,
+      "artifact_ref": "packet:markdown"
+    },
+    "rows": [
+      {
+        "id": "PC-CHANGE",
+        "state": "pass",
+        "summary": "Change-host metadata and commit range are retained.",
+        "evidence_refs": [
+          "github:pr",
+          "git:commit-range"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-INITIATOR",
+        "state": "partial",
+        "summary": "PR body task source is retained.",
+        "evidence_refs": [
+          "github:pr-body"
+        ],
+        "reason": "PR body is weaker than a dedicated issue binding",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-AGENT-ROUTE",
+        "state": "partial",
+        "summary": "Agent route refs are retained.",
+        "evidence_refs": [
+          "agent:route"
+        ],
+        "reason": "route refs are input refs, not a complete observed delegation chain",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-MUTATION",
+        "state": "pass",
+        "summary": "Commit range and changed files are retained.",
+        "evidence_refs": [
+          "git:commit-range"
+        ],
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-VERIFICATION",
+        "state": "cannot_verify",
+        "summary": "No GitHub check evidence was provided.",
+        "evidence_refs": null,
+        "reason": "missing GitHub check or workflow run evidence",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-REVIEW",
+        "state": "not_assessed",
+        "summary": "Review evidence was not provided.",
+        "evidence_refs": null,
+        "reason": "missing GitHub review or retained external review",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-AUTHORITY",
+        "state": "not_assessed",
+        "summary": "Authority was not assessed for this generated GitHub input.",
+        "evidence_refs": null,
+        "reason": "authority profile was not provided",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-THEATER",
+        "state": "partial",
+        "summary": "Agent claimed verification without independent artifact.",
+        "evidence_refs": [
+          "github:pr-body"
+        ],
+        "reason": "supplied theater finding validated by packet tooling; automatic theater detection is not claimed",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-ATTESTATION",
+        "state": "not_assessed",
+        "summary": "Signed or external attestation was not assessed.",
+        "evidence_refs": null,
+        "reason": "signed trust inputs were not provided",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-DECISION",
+        "state": "not_assessed",
+        "summary": "Default decision owner placeholders are recorded.",
+        "evidence_refs": [
+          "decision:owners"
+        ],
+        "reason": "decision owners are placeholders, not bound approval or ownership evidence",
+        "owner": "maintainer"
+      },
+      {
+        "id": "PC-RESIDUAL-GAPS",
+        "state": "partial",
+        "summary": "Non-pass rows remain explicit in residual gaps.",
+        "evidence_refs": [
+          "gap:generated"
+        ],
+        "reason": "generated packet contains explicit non-pass rows",
+        "owner": "maintainer"
+      }
+    ],
+    "theater_findings": [
+      {
+        "reason_code": "agent_claimed_verification",
+        "state": "partial",
+        "severity": "P0",
+        "finding": "Agent claimed verification passed, but no independent GitHub Actions artifact or signed witness is retained for this negative demo branch.",
+        "trigger_evidence_refs": [
+          "github:pr-body"
+        ],
+        "required_closure_evidence": "retained independent CI artifact, signed witness, or explicit non-claiming packet row"
+      }
+    ],
+    "residual_gaps": [
+      {
+        "row_id": "PC-INITIATOR",
+        "state": "partial",
+        "reason": "PR body is weaker than a dedicated issue binding",
+        "closure_evidence": "provide retained evidence for PC-INITIATOR"
+      },
+      {
+        "row_id": "PC-AGENT-ROUTE",
+        "state": "partial",
+        "reason": "route refs are input refs, not a complete observed delegation chain",
+        "closure_evidence": "provide retained evidence for PC-AGENT-ROUTE"
+      },
+      {
+        "row_id": "PC-VERIFICATION",
+        "state": "cannot_verify",
+        "reason": "missing GitHub check or workflow run evidence",
+        "closure_evidence": "provide retained evidence for PC-VERIFICATION"
+      },
+      {
+        "row_id": "PC-THEATER",
+        "state": "partial",
+        "reason": "agent_claimed_verification finding supplied and validated; automatic theater detection is not claimed",
+        "evidence_refs": [
+          "github:pr-body"
+        ],
+        "closure_evidence": "retain independent verification artifact or remove the unsupported verification claim"
+      },
+      {
+        "row_id": "PC-REVIEW",
+        "state": "not_assessed",
+        "reason": "missing GitHub review or retained external review",
+        "closure_evidence": "provide retained evidence for PC-REVIEW"
+      },
+      {
+        "row_id": "PC-AUTHORITY",
+        "state": "not_assessed",
+        "reason": "authority profile was not provided",
+        "closure_evidence": "provide retained evidence for PC-AUTHORITY"
+      },
+      {
+        "row_id": "PC-ATTESTATION",
+        "state": "not_assessed",
+        "reason": "signed trust inputs were not provided",
+        "closure_evidence": "provide retained evidence for PC-ATTESTATION"
+      },
+      {
+        "row_id": "PC-DECISION",
+        "state": "not_assessed",
+        "reason": "decision owners are placeholders, not bound approval or ownership evidence",
+        "closure_evidence": "provide retained evidence for PC-DECISION"
+      }
+    ],
+    "decision_owners": [
+      {
+        "decision": "merge",
+        "owner": "maintainer",
+        "state": "not_assessed",
+        "reason": "packet is not approval"
+      },
+      {
+        "decision": "release",
+        "owner": "release owner",
+        "state": "not_assessed",
+        "reason": "packet is not release approval"
+      },
+      {
+        "decision": "risk_acceptance",
+        "owner": "risk owner",
+        "state": "not_assessed",
+        "reason": "packet is not risk acceptance"
+      },
+      {
+        "decision": "security_review",
+        "owner": "security owner",
+        "state": "not_assessed",
+        "reason": "packet is not security review"
+      }
+    ],
+    "non_approval": "This packet does not approve merge, release, compliance, production trust, semantic correctness, or signed external trust."
+  },
+  "manifest": {
+    "schema_version": "evidence-bundle-manifest.v0",
+    "bundle_id": "github-pr-21-change-evidence-packet-bundle",
+    "packet_digest": "sha256:2c60f282400d31f0b8ba0a10b63b2ed5039f1483bca852cacaabaad35211c4f0",
+    "entries": [
+      {
+        "ref": "github:pr",
+        "source_class": "change_host",
+        "digest": "sha256:c6c98aec3bd6ad0b3629fe07f1fde0219240101a9b1c742031836e804388349d",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "local://demo-v2-negative-agent-claimed-verification",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "git:commit-range",
+        "source_class": "git",
+        "digest": "sha256:fc2417c04a4630464f79a2222a2331ceef40294d3825cbb9d2e05c2131c4c2ce",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": "b99ac40..67d872bdbb5c898d9989f3086a31a7493d855c44",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "theater:builder",
+        "source_class": "witness",
+        "digest": "sha256:50eb5759acce603066f3c74aea025c97d29f033fe0638de1201f110665f49965",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "sdp-trace packet build-github",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "decision:owners",
+        "source_class": "manual",
+        "digest": "sha256:8231bc3ffe295522805ffa6a5ce5141a5e0acb5cdef68142704cedbf239167d3",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "default generated decision owners",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "gap:generated",
+        "source_class": "manual",
+        "digest": "sha256:c924f9e4df5d5847c692c7b2c526506f8735e20ce1e05a81f477060a95e4ebd5",
+        "retained_form": "raw",
+        "redaction_status": "not_needed",
+        "resolver": "generated residual gaps",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "github:pr-body",
+        "source_class": "change_host",
+        "digest": "sha256:2a7c66b09fa020ddf8d6726cae015d5649c7f4b64cbe6116f524a9d12f18c6c3",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": ".evidence/negative-agent-claimed-verification/agent-claim.json",
+        "artifact_access": "present"
+      },
+      {
+        "ref": "agent:route",
+        "source_class": "harness",
+        "digest": "sha256:0c1456ca58471c56c21f143cd78c97d839d0784b2625b9307fc4fbd77693d91c",
+        "retained_form": "external_ref",
+        "redaction_status": "not_needed",
+        "resolver": ".evidence/negative-agent-claimed-verification/agent-claim.json",
+        "artifact_access": "present",
+        "evidence_kind": "harness_route_observation",
+        "observed_components": [
+          "gsd",
+          "opencode",
+          "minimax-m2.5"
+        ]
+      }
+    ]
+  }
+}
