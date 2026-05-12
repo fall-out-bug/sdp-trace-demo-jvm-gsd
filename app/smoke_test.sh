@@ -663,5 +663,35 @@ if [ "$PUT_STATS_CODE" != "405" ]; then
 fi
 echo "PASS: PUT /stats returns 405"
 
+# F6-01: Verify GET /flags returns HTTP 200 with Content-Type application/json and body []
+FLAGS_GET_HEADERS=$(curl -s -i http://localhost:$PORT/flags | head -20)
+if echo "$FLAGS_GET_HEADERS" | grep -qi "Content-Type:.*application/json"; then
+    echo "PASS: GET /flags Content-Type contains application/json"
+else
+    echo "FAIL: GET /flags Content-Type does not contain application/json"
+    exit 1
+fi
+
+FLAGS_GET_BODY=$(curl -s http://localhost:$PORT/flags)
+echo "GET /flags: $FLAGS_GET_BODY"
+
+if [ "$FLAGS_GET_BODY" = "[]" ]; then
+    echo "PASS: GET /flags returned []"
+else
+    echo "FAIL: GET /flags did not return []"
+    exit 1
+fi
+
+# F6-02: Verify unsupported methods on /flags return 405
+POST_FLAGS=$(curl -s -w "\nHTTP_CODE:%{http_code}" -X POST -H "Content-Type: application/json" -d '{}' http://localhost:$PORT/flags)
+POST_FLAGS_CODE=$(echo "$POST_FLAGS" | grep "HTTP_CODE:" | cut -d: -f2)
+echo "POST /flags: HTTP $POST_FLAGS_CODE"
+
+if [ "$POST_FLAGS_CODE" != "405" ]; then
+    echo "FAIL: POST /flags did not return 405"
+    exit 1
+fi
+echo "PASS: POST /flags returns 405"
+
 echo "ALL TESTS PASSED"
 exit 0

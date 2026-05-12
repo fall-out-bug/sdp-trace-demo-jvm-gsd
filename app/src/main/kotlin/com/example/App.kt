@@ -217,6 +217,26 @@ fun main(args: Array<String>) {
             exchange.close()
         }
     }
+
+    server.createContext("/flags") { exchange ->
+        try {
+            val method = exchange.requestMethod
+            if (method == "GET") {
+                exchange.responseHeaders.set("Content-Type", "application/json")
+                val json = "[]"
+                exchange.sendResponseHeaders(200, json.toByteArray(StandardCharsets.UTF_8).size.toLong())
+                val os = exchange.responseBody
+                os.write(json.toByteArray(StandardCharsets.UTF_8))
+                os.close()
+            } else {
+                exchange.sendResponseHeaders(405, 0)
+                exchange.close()
+            }
+        } catch (e: Exception) {
+            exchange.sendResponseHeaders(500, 0)
+            exchange.close()
+        }
+    }
     
     Runtime.getRuntime().addShutdownHook(Thread {
         println("Shutting down server...")

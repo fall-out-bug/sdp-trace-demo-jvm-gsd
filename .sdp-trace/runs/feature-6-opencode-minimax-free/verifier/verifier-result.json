@@ -1,0 +1,9 @@
+{
+  "run_id": "6195af0860910285",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".sdp-trace/runs/feature-6-opencode-minimax-free"
+}

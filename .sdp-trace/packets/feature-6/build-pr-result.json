@@ -1,0 +1,6 @@
+{
+  "state": "pass",
+  "bundle_path": "/tmp/demo-pr22-packet/bundle.json",
+  "packet_path": "/tmp/demo-pr22-packet/change-evidence-packet.md",
+  "result_path": "/tmp/demo-pr22-packet/build-pr-result.json"
+}
