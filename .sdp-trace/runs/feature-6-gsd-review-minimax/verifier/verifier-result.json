@@ -1,0 +1,9 @@
+{
+  "run_id": "3e884e9e074ca467",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".sdp-trace/runs/feature-6-gsd-review-minimax"
+}

@@ -1,0 +1,24 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "agent_route_refs": [
+    ".sdp-trace/runs/feature-6-opencode-minimax-free/run.json",
+    ".sdp-trace/runs/feature-6-opencode-repair-minimax-free/run.json",
+    ".sdp-trace/runs/feature-6-gsd-review-minimax/run.json"
+  ],
+  "agent_route_components": ["opencode", "gsd", "minimax-m2.5"],
+  "agent_route_digest": "sha256:3c3f7c084074441885de321c27be1fcb3f2d975d97e2fd155f5e88a7b7156c75",
+  "agent_route_evidence_kind": "harness_route_observation",
+  "prompt_boundary": {
+    "digest": "sha256:75d32eff8ce3f4d7a08601c97606020a4c9a6713fd46d0047597ab0b10b43091",
+    "capture_actor": "operator",
+    "captured_at": "2026-05-12T06:28:00Z",
+    "capture_method": "external_prompt_digest"
+  },
+  "reviews": [
+    {
+      "reviewer": "pi-deepseek-feature-review",
+      "resolver": "pr-comment:pending",
+      "state": "pass"
+    }
+  ]
+}
