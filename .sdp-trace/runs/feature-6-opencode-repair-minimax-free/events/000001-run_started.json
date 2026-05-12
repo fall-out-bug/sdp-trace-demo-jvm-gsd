@@ -1,0 +1,29 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "de219e3848e68ecc",
+  "event_id": "34457f4839e4bcf0b76c7e74",
+  "sequence": 1,
+  "event_type": "run_started",
+  "timestamp": "2026-05-12T06:33:12.747331172Z",
+  "prev_event_hash": "6d970ab23fe16c0cddedfa02a02516a19aeda614ff73c286fef6f047d471866c",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "0223e512edff8bbbd46ea191a362d00e276caac89bd87e17c9af52f632757916",
+  "event_payload": {
+    "command": "opencode",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "payload": {
+    "command": "opencode",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "contract_id": "local-default-v1",
+    "task_ref": ""
+  },
+  "event_hash": "1def648ae43e52339374545b274a3d7ddbdeae40921630c3d20b5bc44bcbd6d0",
+  "observed_by": "local_recorder"
+}

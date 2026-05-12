@@ -1,0 +1,33 @@
+{
+  "schema_version": "block10-event-v1",
+  "run_id": "6195af0860910285",
+  "event_id": "5d0b0189ee03edf5dd4a5032",
+  "sequence": 2,
+  "event_type": "command_started",
+  "timestamp": "2026-05-12T06:28:43.220344727Z",
+  "prev_event_hash": "304430ae424628470746da05dcc5c69ff1aba3c43de5542edf205523789b04d8",
+  "hash_algorithm": "sha256",
+  "canonicalization": {
+    "algorithm": "json-canonicalization-scheme",
+    "version": "1.0.0"
+  },
+  "payload_digest": "f520520e72c71995a1c26ad7e95d87a2ebef63a8c0634d1ea4bc70f50af0b9a9",
+  "event_payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "fb5da2511563",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/worktrees/sdp-trace-demo-feature-6",
+    "wrapper_name": "feature-6-opencode-minimax-free"
+  },
+  "payload": {
+    "cmd_pid": 0,
+    "command": "opencode",
+    "command_id": "fb5da2511563",
+    "contract_digest": "56eebb4fe6eff246dd78ed7b96639425f351214937cf656a05df22862a84b640",
+    "cwd": "/home/fall_out_bug/projects/vibe_coding/worktrees/sdp-trace-demo-feature-6",
+    "wrapper_name": "feature-6-opencode-minimax-free"
+  },
+  "event_hash": "aa0c3cadb17ea4419cd10eb1d3ccf251d8612a19f03527db1e8d8ecae8693345",
+  "observed_by": "local_recorder"
+}

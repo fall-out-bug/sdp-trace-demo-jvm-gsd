@@ -20,6 +20,7 @@ with five features and ordinary build/test commands.
 | 3 | POST /todos/{id}/complete | Mark a todo as completed |
 | 4 | DELETE /todos/{id} | Delete a todo by ID |
 | 5 | GET /stats | Return todo statistics (total, completed, active counts) |
+| 6 | GET /flags | List all feature flags (read-only, returns empty array) |
 
 ## Running Tests
 
@@ -39,6 +40,7 @@ bazel run //app:app
 # curl -X POST http://localhost:8080/todos/todo-1/complete
 # curl -X DELETE http://localhost:8080/todos/todo-1
 # curl http://localhost:8080/stats
+# curl http://localhost:8080/flags
 ```
 
 ## Review Artifacts

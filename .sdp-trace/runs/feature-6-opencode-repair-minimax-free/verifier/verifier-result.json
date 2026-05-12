@@ -1,0 +1,9 @@
+{
+  "run_id": "de219e3848e68ecc",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".sdp-trace/runs/feature-6-opencode-repair-minimax-free"
+}
