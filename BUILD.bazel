@@ -1,2 +1,14 @@
 # Todo Service Demo - Bazel BUILD
-# Placeholder for root config, targets live in subpackages
+
+load("@rules_shell//shell:sh_test.bzl", "sh_test")
+
+sh_test(
+    name = "v2_artifact_index_test",
+    srcs = ["scripts/v2-artifact-index-test.sh"],
+    data = [
+        ".sdp-trace/bundles/feature-1/bundle.json",
+        ".sdp-trace/packets/feature-1.md",
+        "scripts/verify-v2-artifact-index.sh",
+        "scripts/write-v2-artifact-index.sh",
+    ],
+)
