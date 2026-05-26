@@ -12,3 +12,15 @@ sh_test(
         "scripts/write-v2-artifact-index.sh",
     ],
 )
+
+sh_test(
+    name = "block25_negative_matrix_test",
+    srcs = ["scripts/block25-negative-matrix-test.sh"],
+    data = [
+        ".sdp-trace/negative-matrix/block25-v2-negative-matrix.json",
+        ".sdp-trace/packets/feature-1.md",
+        "scripts/verify-block25-negative-matrix.sh",
+        "scripts/verify-v2-artifact-index.sh",
+        "scripts/write-v2-artifact-index.sh",
+    ],
+)
