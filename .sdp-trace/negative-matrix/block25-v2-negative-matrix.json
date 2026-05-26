@@ -1,0 +1,26 @@
+{
+  "schema_version": "sdp-trace-demo-block25-negative-matrix-v1",
+  "cases": [
+    {
+      "id": "missing-ci-oidc",
+      "condition": "CI artifact evidence has no OIDC-backed workflow identity claim available to the packet verifier.",
+      "expected_state": "cannot_verify",
+      "reason_code": "missing_ci_oidc",
+      "independent_of_clean_artifact_index": true
+    },
+    {
+      "id": "stale-artifact-digest",
+      "condition": "A retained artifact is mutated after clean v2 artifact-index generation.",
+      "expected_state": "fail",
+      "reason_code": "artifact_digest_mismatch",
+      "independent_of_clean_artifact_index": true
+    },
+    {
+      "id": "source-run-mismatch",
+      "condition": "The source commit claimed by packet metadata does not match the run/source binding being verified.",
+      "expected_state": "fail",
+      "reason_code": "source_run_mismatch",
+      "independent_of_clean_artifact_index": true
+    }
+  ]
+}
