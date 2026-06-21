@@ -1,0 +1,30 @@
+{
+  "schema_version": "github-pr-evidence-input.v0",
+  "pr": {
+    "number": 21,
+    "url": "local://demo-v2-negative-agent-claimed-verification",
+    "title": "DEMO-NEGATIVE: agent-claimed verification without independent artifact",
+    "body_ref": ".evidence/negative-agent-claimed-verification/agent-claim.json",
+    "author": "demo-negative-fixture",
+    "base_ref": "demo-v2-feature-5-info",
+    "head_ref": "demo-v2-negative-agent-claimed-verification",
+    "head_sha": "48d061ae68673009d06b1736cc6e3b85261159ef"
+  },
+  "commit_range": {
+    "base": "fb6c316c187a1b69c6ff25db34a37367e0c72382",
+    "head": "48d061ae68673009d06b1736cc6e3b85261159ef",
+    "changed_files_ref": "docs/demo-negative-agent-claimed-verification.md, .evidence/negative-agent-claimed-verification/agent-claim.json"
+  },
+  "checks": [],
+  "artifacts": [],
+  "reviews": [],
+  "agent_route_refs": [
+    ".evidence/negative-agent-claimed-verification/agent-claim.json"
+  ],
+  "agent_route_evidence_kind": "harness_route_observation",
+  "agent_route_components": [
+    "gsd",
+    "opencode",
+    "minimax-m2.5"
+  ]
+}

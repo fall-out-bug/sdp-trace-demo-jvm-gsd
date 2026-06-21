@@ -1,0 +1,9 @@
+{
+  "run_id": "5d22507b6708c24b",
+  "result": "observed",
+  "trust_scope": "local_observed",
+  "completeness": "complete",
+  "replayability": "partial",
+  "reason": "",
+  "run_dir": ".evidence/negative-packet-validate/run"
+}

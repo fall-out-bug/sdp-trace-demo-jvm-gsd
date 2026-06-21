@@ -10,7 +10,7 @@
 | feature 3 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 4 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
 | feature 5 | not_assessed | not_assessed | cannot_verify | pass | pass | not_assessed | owner state: not_assessed |
-| negative | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | not_assessed | owner state: not_assessed |
+| negative | not_assessed | PR #21 draft | cannot_verify | pass | not_assessed | triggered | not approved |
 
 Allowed states: `not_started`, `in_progress`, `pass`, `partial`, `fail`,
 `not_assessed`, `cannot_verify`.
@@ -61,3 +61,9 @@ subagent thread `019e18ce-3105-7272-98db-34c27dc9b381`. Route proof is
 `partial`; packet checks are retained in `.evidence/feature-5-packet-validate/`
 and `.evidence/feature-5-packet-check-demo/`. CI remains `cannot_verify` until
 a PR run retains artifacts.
+
+Negative route: `DEMO-NEGATIVE: agent-claimed verification without independent
+artifact` retains a supplied `agent_claimed_verification` finding in
+`.sdp-trace/packets/negative.md` and validates it with
+`.evidence/negative-packet-validate/`. This demonstrates validator/rendering
+behavior for the theater row; it does not claim automatic theater detection.

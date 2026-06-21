@@ -1,0 +1,10 @@
+{
+  "schema_version": "demo-negative-agent-claim.v0",
+  "negative_case": "agent_claimed_verification",
+  "claim": "Agent claims verification passed, but no independent GitHub Actions artifact or signed witness is provided for this negative demo branch.",
+  "independent_verification_artifact": "missing",
+  "expected_packet_rows": {
+    "PC_VERIFICATION": "cannot_verify",
+    "PC_THEATER": "partial"
+  }
+}
